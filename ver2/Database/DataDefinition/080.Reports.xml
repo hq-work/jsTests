@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+		<ReportEntity t:Id="report-old-task-status" Type="12" Name="Task Status Summary Report" t:Instantiator="database" />
+		<ReportVersion t:Id="report-version-old-task-status" ReportID="{$report-old-task-status.ID}" Structure="" Version="1" />
+
+		<ReportExecuteLog t:Id="report-execute-log-succeded" ReportID="{$report-old-task-status.ID}"
+						  UserID="{$jstestsAccessUser.ID}" WorkerCommandLogID="{$worker-command-log-entry-get-command-succeded.ID}"
+						  ResultXmlID="02D2A809-5B5A-46ED-A3F8-492DC7CC2EB2"
+						  IntermediateXmlFile="fcc79576-4194-476b-9b0f-22a2074f5038\71e26415-7806-4cc0-8710-de856e7a9b0e.xml"
+						  IntermediateXmlVersion="1" />
+		<ReportCachedResult t:Id="report-cached-result-succeded" ReportExecuteLogID="{$report-execute-log-succeded.ID}"
+							WorkerCommandLogID="{$worker-command-log-entry-get-command-succeded.ID}" ReportFormat="0"
+							ReportResultFile="fcc79576-4194-476b-9b0f-22a2074f5038\afd82cfa-60b1-4365-8270-f8c33763fc9b.html" CultureID="1033" />
+		
+		<ReportExecuteLog t:Id="report-execute-log-owner" ReportID="{$report-old-task-status.ID}"
+						  UserID="{$jstestsWPermissions.ID}" WorkerCommandLogID="{$worker-command-log-entry-get-command-owner.ID}"
+						  ResultXmlID="02D2A809-5B5A-46ED-A3F8-492DC7CC2EB2"
+						  IntermediateXmlFile="fcc79576-4194-476b-9b0f-22a2074f5038\71e26415-7806-4cc0-8710-de856e7a9b0e.xml"
+						  IntermediateXmlVersion="1" />
+		<ReportCachedResult t:Id="report-cached-result-owner" ReportExecuteLogID="{$report-execute-log-owner.ID}"
+							WorkerCommandLogID="{$worker-command-log-entry-get-command-owner.ID}" ReportFormat="0"
+							ReportResultFile="fcc79576-4194-476b-9b0f-22a2074f5038\afd82cfa-60b1-4365-8270-f8c33763fc9b.html" CultureID="1033" />
+
+		<ReportEntity t:Id="report-task-status1" Type="12" Name="Task Status Summary Report Generated (Reports module)"
+					  t:Instantiator="database" />
+		<ReportVersion t:Id="report-version-task-status1" ReportID="{$report-task-status1.ID}" Structure="{#file(081.Reports.tssr-report-structure1.xml)}" Version="1" />
+
+		<ReportEntity t:Id="report-workflow1" Type="25" Name="Workflow Report" t:Instantiator="database" />
+		<ReportVersion t:Id="report-version-workflow1" ReportID="{$report-workflow1.ID}" Structure="{#file(082.Reports.wf-report-structure1.xml)}" Version="1" />
+
+		<BaseReport t:Id="report-custom1" Type="100" Name="Custom report Generated (Reports module)" IsCustom="true" t:Instantiator="database" />
+		<ReportVersion t:Id="report-version-custom1" ReportID="{$report-custom1.ID}" Structure="{#file(081.Reports.tssr-report-structure1.xml)}" Version="1" />
+
+		<BaseReport t:Id="report-folder1" IsFolder="true" Type="0" Name="Report folder Generated (Reports module)" t:Instantiator="database" />
+
+		<!-- Add jstestsReportsView user access (ReportPermissionTypes.View) -->
+		<UserWithAll t:Id="jstestsReportsView" Login="jstestsReportsView" FirstName="jstestsReportsView" LastName="jstestsReportsView" Rights="0" TimeZone="1"/>
+		<ReportPermissions t:Id="report-task-status1-permissions" ReportID="{$report-task-status1.ID}">
+			<Permissions>
+				<ReportUserPermission UserID="{$jstestsReportsView.ID}" Permission="1"/>
+			</Permissions>
+		</ReportPermissions>
+		
+		<BuildList t:Id="buildList-reports" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="report-old-task-status" />
+				<BuildListItem Name="report-version-old-task-status" />
+				<BuildListItem Name="report-execute-log-succeded" />
+				<BuildListItem Name="report-cached-result-succeded" />
+				<BuildListItem Name="report-execute-log-owner" />
+				<BuildListItem Name="report-cached-result-owner" />
+				<BuildListItem Name="report-task-status1" />
+				<BuildListItem Name="report-version-task-status1" />
+				<BuildListItem Name="report-version-workflow1" />
+				<BuildListItem Name="report-custom1" />
+				<BuildListItem Name="report-version-custom1" />
+				<BuildListItem Name="report-folder1" />
+				<BuildListItem Name="jstestsReportsView" />
+				<BuildListItem Name="report-task-status1-permissions" />
+			</List>
+		</BuildList>
+	</t:Templates>
+</t:Data>

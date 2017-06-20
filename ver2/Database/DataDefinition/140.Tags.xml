@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+		<UserWithAll t:Id="userWPermissionsTags" Login="userWPermissionsTags" FirstName="userWPermissionsTags" LastName="userWPermissionsTags" Rights="0" TimeZone="1"/>
+		<UserWithAll t:Id="userWPermissionsTagSchemes" Login="userWPermissionsTagSchemes" FirstName="userWPermissionsTagSchemes" LastName="userWPermissionsTagSchemes" Rights="0" TimeZone="1"/>
+		<TagScheme t:Id="tag-scheme-1" ID="22E1D121-E67B-42BA-B4E3-8D2333658C1D" Name="Tag_Scheme_1" EnforceUniqueness="1"/>
+		<TagScheme t:Id="tag-scheme-2" ID="23E1D121-E67B-48BA-B4E3-8D2333659C1D" Name="Tag_Scheme_2" EnforceUniqueness="1"/>
+		<TagScheme t:Id="tag-scheme-to-delete-1" ID="B0185B0B-B784-4F57-A995-5B5D67FB87CF" Name="Tag_Scheme_To_Delete_1" EnforceUniqueness="1"/>
+		<TagScheme t:Id="tag-scheme-to-delete-2" ID="A8BDAF73-1C67-4652-9E5E-7139437CB436" Name="Tag_Scheme_To_Delete_2" EnforceUniqueness="2"/>
+		<TagScheme t:Id="tag-scheme-to-update" ID="D88EC887-93BF-4CC4-9C3E-E5B3F7E034C3" Name="Tag_Scheme_To_Update" EnforceUniqueness="1"/>
+		<Tag t:Id="tag-1" ID="EC4E6D1E-0932-4E47-91AD-87F26ECC6143" Name="Tag 1" Description="tag-1-desc" TagSchemeId="22E1D121-E67B-42BA-B4E3-8D2333658C1D" />
+		<Tag t:Id="tag-2" ID="CFDF04D1-B04E-402A-BE05-11BF6914C929" Name="Tag 2" Description="tag-2-desc" TagSchemeId="23E1D121-E67B-48BA-B4E3-8D2333659C1D" />
+		<Tag t:Id="tag-3" ID="0297C2C8-CCF6-44EC-8B6B-90EB28F2D504" Name="Tag 3" Description="tag-3-desc" TagSchemeId="23E1D121-E67B-48BA-B4E3-8D2333659C1D" />
+		<BuildList t:Id="buildList-tags-tagShemes" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="userWPermissionsTags"/>
+				<BuildListItem Name="userWPermissionsTagSchemes"/>
+				<BuildListItem Name="tag-scheme-1"/>
+				<BuildListItem Name="tag-scheme-2"/>
+				<BuildListItem Name="tag-scheme-to-delete-1"/>
+				<BuildListItem Name="tag-scheme-to-update"/>
+				<BuildListItem Name="tag-1"/>
+				<BuildListItem Name="tag-2"/>
+				<BuildListItem Name="tag-3"/>
+			</List>
+		</BuildList>
+	</t:Templates>
+</t:Data>

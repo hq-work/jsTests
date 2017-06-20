@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Configuration>
+	</t:Configuration>
+
+	<t:Templates>
+		<MainMenuItem t:BaseTemplate="{#default(EntityObject)}" t:Instantiator="database" Description="" Created="{#today}" VisibleToAll="True" InvisibleToAll="False"/>
+		<MainMenuItemWithAll t:BaseTemplate="{#default(MainMenuItem)}" />
+	</t:Templates>
+</t:Data>

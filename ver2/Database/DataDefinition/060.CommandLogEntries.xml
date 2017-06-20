@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+		<CommandLog t:Id="command-log-entry-get-command-succeded" ID="EC4F2DA0-5C01-4d03-9922-B27C49610341" Description="Location created." StatusCode="2" UserID="{$jstestsAccessUser.ID}"
+					ObjectPath="System\JsTestsDivision" />
+
+		<CommandLog t:Id="command-log-entry-get-command-owner" ID="200D28C0-2807-41D7-A08C-2C9F0E4B4552" Description="Location created." StatusCode="2" UserID="{$jstestsWPermissions.ID}"
+					ObjectPath="System\JsTestsDivision" />
+		
+		<CommandLog t:Id="command-log-entry-get-command-failed" ID="E4A99724-367C-4c14-8A48-1E906DEE14B7" Description="Location copied." StatusCode="3" UserID="{$jstestsAccessUser.ID}"
+					ObjectPath="System\JsTestsDivision" ErrorMessage="Facility's Time Zone cannot be changed because STD and DST offsets are not equal." />
+
+		<WorkerCommandLog t:Id="worker-command-log-entry-get-command-succeded" ID="07672A79-83FF-4d61-A640-8DF464E46304" Description="Report Execution" StatusCode="3" UserID="{$jstestsAccessUser.ID}"
+						  StartedProcessing="2013-02-01T00:00:00.000" FinishedProcessing="2013-03-01T00:00:00.000" ObjectID="00000000-0000-0000-0000-000000000001"
+						  ObjectPath="/System/report folder/report" ConversationGroupID="{#guid}" ReportType="14" />
+
+		<WorkerCommandLog t:Id="worker-command-log-entry-get-command-owner" ID="4B44F1BE-920A-4BC1-9C64-DE6A31A45C36" Description="Report Execution" StatusCode="3" UserID="{$jstestsWPermissions.ID}"
+						  StartedProcessing="2013-02-01T00:00:00.000" FinishedProcessing="2013-03-01T00:00:00.000" ObjectID="00000000-0000-0000-0000-000000000001"
+						  ObjectPath="/System/report folder/report" ConversationGroupID="{#guid}" ReportType="14" />
+
+		<WorkerCommandLog t:Id="worker-command-log-entry-get-command-queued" ID="B8E7886E-3CE6-4bb2-83DE-5FD5CA2887CF" Description="Report Execution" StatusCode="0" UserID="{$jstestsAccessUser.ID}"
+						  StartedProcessing="1753-01-01T00:00:00.000" FinishedProcessing="1753-01-01T00:00:00.000" ObjectID="00000000-0000-0000-0000-000000000002"
+						  ObjectPath="/System/report folder/report" ConversationGroupID="{#guid}" ReportType="9" />
+
+		<WorkerCommandLog t:Id="worker-command-log-entry-get-command-failed" ID="F5CF424D-EB40-4b32-B439-E6E67970C7F4" Description="Report Execution" StatusCode="4" UserID="{$jstestsAccessUser.ID}"
+						  StartedProcessing="2013-02-01T00:00:00.000" FinishedProcessing="2013-03-01T00:00:00.000" ObjectID="00000000-0000-0000-0000-000000000003"
+						  ObjectPath="/System/report folder/report" ConversationGroupID="{#guid}" ReportType="8" ErrorMessage="Date range cannot be wider than a 50 years if &quot;Yearly&quot; date range type was selected for the report" />
+
+		<BuildList t:Id="buildList-commandlogentries" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="command-log-entry-get-command-succeded"/>
+				<BuildListItem Name="command-log-entry-get-command-owner"/>
+				<BuildListItem Name="command-log-entry-get-command-failed"/>
+				<BuildListItem Name="worker-command-log-entry-get-command-succeded"/>
+				<BuildListItem Name="worker-command-log-entry-get-command-owner"/>
+				<BuildListItem Name="worker-command-log-entry-get-command-queued"/>
+				<BuildListItem Name="worker-command-log-entry-get-command-failed"/>
+			</List>
+		</BuildList>
+	</t:Templates>
+</t:Data>

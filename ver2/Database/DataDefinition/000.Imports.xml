@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Configuration>
+		<Import XmlFile="DefaultTemplates/EntityObject.xml" />
+		<Import XmlFile="DefaultTemplates/User.xml" />
+		<Import XmlFile="DefaultTemplates/Group.xml" />
+		<Import XmlFile="DefaultTemplates/Udf.xml" />
+		<Import XmlFile="DefaultTemplates/ComplianceObject.xml" />
+		<Import XmlFile="DefaultTemplates/WorkflowType.xml" />
+		<Import XmlFile="DefaultTemplates/Document.xml" />
+		<Import XmlFile="DefaultTemplates/CommandLogEntry.xml" />
+		<Import XmlFile="DefaultTemplates/Report.xml" />
+		<Import XmlFile="DefaultTemplates/Package.xml" />
+		<Import XmlFile="DefaultTemplates/MainMenuItem.xml" />
+		<Import XmlFile="DefaultTemplates/WorkflowInstance.xml" />
+		<Import XmlFile="DefaultTemplates/Task.xml" />
+		<Import XmlFile="DefaultTemplates/Materials.xml" />
+	</t:Configuration>
+</t:Data>

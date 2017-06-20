@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Report
+    IncludeCompletedTasks="true"
+    IncludeCompletedOnTimeTasks="true"
+    IncludeCompletedOverdueTasks="true"
+    IncludePendingTasks="true" IncludeOverdueTasks="true" IncludeDismissedTasks="true"
+    SelectObjectRunTimeAttribute="True" OutputType="Html" BeginDate="1753-01-01T00:00:00" EndDate="2009-12-07T00:00:00">
+	<Locations />
+	<Templates />
+	<Columns>
+		<Column ID="T_Asgnee" Sort="asc" Type="Task" />
+	</Columns>
+	<Filter />
+	<Totals />
+	<HeaderAndFooter>
+		<Header></Header>
+		<Footer></Footer>
+	</HeaderAndFooter>
+	<DataOutputBindings>
+		<DataOutputBinding ID="9CF9F9E8-2099-4E0E-BDDD-CE9C369E667B" RequirementID="{0}" ReportFieldID="TSS_Total" />
+		<DataOutputBinding ID="1B5AE3F7-33A4-442D-B6E7-C2D2839258C4" RequirementID="{1}" ReportFieldID="TSS_Dismissed" />
+		<DataOutputBinding ID="2A59978D-A28B-4835-9427-0FC13D52E1AA" RequirementID="{2}" ReportFieldID="TSS_Overdue" />
+		<DataOutputBinding ID="67DDAB05-38C3-4652-BE56-424D2D94FE32" RequirementID="{3}" ReportFieldID="TSS_Pending" />
+		<DataOutputBinding ID="C5A6D2DF-6AF8-42BB-8E54-8E36E29CB79B" RequirementID="{4}" ReportFieldID="TSS_Completed" />
+	</DataOutputBindings>
+</Report>

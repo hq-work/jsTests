@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Configuration>
+		<RegisterInstantiator Instantiator="rep-permissions" Type="DdfDataGenerator.Instantiators.ReportPermissionsInstantiator, DdfDataGenerator" />
+	</t:Configuration>
+	<t:Templates>
+		<BaseReport t:BaseTemplate="{#default(EntityObject)}" IsFolder="false" Description="" ParentID="{$system.ID}" IsCustom="false" />
+		<ReportEntity t:BaseTemplate="{#default(EntityObject)}" Description="" ParentID="{$system.ID}" IsFolder="false" IsCustom="false" />
+
+		<ReportVersion t:BaseTemplate="{#default(EntityObject)}" Comments="" LastRun="1/1/1753" Created="{#today}" Structure="" Version="1" />
+
+		<ReportExecuteLog t:BaseTemplate="{#default(EntityObject)}" StartExecutionDate="2013-03-01T00:00:00.000" EndExecutionDate="2013-03-02T00:00:00.000"
+						  Status="0" SendNotification="0" PostProcessing="0" IsDataOutput="false" ExecutedByScheduler="false" />
+		<ReportCachedResult t:BaseTemplate="{#default(EntityObject)}" />
+
+		<ReportPermissions t:Instantiator="rep-permissions" Inherit="false"/>
+		<ReportPermission IsApplyToChildren="false" />
+		<ReportUserPermission t:BaseTemplate="{#default(ReportPermission)}" />
+		<ReportGroupPermission t:BaseTemplate="{#default(ReportPermission)}" />
+	</t:Templates>
+</t:Data>

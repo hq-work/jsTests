@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+		<Division t:Id="div-mdlg" Name="Division for MDLG"/>
+		<Facility t:Id="facility-mdlg" ParentID="{$div-mdlg.ID}" Name="FAC for MDLG"/>
+		<Unit t:Id="unit-mdlg" ParentID="{$facility-mdlg.ID}" Name="Unit for MDLG"/>
+		<POI t:Id="poi-mdlg" ParentID="{$unit-mdlg.ID}" Name="POI for MDLG" ID="02033b59-677a-4faa-bcff-00e5931058b2"/>
+		<POI t:Id="poi-mdlg-2" ParentID="{$unit-mdlg.ID}" Name="POI for MDLG 2" ID="00033b59-677a-4faa-bcff-00e5931058b2"/>
+
+		<MaterialProperty t:Id="suv-mdlg-1"  Name="SUV for mdlg 1" PropertyType="5" DataType="0" ID="11111b59-677a-4faa-bcff-00e5931058b2"/>
+		<MaterialProperty t:Id="suv-mdlg-2"  Name="SUV for mdlg 2" PropertyType="5" DataType="0" ID="22222b59-677a-4faa-bcff-00e5931058b2"/>
+		<MaterialProperty t:Id="tfbp-mdlg-1" Name="TFBP for mdlg 1"  PropertyType="4" DataType="0"/>
+
+		<MaterialProperty t:Id="suv-mdlg-3"  Name="SUV for mdlg 3" PropertyType="5" DataType="0" />
+		<MaterialProperty t:Id="suv-mdlg-4"  Name="SUV for mdlg 4" PropertyType="5" DataType="0" />
+		<MaterialProperty t:Id="tfbp-mdlg-2" Name="TFBP for mdlg 2"  PropertyType="4" DataType="0"/>
+
+		<Activity t:Id="activity-mdlg-1" Name="Activity for MDLG" Description="Activity 1 Description"  ID="00002b59-677a-4faa-bcff-00e5931058b2">
+			<Properties>
+				<ActivityPropertyMap PropertyID="{$suv-mdlg-1.ID}">
+					<ValueHistory>
+						<MaterialValueHistory ActivityID="{$activity-mdlg-1.ID}" BeginDate="2014-12-08T00:00:00" EndDate="2014-10-09T00:00:00" Value="50" />
+					</ValueHistory>
+				</ActivityPropertyMap>
+				<ActivityPropertyMap PropertyID="{$suv-mdlg-2.ID}">
+					<ValueHistory>
+						<MaterialValueHistory ActivityID="{$activity-mdlg-1.ID}" BeginDate="2014-12-10T00:00:00" EndDate="2014-12-11T00:00:00" Value="30" />
+					</ValueHistory>
+				</ActivityPropertyMap>
+			</Properties>
+		</Activity>
+
+		<Activity t:Id="activity-mdlg-2" Name="Activity for MDLG 2" Description="Activity 2 Description">
+			<Properties>
+				<ActivityPropertyMap PropertyID="{$suv-mdlg-3.ID}">
+					<ValueHistory>
+						<MaterialValueHistory ActivityID="{$activity-mdlg-2.ID}" BeginDate="2014-12-08T00:00:00" EndDate="2014-12-09T00:00:00" Value="50" />
+					</ValueHistory>
+				</ActivityPropertyMap>
+				<ActivityPropertyMap PropertyID="{$suv-mdlg-4.ID}">
+					<ValueHistory>
+						<MaterialValueHistory ActivityID="{$activity-mdlg-2.ID}" BeginDate="2014-12-10T00:00:00" EndDate="2014-12-11T00:00:00" Value="30" />
+					</ValueHistory>
+				</ActivityPropertyMap>
+			</Properties>
+		</Activity>
+		
+		<Chemical t:Id="chemical-for-material-mdlg-1" Name="Chemical for Material for MDLG 1" CasNum="0" Alias ="CfM1Mdlg" IsStandard="true" Description="Chemical 1 for MDLG Description" >
+			<ChemicalHistory>
+				<ChemicalHistoryItem ChemicalID="{$chemical-for-material-mdlg-1.ID}" t:Id="chemical-for-material-mdlg-1-history-1" BeginDate="2010-12-08T00:00:00" EndDate="2012-12-08T00:00:00" />
+				<ChemicalHistoryItem ChemicalID="{$chemical-for-material-mdlg-1.ID}" t:Id="chemical-for-material-mdlg-1-history-2" BeginDate="2012-12-08T00:00:00" EndDate="9999-12-31T00:00:00" />
+			</ChemicalHistory>
+		</Chemical>
+
+		<Material t:Id="material-mdlg-1" Name="Material 1 for MDLG" Description="Material 1 for MDLG Description" MaterialAvailabilityFlag="true" ID="04050b59-677a-4faa-bcff-00e5931058b2">
+			<Chemicals>
+				<MaterialChemicalMap MaterialID="{$material-mdlg-1.ID}" ChemicalID="{$chemical-for-material-mdlg-1.ID}">
+					<ConcentrationHistory>
+						<ChemicalConcentrationHistory t:Id="material-chemical-history-mdlg-11" MaterialID="{$material-mdlg-1.ID}" ChemicalID="{$chemical-for-material-mdlg-1.ID}" BeginDate="2014-12-19T00:00:00" Present="true" MinConc="0" EndDate="9999-12-31T00:00:00" AvgConc="50" MaxConc="100" />
+					</ConcentrationHistory>
+				</MaterialChemicalMap>
+			</Chemicals>
+		</Material>
+
+		<Material t:Id="material-mdlg-2" Name="Material 2 for MDLG" Description="Material 2 for MDLG Description" MaterialAvailabilityFlag="true">
+			<Chemicals>
+				<MaterialChemicalMap MaterialID="{$material-mdlg-2.ID}" ChemicalID="{$chemical-for-material-mdlg-1.ID}">
+					<ConcentrationHistory>
+						<ChemicalConcentrationHistory t:Id="material-chemical-history-mdlg-22" MaterialID="{$material-mdlg-2.ID}" ChemicalID="{$chemical-for-material-mdlg-1.ID}" BeginDate="2014-12-19T00:00:00" Present="true" MinConc="0" EndDate="9999-12-31T00:00:00" AvgConc="50" MaxConc="100" />
+					</ConcentrationHistory>
+				</MaterialChemicalMap>
+			</Chemicals>
+		</Material>
+
+		<Udf t:Id="udf-mac-mdlg" Type="0" ValueEntryMethod="0" Name="udf-mac-mdlg"></Udf>
+		<UdfTemplate t:Id="template-mac-mdlg" Name="template-mac-mdlg" />
+		<UdfTemplateToUdfMap t:Id="template-mac-mdlg-map" UDFID="{$udf-mac-mdlg.ID}" GroupID="{$template-mac-mdlg.ID}" Order="0" />
+
+		<RequirementTemplate t:Id="rt-mdlg-1" Key="Requirement Template for MDLG"/>
+		
+		<MacRequirementContainer  t:Id="mac-mdlg"  Name="Req for MDLG" ParentID="{$poi-mdlg.ID}"  CalcDesc="111"
+			ActivityID="{$activity-mdlg-1.ID}" 
+			UdfTemplateID="{$template-mac-mdlg.ID}"
+			TemplateID="{$rt-mdlg-1.ID}">
+			<Materials>
+				<MacRequirementMaterialMap MaterialID="{$material-mdlg-1.ID}" ContainerID="{$mac-mdlg.ID}" />
+			</Materials>
+			<Scripts>
+				<MaterialFormulaHistory Script="1+1" BeginDate="2014-12-01T00:00:00" EndDate="2015-12-02T00:00:00"  RequirementID="{$mac-mdlg.ID}" />
+			</Scripts>
+		</MacRequirementContainer>
+
+		<MacRequirementContainer  t:Id="mac-mdlg-2"  Name="Rec for MDLG 2" ParentID="{$poi-mdlg.ID}"  CalcDesc="111"
+			ActivityID="{$activity-mdlg-2.ID}"
+			UdfTemplateID="{$template-mac-mdlg.ID}"
+			TemplateID="{$rt-mdlg-1.ID}"
+			MACType="0">
+				<Materials>
+					<MacRequirementMaterialMap MaterialID="{$material-mdlg-2.ID}" ContainerID="{$mac-mdlg-2.ID}" />
+				</Materials>
+				<Scripts>
+					<MaterialFormulaHistory Script="1+1" BeginDate="2014-12-01T00:00:00" EndDate="2015-12-02T00:00:00"  RequirementID="{$mac-mdlg-2.ID}" />
+				</Scripts>
+		</MacRequirementContainer>
+
+		<MdlGroupValuesContainer t:Id="mdlgValues-test" ParentID="{$poi-mdlg.ID}" ActivityID="{$activity-mdlg-1.ID}"> 
+		<Groups>
+			<MdlGroupDto Complete="1/1/2012 12:00:00 AM" Collector="MDL Group 1" ID="00000b59-677a-4faa-bcff-00e5931058b2">
+				<DataLines>
+					<MaterialDataLine MaterialID="{$material-mdlg-1.ID}" StartTime="1/1/2012 12:00:00 AM" EndTime="1/1/2013 12:00:00 AM" ID="00001b59-677a-4faa-bcff-00e5931058b2">
+						<Data>
+							<MaterialData PropertyID="{$suv-mdlg-1.ID}" Value="100" />
+							<MaterialData PropertyID="{$suv-mdlg-2.ID}" Value="200" />
+							<MaterialData PropertyID="{$tfbp-mdlg-1.ID}" Value="300" /> 
+						</Data>
+					</MaterialDataLine>
+				</DataLines>
+			</MdlGroupDto>
+		</Groups>
+		</MdlGroupValuesContainer>
+		
+		<MdlGroupValuesContainer t:Id="mdlgValues-test-2" ParentID="{$poi-mdlg-2.ID}" ActivityID="{$activity-mdlg-1.ID}"> 
+		<Groups>
+			<MdlGroupDto Complete="2/1/2012 12:00:00 AM" Collector="MDL Group 2" ID="00000059-677a-4faa-bcff-00e5931058b2">
+				<DataLines>
+					<MaterialDataLine MaterialID="{$material-mdlg-2.ID}" StartTime="1/1/2013 12:00:00 AM" EndTime="1/1/2014 12:00:00 AM" ID="00000099-677a-4faa-bcff-00e5931058b2">
+						<Data>
+							<MaterialData PropertyID="{$suv-mdlg-1.ID}" Value="100" />
+							<MaterialData PropertyID="{$suv-mdlg-2.ID}" Value="200" />
+							<MaterialData PropertyID="{$tfbp-mdlg-1.ID}" Value="300" /> 
+						</Data>
+					</MaterialDataLine>
+				</DataLines>
+			</MdlGroupDto>
+		</Groups>
+		</MdlGroupValuesContainer>
+		
+		<BuildList t:Id="buildList-mdlgroups" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="mac-mdlg"/>
+				<BuildListItem Name="mdlgValues-test"/>  
+				
+				<BuildListItem Name="mac-mdlg-2"/>
+				<BuildListItem Name="mdlgValues-test-2"/> 
+			</List>
+		</BuildList>
+	</t:Templates>
+</t:Data>

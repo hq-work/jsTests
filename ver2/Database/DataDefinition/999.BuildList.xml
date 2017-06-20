@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+		<BuildList t:Id="buildList" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="buildList-groups"/>
+				<BuildListItem Name="buildList-users"/>
+				<BuildListItem Name="buildList-complianceobjects"/>
+				<BuildListItem Name="buildList-workflowtypes"/>
+				<BuildListItem Name="buildList-documents"/>												
+				<BuildListItem Name="buildList-packages"/>
+
+				<BuildListItem Name="buildList-commandlogentries"/>
+				<BuildListItem Name="buildList-reports"/>
+				<BuildListItem Name="buildList-workflows"/>			
+				<BuildListItem Name="buildList-tasks"/>
+				<BuildListItem Name="buildList-activities"/>
+
+				<BuildListItem Name="buildList-mainmenuitems"/>
+
+				<BuildListItem Name="buildList-chemicals"/>
+				<BuildListItem Name="buildList-chemicalgroups"/>
+				<BuildListItem Name="buildList-chemicallists"/>
+
+				<BuildListItem Name="buildList-materials"/>
+				<BuildListItem Name="buildList-tags-tagShemes"/>
+
+				<BuildListItem Name="buildList-macrequirements"/>
+				<BuildListItem Name="buildList-mdlgroups"/>
+
+				<BuildListItem Name="buildList-materialproperties"/>
+				<BuildListItem Name="buildList-materialtemplates"/>
+				<BuildListItem Name="buildList-mdlgroupsupload"/>
+
+				<BuildListItem Name="buildList-requirements"/>
+			</List>
+		</BuildList>
+	</t:Templates>
+</t:Data>

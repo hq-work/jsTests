@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Configuration>
+		<RegisterInstantiator Instantiator="co-permissions" Type="DdfDataGenerator.Instantiators.ComplianceObjectPermissionsInstantiator, DdfDataGenerator" />
+	</t:Configuration>
+	<t:Templates>
+		<UdfTemplate t:BaseTemplate="{#default(EntityObject)}" Description="" />
+		<UdfTemplateToUdfMap t:BaseTemplate="{#nothing}" Order="0" t:Instantiator="database" />
+
+		<CalcTemplate t:BaseTemplate="{#default(EntityObject)}" Description="Calc Template" />
+		<CalcTemplateToUdfMap t:BaseTemplate="{#nothing}" Order="0" t:Instantiator="database" />
+
+		<QualityTemplate t:BaseTemplate="{#default(EntityObject)}" Name="DQT" Description="DQT" Created="2013-01-01T00:00:00" />
+		<QualityTemplateToUdfMap t:BaseTemplate="{#nothing}" Order="0"  t:Instantiator="database"/>
+
+		<TaskTemplate t:BaseTemplate="{#default(EntityObject)}" Description=""
+			ViewTask="false" SystemCalendar="false" ObjectCalendar="false" Amount="10" AmountType="2" />
+
+		<!-- Tree Objects -->
+		<Division t:BaseTemplate="{#default(EntityObject)}" ParentID="{$system.ID}" Description="" />
+		<Facility t:BaseTemplate="{#default(EntityObject)}" SiteName="" SiteAddress1="" SiteAddress2="" SiteAddress3="" SiteCity="" SiteCounty="" SitePostalCode=""
+			MailAddress1="" MailAddress2="" MailAddress3="" MailCity="" MailPostalCode="" ContactFirstName="" ContactLastName="" Company="" Title="" TelNo=""
+			FaxNo="" Mobile="" Email="" Note="" DunBradNo="" SIC1="" SIC2="" LongEW="W" LongDeg="-2147483648" LongMin="-2147483648"
+			LongSec="-1.797693134862316e+307" LatNS="N" LatDeg="-2147483648" LatMin="-2147483648" LatSec="-1.797693134862316e+307"
+			UTMZone="" UTMEast="-1.797693134862316e+307" UTMNorth="-1.797693134862316e+307" RCRA="" TRI="" RMP="" StateID1="" StateID2="" StateID3=""
+			LocalID1="" LocalID2="" LocalID3="" IDType1="" IDType2="" IDType3="" IDNo1="" IDNo2="" IDNo3="" TimeZone="9700"
+			OtherAddress="" ActivateDate="1753-01-01T00:00:00" DeactivateDate="9999-12-31T00:00:00" EventNotificationType="0" ParentID="{$system.ID}"
+			ResponsibleUserID="{$user-owner.ID}" />
+
+		<Unit t:BaseTemplate="{#default(EntityObject)}" Description="UNIT Description" />
+		<POI t:BaseTemplate="{#default(EntityObject)}" Description="POI Description" />
+
+		<!-- Requirements -->
+		<RequirementTemplate t:BaseTemplate="{#default(EntityObject)}" EffectiveDate="2009-07-09T00:00:00"
+			ExpirationDate="3000-12-31T00:00:00" CreateDate="2009-07-09T00:00:00" Title1="Title1" Title2="Title2"
+			Agency="Agency" StartMonth="1" StartDay="1" EndMonth="12" EndDay="7" MediaID="1" AuthType="1"/>
+
+		<Requirement t:BaseTemplate="{#default(EntityObject)}" Description="" PeriodTime="Day" PeriodFreq="2"/>
+
+		<NonNumericRequirement t:BaseTemplate="{#default(Requirement)}" CmpStmt="Cmp Stmt" ResponsibleUserID="{$user-owner.ID}"/>
+
+		<SystemVariable t:BaseTemplate="{#default(Requirement)}" UOM="$" />
+		<SystemVariableValue t:BaseTemplate="{#default(EntityObject)}" Value="10" BeginDate="2009-01-01T00:00:00"
+		                     EndDate="2009-12-01T00:00:00" />
+		
+		<NumericRequirement t:BaseTemplate="{#default(Requirement)}" Precision="2" UOM="$"/>
+
+		<CalcRequirementContainer t:BaseTemplate="{#default(NumericRequirement)}">
+			<Scripts></Scripts>
+			<CalcLimits></CalcLimits>
+		</CalcRequirementContainer>
+
+		<CalcRequirementScriptDto t:BaseTemplate="{#default(EntityObject)}" BeginDate="2009-01-01T00:00:00" EndDate="9999-12-01T00:00:00">
+			<Requirements></Requirements>
+		</CalcRequirementScriptDto>
+		
+		<RequirementDependencyDto  t:Instantiator="database" />
+
+		<CbcRequirementContainer t:BaseTemplate="{#default(NumericRequirement)}">
+			<Intervals></Intervals>
+			<CalcLimits></CalcLimits>
+		</CbcRequirementContainer>
+		<CountBaseIntervalDto t:BaseTemplate="{#default(EntityObject)}" BeginDate="2009-01-01T00:00:00" EndDate="9999-12-01T00:00:00"></CountBaseIntervalDto>
+		<RequirementLimit t:BaseTemplate="{#default(EntityObject)}" LimitCreated="{#today}"
+		                  LimitBeginDate="2009-01-01T00:00:00" LimitEndDate="2999-01-01T00:00:00" LowLimit="0" HighLimit="10" LimitOp="1"
+						  ChemicalListID="00000000-0000-0000-0000-000000000000"
+						  IntChemicalListID="00000000-0000-0000-0000-000000000000" 
+						  ChemicalID="00000000-0000-0000-0000-000000000000"
+		                  IntLowLimit="0" IntHighLimit="10" />
+		
+		<ParameterRequirement t:BaseTemplate="{#default(NumericRequirement)}" t:Instantiator="database"
+			DataColFreq="1" DataColPeriod="Hour"
+			DataColMethod="ColMethod" Min="0" Max="10" 
+			EventNotificationType="0"
+			ResponsibleUserID="{$user-owner.ID}"/>
+
+		<TbCalculatedRequirementEntity t:BaseTemplate="{#default(NumericRequirement)}" IsRolling="False" MissingDataPercent="2147483647" />
+		<CalculatedRequirementScriptEntity t:BaseTemplate="{#default(EntityObject)}" BeginDate="2009-01-01T00:00:00" EndDate="9999-12-01T00:00:00" />
+		<TbCalculatedRequirementScriptEntity t:BaseTemplate="{#default(CalculatedRequirementScriptEntity)}" TBPeriodDuration="1" IntermediatePeriodType="-1"/>
+		<ScriptRequirementDependencyEntity t:BaseTemplate="{#default(EntityObject)}" />
+
+		<TBAggregationRequirement t:BaseTemplate="{#default(NumericRequirement)}" IsHourMode="False"
+						  OldObjectName="OldObjectName" FunctionType="0" CalcDesc="TBA Calc Description" />
+
+		<TbSubtractionRequirement t:BaseTemplate="{#default(NumericRequirement)}" IsAscending="False"
+						  OldObjectName="OldObjectName"  CalcDesc="TBS Calc Description" />
+
+		<AutoParameterRequirement t:BaseTemplate="{#default(NumericRequirement)}" />
+		<AutoParameterHistoryEntry t:BaseTemplate="{#default(EntityObject)}" DefaultDataValue="10" DataGenerationFreq="1"
+		                           GenerationBeginDate="2009-01-01T00:00:00" GenerationEndDate="2009-12-01T00:00:00"
+		                           NextGenerationDate="2009-10-01T00:00:00" />
+		
+		<!-- MacRequirements -->
+		<MacRequirementContainer t:BaseTemplate="{#default(NumericRequirement)}" Name="{#id}"  t:Instantiator="database" 
+			MACType="1" CalcDesc="" AggregationOp="0" Title3="">
+			<Scripts></Scripts>
+			<Materials></Materials>
+		</MacRequirementContainer>
+
+		<MacRequirementMaterialMap />
+
+		<!-- MaterialDataEntry -->
+		<MdlGroupValuesContainer t:Instantiator="database" >
+			<Groups></Groups>
+		</MdlGroupValuesContainer>
+
+		<MdlGroupDto t:BaseTemplate="{#default(EntityObject)}" Collector="Default Collector" >
+			<DataLines></DataLines>
+		</MdlGroupDto>
+
+		<MaterialDataLine t:BaseTemplate="{#default(EntityObject)}">
+			<Data></Data>
+		</MaterialDataLine>
+
+		<MaterialData t:Instantiator="database" />
+
+		<!-- Events -->
+		<EventTemplate t:BaseTemplate="{#default(EntityObject)}" IncludeCCS="false" Description="" />
+		<EventInstance t:BaseTemplate="{#default(EntityObject)}" />
+		<TaskEventInstance t:BaseTemplate="{#default(EventInstance)}" />
+		<EventLog t:BaseTemplate="{#default(EntityObject)}" Description="" DataEntryType="1" AssignorFromDataEntry="false"
+			LimitType="0" TrackNonNumeric="False"/>
+		<EventToRequirementMapItem t:BaseTemplate="{#default(EntityObject)}" />
+		<EventTemplateToUdfMapItem t:BaseTemplate="{#default(EntityObject)}" LastEnteredValue="false" Precision="0" Order="0"/>
+
+		<EventPropertyValue t:BaseTemplate="{#default(EntityObject)}" />
+
+		<ComplianceObjectPermissions t:Instantiator="co-permissions" Inherit="false"/>
+		<ComplianceObjectPermission IsApplyToChildren="false" />
+		<ComplianceObjectUserPermission t:BaseTemplate="{#default(ComplianceObjectPermission)}" />
+		<ComplianceObjectGroupPermission t:BaseTemplate="{#default(ComplianceObjectPermission)}" />
+
+		<ComplianceObjectTaskTemplateInfo t:BaseTemplate="{#default(EntityObject)}" />
+	</t:Templates>
+</t:Data>

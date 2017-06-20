@@ -1,0 +1,1 @@
+{"eql":"select f.Name, f.FacilityName, f.CreatedOn, f.TimeZone from facility f where f.TimeZone > @TimeZone AND f.Name like '@Name'"}

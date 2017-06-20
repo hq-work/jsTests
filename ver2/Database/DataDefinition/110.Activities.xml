@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+  <t:Templates>
+
+	<UserWithAll t:Id="userWPermissionsActivities" Login="userWPermissionsActivities" FirstName="userWPermissionsActivities" LastName="userWPermissionsActivities" Rights="0" TimeZone="1"/>
+	<MaterialTemplate t:Id="material-template-1" Name="Material Template 1" Description="Material Template 1 Description" />
+	<MaterialTemplateUDFMapItem t:Id="material-template-1-1" ParentID="{$material-template-1.ID}" ChildID="{$udf-text-tb4.ID}" Order="0"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-1-2" ParentID="{$material-template-1.ID}" ChildID="{$udf-text-ddl1.ID}" Order="1"/>
+	<BuildList t:Id="buildList-material-template-1-maps" t:Instantiator="memory">
+	  <List>		 
+		<BuildListItem Name="userWPermissionsActivities"/>
+		<BuildListItem Name="material-template-1-1"/>
+		<BuildListItem Name="material-template-1-2"/>
+	  </List>
+	</BuildList>
+
+	<MaterialTemplate t:Id="material-template-2" ID="EC739C75-4F7C-437B-A8AC-9955AF9CCAAD" Name="Material Template 2" Description="Material Template 2 Description" />
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-1" ParentID="{$material-template-2.ID}" ChildID="{$udf-text-tb2.ID}" Order="0"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-2" ParentID="{$material-template-2.ID}" ChildID="{$udf-text-tb3.ID}" Order="1"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-3" ParentID="{$material-template-2.ID}" ChildID="{$udf-text-tb4.ID}" Order="2"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-4" ParentID="{$material-template-2.ID}" ChildID="{$udf-text-ddl1.ID}" Order="3"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-5" ParentID="{$material-template-2.ID}" ChildID="{$linked-udf-text-ddl1.ID}" Order="4"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-6" ParentID="{$material-template-2.ID}" ChildID="{$udf-text-ddltb1.ID}" Order="5"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-7" ParentID="{$material-template-2.ID}" ChildID="{$udf-text-multitb1.ID}" Order="6"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-8" ParentID="{$material-template-2.ID}" ChildID="{$udf-num-tb1.ID}" Order="7"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-9" ParentID="{$material-template-2.ID}" ChildID="{$udf-num-ddl2.ID}" Order="8"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-10" ParentID="{$material-template-2.ID}" ChildID="{$linked-udf-num-ddl1.ID}" Order="9"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-11" ParentID="{$material-template-2.ID}" ChildID="{$udf-num-ddltb1.ID}" Order="10"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-12" ParentID="{$material-template-2.ID}" ChildID="{$udf-num-nlup1.ID}" Order="11"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-13" ParentID="{$material-template-2.ID}" ChildID="{$linked-udf-num-nlup1.ID}" Order="12"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-14" ParentID="{$material-template-2.ID}" ChildID="{$udf-dt-date1.ID}" Order="13"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-15" ParentID="{$material-template-2.ID}" ChildID="{$udf-dt-time1.ID}" Order="14"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-16" ParentID="{$material-template-2.ID}" ChildID="{$udf-dt-dt1.ID}" Order="15"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-17" ParentID="{$material-template-2.ID}" ChildID="{$udf-bool-ddl3.ID}" Order="16"/>
+	<MaterialTemplateUDFMapItem t:Id="material-template-2-18" ParentID="{$material-template-2.ID}" ChildID="{$udf-bool-cb1.ID}" Order="17"/>
+	<BuildList t:Id="buildList-material-template-2-maps" t:Instantiator="memory">
+	  <List>
+		<BuildListItem Name="material-template-2-1"/>
+		<BuildListItem Name="material-template-2-2"/>
+		<BuildListItem Name="material-template-2-3"/>
+		<BuildListItem Name="material-template-2-4"/>
+		<BuildListItem Name="material-template-2-5"/>
+		<BuildListItem Name="material-template-2-6"/>
+		<BuildListItem Name="material-template-2-7"/>
+		<BuildListItem Name="material-template-2-8"/>
+		<BuildListItem Name="material-template-2-9"/>
+		<BuildListItem Name="material-template-2-10"/>
+		<BuildListItem Name="material-template-2-11"/>
+		<BuildListItem Name="material-template-2-12"/>
+		<BuildListItem Name="material-template-2-13"/>
+		<BuildListItem Name="material-template-2-14"/>
+		<BuildListItem Name="material-template-2-15"/>
+		<BuildListItem Name="material-template-2-16"/>
+		<BuildListItem Name="material-template-2-17"/>
+		<BuildListItem Name="material-template-2-18"/>
+	  </List>
+	</BuildList>
+
+	<MaterialProperty t:Id="material-property-1" ID="B19C37C4-FB19-4E0D-8554-E703147D206E" Name="Material Property 1" PropertyType="5" DataType="0" />
+	<MaterialProperty t:Id="material-property-2" ID="6DC61CC6-A69E-4888-BAD8-D4373C6EF179" Name="Material Property 2" PropertyType="5" DataType="0" />
+	  
+	<MaterialProperty t:Id="material-property-3" ID="E455E2E1-8189-4C5F-A5B0-A6F948E7D603" Name="Material Property 3 - AVBP" PropertyType="1" DataType="0" />
+	  
+	<Activity t:Id="activity-1" ID="EC4E6D1E-0932-4E47-91AD-87F26ECC6143" Name="Activity 1" Description="Activity 1 Description" TemplateID="{$material-template-1.ID}">
+	  <Properties>
+		<ActivityPropertyMap PropertyID="{$material-property-1.ID}">
+		  <ValueHistory>
+			<MaterialValueHistory ActivityID="{$activity-1.ID}" BeginDate="2014-12-08T00:00:00" EndDate="2014-12-09T00:00:00" Value="50" />
+		  </ValueHistory>
+		</ActivityPropertyMap>
+	  </Properties>
+	</Activity>
+
+		<Activity t:Id="activity-to-delete" ID="8E0D785D-07F9-4EBE-845E-9E325908DD5C" Name="Activity_To_Delete" Description="Activity_To_Delete_Description" TemplateID="{$material-template-1.ID}">
+			<Properties>
+				<ActivityPropertyMap PropertyID="{$material-property-1.ID}">
+					<ValueHistory>
+						<MaterialValueHistory ActivityID="{$activity-to-delete.ID}" BeginDate="2014-12-08T00:00:00" EndDate="2014-12-09T00:00:00" Value="50" />
+					</ValueHistory>
+				</ActivityPropertyMap>
+			</Properties>
+		</Activity>
+
+		<Activity t:Id="activity-to-update" ID="81BFF172-1E70-4886-80D4-6FE641A11047" Name="Activity_To_Update" Description="Activity_To_Update_Description" TemplateID="{$material-template-1.ID}">
+			<Properties>
+				<ActivityPropertyMap PropertyID="{$material-property-2.ID}">
+					<ValueHistory>
+						<MaterialValueHistory ActivityID="{$activity-to-update.ID}" BeginDate="2014-12-08T00:00:00" EndDate="2014-12-09T00:00:00" Value="50" />
+					</ValueHistory>
+				</ActivityPropertyMap>
+			</Properties>
+		</Activity>
+
+		<Activity t:Id="activity-to-update-fault" ID="81FBD172-1E70-4886-80D4-6FE641A11047" Name="Activity_To_Update_Faults" Description="Activity_To_Update_Faults_Description">
+		<Properties>
+			<ActivityPropertyMap PropertyID="{$material-property-2.ID}">
+				<ValueHistory>
+					<MaterialValueHistory ActivityID="{$activity-to-update-fault.ID}" BeginDate="2014-12-08T00:00:00" EndDate="2014-12-09T00:00:00" Value="50" />
+				</ValueHistory>
+			</ActivityPropertyMap>
+		</Properties>
+		</Activity>
+
+	<ActivityUdfData t:Id="udf-text-tb4-activityudfdata" UdfID="{$udf-text-tb4.ID}" Value="Activity Data" ActivityID="{$activity-1.ID}" />
+	<ActivityUdfDataToUdfItemMap t:Id="udf-item-to-activity-map-1" UdfID="{$udf-text-ddl1.ID}" UdfItemID="{$udf-text-ddl1:udf-text-ddl1-item-1.ID}" ActivityID="{$activity-1.ID}" Order="0" />
+
+	<BuildList t:Id="buildList-activity-1-activityudfdata" t:Instantiator="memory">
+	  <List>
+		<BuildListItem Name="udf-text-tb4-activityudfdata"/>
+		<BuildListItem Name="udf-item-to-activity-map-1"/>
+	  </List>
+	</BuildList>
+	
+	<BuildList t:Id="buildList-activities" t:Instantiator="memory">
+	  <List>
+		<BuildListItem Name="material-template-1"/>
+		<BuildListItem Name="material-property-1"/>
+		<BuildListItem Name="material-property-2"/>
+		<BuildListItem Name="material-property-3"/>
+		<BuildListItem Name="buildList-material-template-1-maps"/>
+		<BuildListItem Name="buildList-material-template-2-maps"/>
+		<BuildListItem Name="activity-1"/>
+		<BuildListItem Name="activity-to-delete"/>
+		<BuildListItem Name="activity-to-update"/>
+		<BuildListItem Name="activity-to-update-fault"/>
+		<BuildListItem Name="buildList-activity-1-activityudfdata"/>
+	  </List>
+	</BuildList>
+  </t:Templates>
+</t:Data>

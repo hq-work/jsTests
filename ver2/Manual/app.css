@@ -1,0 +1,173 @@
+﻿body {
+	margin: 0px;
+	padding: 10px;
+}
+
+.app-start-panel {
+	background-color: #CCD6E4;
+	border: 1px solid #99B1D8;
+	color: #555555;
+	font-family: Verdana;
+	font-size: 12px;
+	padding: 10px;
+	position: absolute;
+	min-width: 200px;
+}
+
+.app-start-panel-header {
+	border: 1px solid #efefef;
+	font-weight: bold;
+	padding: 5px;
+	cursor: move;
+}
+
+.app-start-panel-header input {
+	cursor: auto;
+}
+
+.app-modules {
+	/*border: 1px solid #efefef;*/
+	list-style-type: none;
+	margin: 0px;
+	padding: 5px;
+}
+
+.app-buttons {
+	padding: 5px 0px 0px 0px;
+	text-align: center;
+}
+
+.app-run-button {
+	background-color: #546F9C;
+	border: 1px solid white;
+	color: white;
+	padding: 5px 30px;
+}
+
+/*Options Panel*/
+
+.app-options-panel {
+	border: 1px solid #cccccc;
+	width: 400px;
+	background-color: #D4E8B0;
+	font-size: 11px;
+	font-family: Verdana;
+	padding: 5px;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+.app-options-panel-body {
+	width: 100%;
+}
+
+.app-options-panel td {
+	padding: 2px 3px;
+}
+
+.app-options-panel select {
+	width: 100px;
+}
+
+.app-options-panel-btn {
+	background-color: #9EAD83;
+	border: 1px solid white;
+	color: white;
+	padding: 5px;
+	cursor: pointer;
+}
+
+.app-options-panel-tab {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 14px;
+	height: 14px;
+	line-height: 14px;
+	font-size: 14px;
+	border: 1px solid white;
+	background-color: #9EAD83;
+	cursor: pointer;
+	color: white;
+}
+
+/* QUnit extentions */
+#punit-tests li .runtime {
+	float: right;
+	font-size: smaller;
+}
+
+.punit-assert-list {
+	margin-top: 0.5em;
+	padding: 0.5em;
+
+	background-color: #FFF;
+
+	border-radius: 5px;
+}
+
+/*#punit-tests li.running {
+	
+}*/
+
+/*** Runing Styles */
+
+#punit-tests .running                          { color: #629CF0; background-color: #EAF8FE; }
+#punit-tests .running .test-name               { color: #4670A7; }
+
+#punit-tests .running .test-actual,
+#punit-tests .running .test-expected           { color: #999999; }
+
+#punit-tests li li.maintenance {
+	color: #7c914c;
+	background-color: #fff;
+	border-left: 10px solid #D0D0D0;
+}
+
+#moduleTabs { display: inline; margin-left: 0; padding-left: 0 }
+#moduleTabs li { display:inline-block; *display: inline; line-height: 32px; cursor:pointer; }
+#moduleTabs li span:hover { background-color:#6C87B4;}
+#moduleTabs li span { white-space: nowrap; }
+
+.app-modules span {
+	*float: left;
+}
+.app-modules span.runtimer, .app-modules span.fintimer, .app-modules span.failtimer {
+	margin-top: 3px;
+	float: right;
+	margin-left: 10px
+}
+.app-modules span.fintimer {
+	color: #7c914c;
+}
+
+.app-modules span.failtimer {
+	color: #A12c2c;
+}
+
+.app-modules li {
+	clear: both;
+}
+
+.app-modules li span img {
+	margin-left: 3px;
+	width: 16px;
+	height: 16px;
+	border: 0;
+}
+
+.app-modules span.caption {
+	white-space: nowrap;
+	max-width: 225px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: inline-block;
+}
+
+#modules-wrapper {
+	max-height: 500px;
+	overflow: scroll;
+	overflow-x: hidden;
+	border: 1px solid #efefef;
+	margin: 3px 0px;
+}

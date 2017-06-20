@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+		<WorkflowInstance t:BaseTemplate="{#default(EntityObject)}" Name="Workflow Instance (Default Name)" 
+			CreatedBy="{$user-owner.ID}" DueDate="{#today}" CalendarsMask="0" PrimaryStatus="true" Created="{#today}" LastRun="1/1/1753" />
+
+		<WorkflowInstanceWithMaps t:BaseTemplate="{#default(WorkflowInstance)}" />
+
+		<WorkflowInstanceStepInfo t:BaseTemplate="{#default(EntityObject)}" />
+
+		<!--<WorkflowInstanceStepWithAssignees t:BaseTemplate="{#default(WorkflowInstanceStep)}" />-->
+	</t:Templates>
+</t:Data>

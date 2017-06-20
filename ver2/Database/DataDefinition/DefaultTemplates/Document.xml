@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Configuration>
+		<RegisterInstantiator Instantiator="doc-permissions" Type="DdfDataGenerator.Instantiators.DocumentPermissionsInstantiator, DdfDataGenerator" />
+	</t:Configuration>
+	<t:Templates>
+		<Document t:BaseTemplate="{#default(EntityObject)}" Owner="{$user-owner.ID}" IsFolder="false" Description="" ParentID="{$system.ID}" EveryoneAccessLevel="0" />
+		<DocumentVersion t:BaseTemplate="{#default(EntityObject)}" DocumentID="{#guid}" Version="1" Creator="{$user-owner.ID}" CreateDate="07/09/2009" MimeType="" FileGuid="{#guid}" Comments="" FileSize="0" Url="" Type="0" Extension="dat"/>
+
+		<DocumentAssociationInfo t:BaseTemplate="{#default(EntityObject)}"/>
+
+		<DocumentPermissions t:Instantiator="doc-permissions" Inherit="false"/>
+		<DocumentPermission IsApplyToChildren="false" />
+		<DocumentUserPermission t:BaseTemplate="{#default(DocumentPermission)}" />
+		<DocumentGroupPermission t:BaseTemplate="{#default(DocumentPermission)}" />
+	</t:Templates>
+</t:Data>

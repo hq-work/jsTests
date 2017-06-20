@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+  <t:Templates>
+	<MaterialTemplate t:BaseTemplate="{#default(EntityObject)}" />
+	<MaterialTemplateUDFMapItem t:BaseTemplate="{#default(EntityObject)}" />
+	<Activity t:BaseTemplate="{#default(EntityObject)}" />
+	<ActivityUdfData t:BaseTemplate="{#nothing}" t:Instantiator="database" BeginDate="1753-01-01T00:00:00" EndDate="9999-12-31T00:00:00" />
+	<ActivityUdfDataToUdfItemMap t:BaseTemplate="{#nothing}" t:Instantiator="database" BeginDate="1753-01-01T00:00:00" EndDate="9999-12-31T00:00:00" Order="0" />
+	<ActivityPropertyMap t:BaseTemplate="{#nothing}" t:Instantiator="database"/>
+	<MaterialValueHistory t:BaseTemplate="{#default(EntityObject)}" />
+	<MaterialProperty t:BaseTemplate="{#default(EntityObject)}" Description="" />
+	<MaterialFormulaHistory t:BaseTemplate="{#default(EntityObject)}" BeginDate="1753-01-01T00:00:00" EndDate="9999-12-31T00:00:00" Exception="" />
+	<Chemical t:BaseTemplate="{#default(EntityObject)}" IsStandard="False"/>
+	<ChemicalHistoryItem t:BaseTemplate="{#default(EntityObject)}" MW="0" AntA="0" AntB="0" AntC="0" AntAK="0" AntBK="0" VP60="0" Density="0" DipprA="0" DipprB="0" DipprC="0" 
+													DipprD="0" DipprE="0" DipprF="0" DipprG="0" PBT="false" RCRAHaz="false" HAP="false" TRI="false" EHS="false" Dioxin="false" CAA112r="false" PAC="false" 
+													Diisocyan="false" CERCLAHaz="false" AirToxicEmissionInventory="false" Solid="false" NonEvaporative="false" RCRAVoc="false" RCRASvoc="false" CAAVoc="false" />
+	<ChemicalGroup t:BaseTemplate="{#default(EntityObject)}" />    
+	<ChemicalGroupChemicalMap t:BaseTemplate="{#nothing}" t:Instantiator="database"/>
+	<ChemicalList t:BaseTemplate="{#default(EntityObject)}" />
+	<ChemicalListHistoryItem t:BaseTemplate="{#nothing}" t:Instantiator="database" BeginDate="1753-01-01T00:00:00" EndDate="9999-12-31T00:00:00" />
+	<ChemicalLimitItem t:BaseTemplate="{#nothing}" t:Instantiator="database"/>
+	<Material t:BaseTemplate="{#default(EntityObject)}" />
+	<MaterialGroup t:BaseTemplate="{#default(EntityObject)}" />
+	<ChemicalConcentrationHistory t:BaseTemplate="{#default(EntityObject)}"/>
+	<Tag t:BaseTemplate="{#default(EntityObject)}" Description="" t:Instantiator="database"/>
+	<TagScheme t:BaseTemplate="{#default(EntityObject)}" Description="" t:Instantiator="database"/>
+    
+
+  </t:Templates>
+</t:Data>

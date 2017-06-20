@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+		<Division t:Id="division-m-1" Name="Division For Mac Test" t:Instantiator="database" />
+		<Facility t:Id="facility-m-1" Name="Facility For Mac Test" ParentID="{$division-m-1.ID}" t:Instantiator="database" />
+
+		<MaterialTemplate t:Id="material-template-m-1" Name="Material Template 1 - for MAC" Description="Material Template for MAC Description" />
+		<MaterialProperty t:Id="material-property-m-1" Name="Material Property 1 for MAC" PropertyType="5" DataType="0" />
+		<MaterialProperty t:Id="suv-m-1" Name="SUV 1 for MAC" PropertyType="5" DataType="0" />
+		<MaterialProperty t:Id="avbp-m-1" Name="AVBP 1 for MAC" PropertyType="1" DataType="0" />		
+		<Activity t:Id="activity-m-1" Name="Activity for Mac" Description="Activity for MAC Description" TemplateID="{$material-template-m-1.ID}">
+			<Properties>
+				<ActivityPropertyMap PropertyID="{$material-property-m-1.ID}">
+					<ValueHistory>
+						<MaterialValueHistory ActivityID="{$activity-m-1.ID}" BeginDate="2014-12-08T00:00:00" EndDate="2014-12-09T00:00:00" Value="50" />
+					</ValueHistory>
+				</ActivityPropertyMap>
+				<ActivityPropertyMap PropertyID="{$suv-m-1.ID}">
+					<ValueHistory>
+						<MaterialValueHistory ActivityID="{$activity-m-1.ID}" BeginDate="2014-12-08T00:00:00" EndDate="2014-12-09T00:00:00" Value="50" />
+					</ValueHistory>
+				</ActivityPropertyMap>
+				<ActivityPropertyMap PropertyID="{$avbp-m-1.ID}">
+					<ValueHistory>
+						<MaterialValueHistory ActivityID="{$activity-m-1.ID}" BeginDate="2014-12-08T00:00:00" EndDate="2014-12-09T00:00:00" Value="50" />
+					</ValueHistory>
+				</ActivityPropertyMap>
+			</Properties>
+		</Activity>
+
+		<MaterialProperty t:Id="suv-m-2" Name="SUV 2 for MAC" PropertyType="5" DataType="0" />
+		<MaterialProperty t:Id="avbp-m-2" Name="AVBP 2 for MAC" PropertyType="1" DataType="0" />
+
+		<Activity t:Id="activity-m-2" ID="2dc6fc58-5e09-4ce0-aff2-6654513a7015" Name="Activity 2 for Mac" Description="Activity 2 for MAC Description" TemplateID="{$material-template-m-1.ID}">
+			<Properties>				
+				<ActivityPropertyMap PropertyID="{$suv-m-2.ID}">					
+				</ActivityPropertyMap>
+				<ActivityPropertyMap PropertyID="{$avbp-m-2.ID}">
+					<ValueHistory>
+						<MaterialValueHistory ActivityID="{$activity-m-2.ID}" BeginDate="2014-12-08T00:00:00" EndDate="2014-12-09T00:00:00" Value="50" />
+					</ValueHistory>
+				</ActivityPropertyMap>
+			</Properties>
+		</Activity>
+
+		<Chemical t:Id="chemical-for-material-m-1" Name="Chemical for Material for MAC 1" CasNum="0" Alias ="CfM1Mac" IsStandard="false" Description="Chemical 1 for MAC Description" >
+			<ChemicalHistory>
+				<ChemicalHistoryItem ChemicalID="{$chemical-for-material-m-1.ID}" t:Id="chemical-for-material-m-1-history-1" BeginDate="2010-12-08T00:00:00" EndDate="2012-12-08T00:00:00" />
+				<ChemicalHistoryItem ChemicalID="{$chemical-for-material-m-1.ID}" t:Id="chemical-for-material-m-1-history-2" BeginDate="2012-12-08T00:00:00" EndDate="9999-12-31T00:00:00" />
+			</ChemicalHistory>
+		</Chemical>
+
+		<Chemical t:Id="chemical-m-2" ID="f087a14f-c071-4187-9221-156102e60d25" Name="Chemical for MAC 2" CasNum="0" Alias ="CfM2Mac" IsStandard="false" Description="Chemical 2 for MAC Description" >
+			<ChemicalHistory>
+				<ChemicalHistoryItem ChemicalID="{$chemical-m-2.ID}" t:Id="chemical-m-2-history-1" BeginDate="2010-12-08T00:00:00" EndDate="2012-12-08T00:00:00" />				
+			</ChemicalHistory>
+		</Chemical>
+
+		<ChemicalList t:Id="cmlist-m-1" ID="4886b9c8-5b41-4766-9c04-be3922ed44ac" Name="ChemicalListForMAC1" Description="Chemical List 1 Description" IsStandard="false" >
+			<ChemicalListHistory>
+				<ChemicalListHistoryItem t:Id="hist-h-m-1" ChemicalListID="{$cmlist-m-1.ID}" BeginDate="2010-12-08T00:00:00" EndDate="9999-12-31T00:00:00" >
+					<Limits>
+						<ChemicalLimitItem ChemicalID="{$chemical-m-2.ID}" Value="3" />
+					</Limits>
+				</ChemicalListHistoryItem>
+			</ChemicalListHistory>
+		</ChemicalList>
+
+		<ChemicalList t:Id="cmlist-m-2" ID="4dc00f4a-4de5-4103-9a6b-aa177393439e" Name="ChemicalListforMAC2" Description="Chemical List 2 Description" IsStandard="false" >
+			<ChemicalListHistory>
+				<ChemicalListHistoryItem t:Id="hist-h-m-2" ChemicalListID="{$cmlist-m-2.ID}" BeginDate="2010-12-08T00:00:00" EndDate="9999-12-31T00:00:00" >
+					<Limits>
+						<ChemicalLimitItem ChemicalID="{$chemical-m-2.ID}" Value="2" />
+					</Limits>
+				</ChemicalListHistoryItem>
+			</ChemicalListHistory>
+		</ChemicalList>
+
+		<MaterialProperty t:Id="mvbp-m-1" Name="MVBP 1 for MAC" PropertyType="0" DataType="0" />
+
+		<MaterialProperty t:Id="property-m-1-pfbp" Name="PFBP 1 for MAC" PropertyType="2"  DataType="0">
+			<FormulaHistory>
+				<MaterialFormulaHistory Script="Sum([f1e1d001-0000-0000-0000-000000000000])"/>
+			</FormulaHistory>
+		</MaterialProperty>
+		<MaterialProperty t:Id="property-m-1-sfbp" Name="SFBP 1 for MAC" PropertyType="3"  DataType="0">
+			<FormulaHistory>
+				<MaterialFormulaHistory Script="Sum([f1e1d001-0000-0000-0000-000000000000])"/>
+			</FormulaHistory>
+		</MaterialProperty>
+		<MaterialProperty t:Id="property-m-1-tfbp" Name="TFBP 1 for MAC" PropertyType="4"  DataType="0">
+			<FormulaHistory>
+				<MaterialFormulaHistory Script="Sum([f1e1d001-0000-0000-0000-000000000000])"/>
+			</FormulaHistory>
+		</MaterialProperty>
+
+		<Material t:Id="material-m-1" ID="a974e6d3-7189-4a3f-85c1-1d3795433e4f" Name="Material 1 for MAC" Description="Material 1 for MAC Description" MaterialAvailabilityFlag="true">
+			<Chemicals>
+				<MaterialChemicalMap MaterialID="{$material-m-1.ID}" ChemicalID="{$chemical-for-material-m-1.ID}">
+					<ConcentrationHistory>
+						<ChemicalConcentrationHistory t:Id="material-chemical-history-m-11" MaterialID="{$material-m-1.ID}" ChemicalID="{$chemical-for-material-m-1.ID}" BeginDate="2014-12-19T00:00:00" Present="true" MinConc="0" EndDate="9999-12-31T00:00:00" AvgConc="50" MaxConc="100" />
+					</ConcentrationHistory>
+				</MaterialChemicalMap>
+			</Chemicals>
+			<Properties>
+				<MaterialPropertyMap PropertyID="{$mvbp-m-1.ID}">
+					<ValueHistory>
+						<MaterialValueHistory MaterialID="{$material-m-1.ID}" BeginDate="2014-12-08T00:00:00" EndDate="2014-12-09T00:00:00" Value="50" />
+					</ValueHistory>
+				</MaterialPropertyMap>
+				<MaterialPropertyMap MaterialID="{$material-m-1.ID}" PropertyID="{$property-m-1-pfbp.ID}"/>
+				<MaterialPropertyMap MaterialID="{$material-m-1.ID}" PropertyID="{$property-m-1-sfbp.ID}"/>
+				<MaterialPropertyMap MaterialID="{$material-m-1.ID}" PropertyID="{$property-m-1-tfbp.ID}"/>				
+			</Properties>
+		</Material>
+
+		<Material t:Id="material-m-2" ID="503af801-826e-41c1-832d-e45b2188ce0e"  Name="Material 2 for MAC" Description="Material 2 for MAC Description" MaterialAvailabilityFlag="true">
+			<Chemicals>
+				<MaterialChemicalMap MaterialID="{$material-m-2.ID}" ChemicalID="{$chemical-for-material-m-1.ID}">
+					<ConcentrationHistory>
+						<ChemicalConcentrationHistory t:Id="material-chemical-history-m-21" MaterialID="{$material-m-2.ID}" ChemicalID="{$chemical-for-material-m-1.ID}" BeginDate="2014-12-19T00:00:00" Present="true" MinConc="0" EndDate="9999-12-31T00:00:00" AvgConc="50" MaxConc="100" />
+					</ConcentrationHistory>
+				</MaterialChemicalMap>
+			</Chemicals>
+		</Material>
+
+		<Material t:Id="material-m-3" ID="4e04ae64-3ce9-4689-b7cb-53a9940044ae"  Name="Material 3 for MAC" Description="Material 3 for MAC Description" MaterialAvailabilityFlag="true">
+			<Chemicals>
+				<MaterialChemicalMap MaterialID="{$material-m-3.ID}" ChemicalID="{$chemical-for-material-m-1.ID}">
+					<ConcentrationHistory>
+						<ChemicalConcentrationHistory t:Id="material-chemical-history-m-21" MaterialID="{$material-m-3.ID}" ChemicalID="{$chemical-for-material-m-1.ID}" BeginDate="2014-12-19T00:00:00" Present="true" MinConc="0" EndDate="9999-12-31T00:00:00" AvgConc="150" MaxConc="200" />
+					</ConcentrationHistory>
+				</MaterialChemicalMap>
+			</Chemicals>
+		</Material>
+
+		<MaterialGroup t:Id="material-group-m-1" ID="95bcdb0b-d725-4f07-b2c0-793edc166652" Name="Material Group 1 for MAC" Description="Material Group 1 for MAC Description">
+			<Materials>
+				<MaterialGroupMaterialMap GroupID="{$material-group-m-1.ID}" MaterialID="{$material-m-2.ID}" />				
+			</Materials>
+		</MaterialGroup>
+
+		<MaterialGroup t:Id="material-group-m-2" ID="d77ee2da-a832-4aa8-a6a5-22e04f18b1ca" Name="Material Group 2 for MAC" Description="Material Group 2 for MAC Description">
+			<Materials>
+				<MaterialGroupMaterialMap GroupID="{$material-group-m-2.ID}" MaterialID="{$material-m-3.ID}" />
+			</Materials>
+		</MaterialGroup>
+		
+
+		<BuildList t:Id="buildList-materialsformac" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="chemical-for-material-m-1"/>
+				<BuildListItem Name="material-m-1"/>
+				<BuildListItem Name="material-m-2"/>
+				<BuildListItem Name="material-m-3"/>
+				<BuildListItem Name="material-group-m-1"/>
+				<BuildListItem Name="material-group-m-2"/>
+				<BuildListItem Name="chemical-m-2"/>
+				<BuildListItem Name="cmlist-m-1"/>
+				<BuildListItem Name="cmlist-m-2"/>
+				<BuildListItem Name="property-m-1-pfbp"/>
+			</List>
+		</BuildList>		
+		
+		<UdfTemplate t:Id="udf-template-m-1" Name="Custom Field Template 1 for MAC" />
+		<UdfTemplateToUdfMap t:Id="udf-template-m-1-map-1" UDFID="{$udf-text-tb4.ID}" GroupID="{$udf-template-m-1.ID}" Order="0" />
+		<UdfTemplateToUdfMap t:Id="udf-template-m-1-map-2" UDFID="{$udf-text-ddl1.ID}" GroupID="{$udf-template-m-1.ID}" Order="1" />
+		<UdfTemplateToUdfMap t:Id="udf-template-m-1-map-3" UDFID="{$udf-hl1.ID}" GroupID="{$udf-template-m-1.ID}" Order="2" />
+
+		<BuildList t:Id="buildList-mt-1" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="udf-template-m-1-map-1"/>
+				<BuildListItem Name="udf-template-m-1-map-2"/>
+				<BuildListItem Name="udf-template-m-1-map-3"/>
+			</List>
+		</BuildList>
+
+		<RequirementTemplate t:Id="rt-m-1" Key="Requirement Template 1 for MAC"/>
+		<ParameterRequirement t:Id="parameter-m-11" Name="UDF_parameter 11" ParentID="{$facility-m-1.ID}" TemplateID="{$rt-m-1.ID}" />
+		<ParameterRequirement t:Id="parameter-m-12" Name="XLS_par. Req. empty_fields 1" ParentID="{$facility-m-1.ID}" TemplateID="{$rt-m-1.ID}" />
+
+		<RequirementTemplate t:Id="rt-m-2" Key="Requirement Template 2 for MAC"/>
+		<ParameterRequirement t:Id="parameter-m-21" Name="UDF_parameter 21" ParentID="{$facility-m-1.ID}" TemplateID="{$rt-m-2.ID}" />		
+
+		<UdfTemplate t:Id="udf-template-m-2" Name="Custom Field Template 2 for MAC" />
+		<UdfTemplateToUdfMap t:Id="udf-template-m-2-map-1" UDFID="{$udf-text-tb3.ID}" GroupID="{$udf-template-m-2.ID}" Order="0" />
+
+		<BuildList t:Id="buildList-mt-2" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="udf-template-m-2-map-1"/>
+			</List>
+		</BuildList>
+
+		<TaskTemplate t:Id="task-template-m-1" Name="task-template-m-1" ViewTask="true" SystemCalendar="true" ObjectCalendar="true" Amount="10" AmountType="2" />
+		<TaskTemplate t:Id="task-template-m-2" Name="task-template-m-2" ViewTask="true" SystemCalendar="true" ObjectCalendar="true" Amount="5" AmountType="3" />	
+
+		<BuildList t:Id="buildList-mac-insert" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="division-m-1"/>
+				<BuildListItem Name="facility-m-1"/>
+				<BuildListItem Name="material-template-m-1"/>
+				<BuildListItem Name="activity-m-1"/>
+				<BuildListItem Name="activity-m-2"/>				
+				<BuildListItem Name="parameter-m-11"/>
+				<BuildListItem Name="parameter-m-12"/>
+				<BuildListItem Name="parameter-m-21"/>
+				<BuildListItem Name="buildList-mt-1"/>
+				<BuildListItem Name="buildList-mt-2"/>
+				<BuildListItem Name="buildList-materialsformac"/>
+				<BuildListItem Name="task-template-m-1"/>
+				<BuildListItem Name="task-template-m-2"/>
+				<BuildListItem Name="rt-m-2"/>
+			</List>
+		</BuildList>
+
+		<MaterialProperty t:Id="suv-mac-1"  Name="SUV for mac upd 1" PropertyType="5" DataType="0" />		
+		<MaterialProperty t:Id="tfbp-mac-1" Name="TFBP for mac upd 1"  PropertyType="4"  DataType="0" />
+		<MaterialProperty t:Id="avbp-mac-1" Name="AVBP for mac upd 1"  PropertyType="1"  DataType="0" />
+
+		<Activity t:Id="activity-mac-upd-1" Name="Activity for update MAC" Description="Activity for update mac 1 Description">
+			<Properties>
+				<ActivityPropertyMap PropertyID="{$suv-mac-1.ID}"/>
+				<ActivityPropertyMap PropertyID="{$avbp-mac-1.ID}">
+					<ValueHistory>
+						<MaterialValueHistory ActivityID="{$activity-mac-upd-1.ID}" BeginDate="2014-12-08T00:00:00" EndDate="2014-12-09T00:00:00" Value="50" />
+					</ValueHistory>
+				</ActivityPropertyMap>
+				<ActivityPropertyMap PropertyID="{$tfbp-mac-1.ID}">
+					<ValueHistory>
+						<MaterialValueHistory ActivityID="{$activity-mac-upd-1.ID}" BeginDate="2014-12-10T00:00:00" EndDate="2014-12-11T00:00:00" Value="123" />
+					</ValueHistory>
+				</ActivityPropertyMap>
+			</Properties>
+		</Activity>
+
+		<MacRequirementContainer  t:Id="mac-for-upd-1"  ID="62e29301-c0cc-41be-a9bb-8013267e9355" Name="MAC for Update 1" ParentID="{$facility-m-1.ID}"  CalcDesc="111"
+			ActivityID="{$activity-mac-upd-1.ID}" 
+			UdfTemplateID="{$udf-template-m-1.ID}"
+			TemplateID="{$rt-m-1.ID}" 
+			MACType="0">
+			<Materials>
+				<MacRequirementMaterialMap MaterialID="{$material-m-1.ID}" ContainerID="{$mac-for-upd-1.ID}" />
+				<MacRequirementMaterialMap MaterialID="{$material-m-2.ID}" ContainerID="{$mac-for-upd-1.ID}" />
+			</Materials>
+			<Scripts>
+				<MaterialFormulaHistory ID="bd1c1bb6-744b-495f-98e4-633e39c76c3b" Script="1+1" BeginDate="2014-12-01T00:00:00" EndDate="2014-12-03T00:00:00"  RequirementID="{$mac-for-upd-1.ID}" />
+			</Scripts>
+		</MacRequirementContainer>
+
+		<MacRequirementContainer  t:Id="mac-for-get-1"  Name="MAC for Get 1" ParentID="{$facility-m-1.ID}"  CalcDesc="111"
+				ActivityID="{$activity-mac-upd-1.ID}"
+				TemplateID="{$rt-m-1.ID}"
+				MACType="0">
+			<Materials>
+				<MacRequirementMaterialMap MaterialID="{$material-m-1.ID}" ContainerID="{$mac-for-get-1.ID}" />
+			</Materials>
+			<Scripts>
+				<MaterialFormulaHistory Script="1+1" BeginDate="2014-12-01T00:00:00" EndDate="2014-12-02T00:00:00"  RequirementID="{$mac-for-get-1.ID}" />
+			</Scripts>
+		</MacRequirementContainer>
+
+		<MacRequirementContainer  t:Id="mac-for-del-1"  Name="MAC for Delete 1" ParentID="{$facility-m-1.ID}"  CalcDesc="111"
+				ActivityID="{$activity-mac-upd-1.ID}"   
+				TemplateID="{$rt-m-1.ID}"
+				MACType="0">
+			<Materials>
+				<MacRequirementMaterialMap MaterialID="{$material-m-1.ID}" ContainerID="{$mac-for-del-1.ID}" />				
+			</Materials>
+			<Scripts>
+				<MaterialFormulaHistory Script="1+1" BeginDate="2014-12-01T00:00:00" EndDate="2014-12-02T00:00:00"  RequirementID="{$mac-for-del-1.ID}" />
+			</Scripts>
+		</MacRequirementContainer>
+
+		<MacRequirementContainer  t:Id="mac-for-del-2"  Name="MAC for Delete 2" ParentID="{$facility-m-1.ID}"  CalcDesc="111"
+				ActivityID="{$activity-mac-upd-1.ID}"
+				TemplateID="{$rt-m-1.ID}"
+				MACType="0">
+			<Materials>
+				<MacRequirementMaterialMap MaterialID="{$material-m-1.ID}" ContainerID="{$mac-for-del-2.ID}" />
+			</Materials>
+			<Scripts>
+				<MaterialFormulaHistory Script="1+1" BeginDate="2014-12-01T00:00:00" EndDate="2014-12-02T00:00:00"  RequirementID="{$mac-for-del-2.ID}" />
+			</Scripts>
+		</MacRequirementContainer>
+	
+		<BuildList t:Id="buildList-macrequirements" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="buildList-mac-insert"/>								
+				<BuildListItem Name="mac-for-upd-1"/>
+				<BuildListItem Name="mac-for-get-1"/>
+				<BuildListItem Name="mac-for-del-1"/>
+				<BuildListItem Name="mac-for-del-2"/>
+			</List>
+		</BuildList>
+		
+	</t:Templates>
+</t:Data>

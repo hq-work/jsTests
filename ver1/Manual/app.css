@@ -1,0 +1,45 @@
+﻿body {
+	margin: 0px;
+	padding: 10px;
+}
+
+.app-start-panel {
+	background-color: #CCD6E4;
+	border: 1px solid #99B1D8;
+	color: #555555;
+	font-family: Verdana;
+	font-size: 12px;
+	padding: 10px;
+	position: fixed;
+	min-width: 200px;
+}
+
+.app-start-panel-header {
+	border: 1px solid #efefef;
+	font-weight: bold;
+	padding: 5px;
+	cursor: move;
+}
+
+.app-start-panel-header input {
+	cursor: auto;
+}
+
+.app-modules {
+	border: 1px solid #efefef;
+	list-style-type: none;
+	margin: 5px 0px 0px 0px;
+	padding: 5px;
+}
+
+.app-buttons {
+	padding: 5px 0px 0px 0px;
+	text-align: center;
+}
+
+.app-run-button {
+	background-color: #546F9C;
+	border: 1px solid white;
+	color: white;
+	padding: 5px 30px;
+}

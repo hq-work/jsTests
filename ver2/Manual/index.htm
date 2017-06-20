@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Enviance REST API Unit Tests</title>
+		<link rel="stylesheet" href="punit.css" />
+		<link rel="stylesheet" href="app.css" />
+		<script language="javascript" type="text/javascript" src="../../../Packages/Libs/jquery.1.8.3.min.js"> </script>
+		<script language="javascript" type="text/javascript" src="jquery-ui.1.9.2.min.js"> </script>
+		<script language="javascript" type="text/javascript" src="../../../Packages/Libs/json2.js"> </script>
+		<script type="text/javascript">
+			//Workaround: disable envianceSdk encapsulation
+			var envianceSdk = { };
+			envianceSdk._seal = function() {
+			};
+		</script>
+		<script language="javascript" type="text/javascript" src="../../../Packages/Api/Enviance.Packages.ver2.js"> </script>
+		<script type="text/javascript">
+			var options = { };
+			if (typeof window.localStorage == "object") {
+				var key = 'UTApp_SdkOptions';
+				var item = window.localStorage.getItem(key);
+				if (item != null) {
+					try {
+						options = JSON.parse(item);
+					} catch (e) {
+						options = { };
+					} 
+				}
+			}
+
+			envianceSdk.packages.init(options, function() {
+				envianceSdk.configure({
+					refreshPageOnUnauthorized: false
+				});
+			});
+
+			authConfig = {
+				//accessUserName: "jstestsAccessUser",
+				mustChangePasswordUser: "jstestsMustChangePasswordUser",
+				tempPasswordUser: "jstestsTempPasswordUser",
+				password: "1111"
+			};
+
+			workflowConfig = {
+				accessUserId: null,
+				//accessUserName: "jstestsAccessUser",
+				noManageRightsUserName: "jstestsWPermissions",
+				noAccessUserName: "jstestsNotAccessUser",
+				deletedUserName: "jstestsDeletedUser",
+				expiredUserName: "jstestsExpiredUser",
+				noManageRightsUserNameWithOverrides: "jstestsWPermissionsWithOverrides",
+				password: "1111"
+			};
+
+			taskConfig = {
+				//accessUserName: "jstestsAccessUser",
+				noManageRightsUserName: "jstestsWPermissions",
+				noAccessUserName: "jstestsNotAccessUser",
+				password: "1111"
+			};
+
+			eventConfig = {
+				//accessUserName: "jstestsAccessUser",
+				noManageRightsUserName: "jstestsWPermissions",
+				noAccessUserName: "jstestsNotAccessUser",
+				password: "1111"
+			};
+
+			documentConfig = {
+				//accessUserName: "jstestsAccessUser",
+				noManageRightsUserName: "jstestsWPermissions",
+				noAccessUserName: "jstestsNotAccessUser",
+				password: "1111"
+			};
+
+			locationConfig = {
+				//accessUserName: "jstestsAccessUser",
+				noManageRightsUserName: "jstestsWPermissions",
+				noAccessUserName: "jstestsNotAccessUser",
+				userWithPermission: "jstestsUserWithDocumentPermission",
+				password: "1111"
+			};
+
+			commandConfig = {
+				//accessUserName: "jstestsAccessUser",
+				noManageRightsUserName: "jstestsWPermissions",
+				noAccessUserName: "jstestsNotAccessUser",
+				password: "1111"
+			};
+
+			shimsConfig = {
+				noManageRightsUserName: "jstestsWPermissions",
+				noAccessUserName: "jstestsNotAccessUser",
+				password: "1111"
+			};
+
+			groupsConfig = {
+				noManageRightsUserName: "jstestsWPermissions",
+				password: "1111"
+			};
+
+			reportConfig = {
+				noManageRightsUserName: "jstestsWPermissions",
+				password: "1111"
+			};
+			
+			activitiesConfig = {
+				noManageRightsUserName: "userWPermissionsActivities",
+				password: "1111"
+			};
+			
+			chemicalsConfig = {
+				noManageRightsUserName: "userWPermissionsChemical",
+				password: "1111"
+			};
+			
+			chemicalGroupsConfig = {
+				noManageRightsUserName: "userWPermissionsChemGroup",
+				password: "1111"
+			};
+			
+			chemicalListsConfig = {
+				noManageRightsUserName: "userWPermissionsChemList",
+				password: "1111"
+			};
+
+			tagsConfig = {
+				noManageRightsUserName: "userWPermissionsTags",
+				password: "1111"
+			};
+
+			tagSchemesConfig = {
+				noManageRightsUserName: "userWPermissionsTagSchemes",
+				password: "1111"
+			};
+			
+			macRequirementsConfig = {
+				noManageRightsUserName: "userWPermissionsMacReq",
+				password: "1111"
+			};
+			
+			mdlGroupConfig = {
+				noManageRightsUserName: "jstestsWPermissions",
+				password: "1111"
+			};
+			
+			materialPropertiesConfig = {
+				noManageRightsUserName: "userWPermissionsMatProp",
+				password: "1111"
+			};
+			
+			materialTemplatesConfig = {
+				noManageRightsUserName: "userWPermissionsMatTemplate",
+				password: "1111"
+			};
+			
+			mdlGroupUploadConfig = {
+				noManageRightsUserName: "jstestsWPermissions",
+				password: "1111"
+			};
+			
+			parameterRequirementsConfig = {
+				noManageRightsUserName: "jstestsWPermissions",
+				password: "1111"
+			};
+			
+			function GetBuildNumber() {
+				return jQuery.ajax({
+					url: 'buildnumber.txt',
+					dataType: "text",
+					async: false,
+					success: function (response) {
+						document.title = document.title + " (" + response + ")";
+					},
+					error: function (xhr, status, msg) {
+						if (console)
+							console.log('The buildnumber.txt loading error. ' + msg + '. Status: ' + status);
+					}
+				});
+			}
+
+		</script>
+	</head>
+
+	<body onload="GetBuildNumber();">
+		<div id="punit"></div>
+		<script type="text/javascript" src="qunit.js"> </script>
+		<script type="text/javascript" src="app.js"> </script>
+		<script type="text/javascript" src="../framework.js"> </script>
+		<script type="text/javascript" src="../qunit-teamcity-log.js"> </script>
+		
+		<script type="text/javascript" src="../tests.infrastructure.js"> </script>
+		<script type="text/javascript" src="../tests.utilities.js"> </script>
+		<script type="text/javascript" src="../tests.eql.js"> </script>
+		<script type="text/javascript" src="../tests.authentication.js"> </script>
+		<script type="text/javascript" src="../tests.workflows.js"> </script>
+		<script type="text/javascript" src="../tests.tasks.js"> </script>
+		<script type="text/javascript" src="../tests.locations.js"> </script>
+		<script type="text/javascript" src="../tests.data.calcperiods.js"> </script>
+		<script type="text/javascript" src="../tests.data.js"> </script>
+		<script type="text/javascript" src="../tests.events.js"> </script>
+		<script type="text/javascript" src="../tests.commands.js"> </script>
+		<script type="text/javascript" src="../tests.documents.js"> </script>
+		<script type="text/javascript" src="../tests.reports.js"> </script>
+		<script type="text/javascript" src="../tests.package.js"> </script>
+		<script type="text/javascript" src="../tests.messages.js"> </script>
+		<script type="text/javascript" src="../tests.groups.js"> </script>
+		<script type="text/javascript" src="../tests.activities.js"> </script>
+		<script type="text/javascript" src="../tests.materials.js"> </script>
+		<script type="text/javascript" src="../tests.materialGroups.js"> </script>
+											   		
+		<script type="text/javascript" src="../tests.materialProperties.js"> </script>
+		<script type="text/javascript" src="../tests.materialTemplates.js"> </script>
+		<script type="text/javascript" src="../tests.chemicals.js"> </script>
+		<script type="text/javascript" src="../tests.chemicalGroups.js"> </script>
+		<script type="text/javascript" src="../tests.chemicalLists.js"> </script>
+
+		<script type="text/javascript" src="../tests.tags.js"> </script>
+		<script type="text/javascript" src="../tests.tagSchemes.js"> </script>
+		<script type="text/javascript" src="../tests.portal.dashboard.js"> </script>
+	
+	    <script type="text/javascript" src="../tests.requirements.parameter.js"></script>
+	    <script type="text/javascript" src="../tests.requirements.calculated.js"></script>
+	    <script type="text/javascript" src="../tests.requirements.cbCalculated.js"></script>
+        <script type="text/javascript" src="../tests.requirements.tbCalculated.js"></script>
+        <script type="text/javascript" src="../tests.requirements.tbAggCalculated.js"></script>
+	    <script type="text/javascript" src="../tests.requirements.tbSubCalculated.js"></script>
+	    <script type="text/javascript" src="../tests.requirements.mac.js"> </script>
+        <script type="text/javascript" src="../tests.requirements.systemVariable.js"></script>
+        
+	    <script type="text/javascript" src="../tests.materialData.js"> </script>
+		<!--Tests for an Enviance App Runtime -->
+		<script type="text/javascript" src="../tests.packages.infrastructure.js"> </script>
+		<script type="text/javascript" src="../tests.packages.shims.js"> </script>
+		<script type="text/javascript" src="../tests.packages.appData.js"> </script>
+		<script type="text/javascript" src="../tests.packages.userData.js"> </script>
+		<script type="text/javascript" src="../tests.packages.eql.js"> </script>
+		<textarea id="qunit-teamcity-log" style="display: none" rows="0" cols="0"></textarea>
+	</body>
+</html>

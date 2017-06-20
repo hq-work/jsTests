@@ -1,0 +1,64 @@
+<main>
+<Facility t:Id="facility-mdlg" />
+<Unit t:Id="unit-mdlg" ParentID="{$facility-mdlg.ID}" />
+<POI t:Id="poi-mdlg" ParentID="{$unit-mdlg.ID}" />
+<NewMaterialProperty t:Id="suv-mdlg-1" PropertyType="{#enumshort(5, SpecificUse)}" />
+<NewMaterialProperty t:Id="suv-mdlg-2" PropertyType="{#enumshort(5, SpecificUse)}" />
+<NewMaterialProperty t:Id="tfbp-mdlg" PropertyType="{#enumshort(4, FormulaBasedTertiary)}">
+    <FormulaHistory />
+</NewMaterialProperty>
+<NewActivity t:Id="activity-mdlg">
+    <Properties>
+        <ActivityPropertyMap PropertyID="{$suv-mdlg-1.ID}" Property="{$suv-mdlg-1}" />
+        <ActivityPropertyMap PropertyID="{$suv-mdlg-2.ID}" Property="{$suv-mdlg-2}" />
+    </Properties>
+</NewActivity>
+<NewMaterial t:Id="material-mdlg-1" />
+<NewMaterial t:Id="material-mdlg-2" />
+<MacRequirementContainer t:Id="mac-mdlg" ParentID="{$poi-mdlg.ID}" ActivityID="{$activity-mdlg.ID}">
+    <Materials>
+        <MacRequirementMaterialMap MaterialID="{$material-mdlg-1.ID}" />
+        <MacRequirementMaterialMap MaterialID="{$material-mdlg-2.ID}" />
+    </Materials>
+</MacRequirementContainer>
+<MdlGroupValuesContainer t:Id="mdlgValues-test" ParentID="{$poi-mdlg.ID}" ActivityID="{$activity-mdlg.ID}">
+    <Groups>
+        <MdlGroupDto Complete="1/1/2012 12:00:00 AM">
+            <DataLines>
+                <NewMaterialDataLine MaterialID="{$material-mdlg-1.ID}" StartTime="1/1/2012 12:00:00 AM" EndTime="1/1/2013 12:00:00 AM">
+                    <Data>
+                        <NewMaterialData PropertyID="{$suv-mdlg-1.ID}" Value="100" />
+                        <NewMaterialData PropertyID="{$suv-mdlg-2.ID}" Value="200" />
+                        <NewMaterialData PropertyID="{$tfbp-mdlg.ID}" Value="300" />
+                    </Data>
+                </NewMaterialDataLine>
+                <NewMaterialDataLine MaterialID="{$material-mdlg-2.ID}" StartTime="1/1/2012 12:00:00 AM" EndTime="1/1/2014 12:00:00 AM">
+                    <Data>
+                        <NewMaterialData PropertyID="{$suv-mdlg-1.ID}" Value="120" />
+                        <NewMaterialData PropertyID="{$suv-mdlg-2.ID}" Value="220" />
+                        <NewMaterialData PropertyID="{$tfbp-mdlg.ID}" Value="340" />
+                    </Data>
+                </NewMaterialDataLine>
+            </DataLines>
+        </MdlGroupDto>
+        <MdlGroupDto Complete="2/1/2012 12:00:00 AM">
+            <DataLines>
+                <NewMaterialDataLine MaterialID="{$material-mdlg-1.ID}" StartTime="1/1/2012 12:00:00 AM" EndTime="1/1/2013 12:00:00 AM">
+                    <Data>
+                        <NewMaterialData PropertyID="{$suv-mdlg-1.ID}" Value="100" />
+                        <NewMaterialData PropertyID="{$suv-mdlg-2.ID}" Value="201" />
+                        <NewMaterialData PropertyID="{$tfbp-mdlg.ID}" Value="301" />
+                    </Data>
+                </NewMaterialDataLine>
+                <NewMaterialDataLine MaterialID="{$material-mdlg-2.ID}" StartTime="1/1/2012 12:00:00 AM" EndTime="1/1/2014 12:00:00 AM">
+                    <Data>
+                        <NewMaterialData PropertyID="{$suv-mdlg-1.ID}" Value="120" />
+                        <NewMaterialData PropertyID="{$suv-mdlg-2.ID}" Value="221" />
+                        <NewMaterialData PropertyID="{$tfbp-mdlg.ID}" Value="341" />
+                    </Data>
+                </NewMaterialDataLine>
+            </DataLines>
+        </MdlGroupDto>
+    </Groups>
+</MdlGroupValuesContainer>
+</main>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+		<GroupWithRights t:Id="jstestsAccessGroup" Name="jstestsAccessGroup" ExternalRights="192666367" ID="45659A03-136C-4F2E-82ED-5BF6360FDA43"/>
+		<GroupWithRights t:Id="jstestsNoAccessGroup" Name="jstestsNoAccessGroup" ID="67BA0A8F-7B66-4C09-819F-AE3818F1105F"/>
+
+		<BuildList t:Id="buildList-groups" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="jstestsAccessGroup"/>
+				<BuildListItem Name="jstestsNoAccessGroup"/>
+			</List>
+		</BuildList>
+	</t:Templates>
+</t:Data>

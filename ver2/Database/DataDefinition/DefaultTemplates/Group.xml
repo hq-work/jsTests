@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Configuration>
+		<RegisterInstantiator Instantiator="existing-group" Type="DdfDataGenerator.Instantiators.ExistingGroupInstantiator, DdfDataGenerator" />
+		<RegisterInstantiator Instantiator="groupwithrights-instantiator" Type="DdfDataGenerator.Instantiators.GroupWithRightsInstantiator, DdfDataGenerator" />
+	</t:Configuration>
+
+	<t:Templates>
+		<Group t:Id="group" t:BaseTemplate="{#default(EntityObject)}"/>
+		<Group t:Id="group-owner" t:Instantiator="existing-group" t:InstantiatorParams="Administrators" t:BaseTemplate="{#nothing}" />
+		<GroupWithRights t:BaseTemplate="group" ExternalRights="0" t:Instantiator="groupwithrights-instantiator" t:InstantiatorParams="" />
+	</t:Templates>
+</t:Data>

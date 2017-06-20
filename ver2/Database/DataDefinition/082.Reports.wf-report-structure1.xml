@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<WorkflowReportInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ForAppConfiguration="false">
+	<Header />
+	<Footer />
+	<OutputType>Html</OutputType>
+	<DateRange BeginDate="1753-01-01T00:00:00" EndDate="9999-12-31T00:00:00" FilterBy="DueDate" />
+	<Locations SelectOnReportRun="false" />
+	<WorkflowTypes>
+		<WorkflowType SectionId="8d0ae7af-9d4a-43d4-8e9c-20bfa8b5529e" SectionName="UDF_Workflow Type" WorkflowDefinitionIds="c8817f85-7f2a-494c-b62f-271ef98c4f1d" CountAggregation="false">
+			<CustomStatuses />
+			<RootVersionCriteria xsi:nil="true" />
+			<Assignees IncludeCurrentUser="false">
+				<Users />
+				<Groups />
+			</Assignees>
+			<Columns>
+				<Column Sort="None" ExpandValueHistory="false" ID="W_UniqueID" IsUdf="false" UdfType="Division">
+					<Aggregations />
+				</Column>
+			</Columns>
+			<PrimaryStatuses />
+			<SelectionCriteria Operator="And" />
+		</WorkflowType>
+	</WorkflowTypes>
+	<DataBindings />
+</WorkflowReportInfo>

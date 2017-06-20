@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Configuration>
+		<RegisterInstantiator Instantiator="package-instantiator" Type="DdfDataGenerator.Instantiators.PackageInstantiator, DdfDataGenerator" />
+		<RegisterInstantiator Instantiator="packagecontentsecuritypolicy-instantiator" Type="DdfDataGenerator.Instantiators.PackageContentSecurityPolicyInstantiator, DdfDataGenerator" />
+	</t:Configuration>
+	
+	<t:Templates>
+		<Package t:BaseTemplate="{#default(EntityObject)}" Description="" IsLocked="false" Created="{#today}" IsRoutingEnabled="true"/>
+		<PackageWithAll t:BaseTemplate="{#default(Package)}" />
+		<PackageForTest t:BaseTemplate="{#default(PackageWithAll)}" t:Instantiator="package-instantiator" t:InstantiatorParams="" />
+		<PackageItem t:BaseTemplate="{#default(MappedId)}" Size="0" Content="{#tobytesarray('')}" />
+		<PackageItemWithAll t:BaseTemplate="{#default(PackageItem)}" Role="0"/>
+		<PackageItemPermissionRoleAccess t:BaseTemplate="{#default(MappedIdNameUnique)}" Allow="true" />
+
+		<PackageUserData t:BaseTemplate="{#default(PackageUserData)}" t:Id="BasePackageUserData" t:Instantiator="database" />
+		<PackageAppData t:BaseTemplate="{#default(PackageAppData)}" t:Id="BasePackageAppData" t:Instantiator="database" />
+		<PackageAppDataPermission t:BaseTemplate="{#default(EntityObject)}" Wildcard="*" AllowReadEveryone="true" DenyReadEveryone="false" AllowWriteEveryone="false" DenyWriteEveryone="false"  t:Instantiator="database" />
+		<PackageAppDataPermissionWithAll t:BaseTemplate="{#default(PackageAppDataPermission)}" t:Instantiator="database" />
+
+		<PackageAppDataPermissionRoleAccess AllowRead="false" AllowWrite="false" t:BaseTemplate="{#default(PackageAppDataPermissionRoleAccess)}" t:Id="BasePackageAppDataPermissionRoleAccess" t:Instantiator="database"/>
+
+		<PackageRole t:BaseTemplate="{#default(MappedId)}" t:Id="BasePackageRole" Description="" />
+		<PackageRoleWithAll t:BaseTemplate="{#default(PackageRole)}" t:Id="BasePackageRoleWithAll"  t:Instantiator="database"/>
+		<PackageContentSecurityPolicy t:BaseTemplate="{#default(EntityObject)}" t:Instantiator="packagecontentsecuritypolicy-instantiator"/>
+	</t:Templates>
+</t:Data>

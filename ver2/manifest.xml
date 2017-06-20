@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package name="SDK Unit Tests v2" displayPage="Manual/index.htm">
+	<ContentSecurityPolicy scriptSrc="* 'self' 'unsafe-eval' 'unsafe-inline'"
+						   styleSrc="* 'self' 'unsafe-inline'"/>
+	<roles>
+		<add name="Allow Role" description="Role for access users"/>
+		<add name="Deny Role" description="Role for deny users"/>
+		<add name="Allow By Group Role" description="Role for access groups"/>
+		<add name="Deny By Group Role" description="Role for deny groups"/>
+	</roles>
+	<permissions>
+		<item path="Manual/index.htm">
+			<allow roles="Allow Role;Allow By Group Role" />
+			<deny roles="Deny Role;Deny By Group Role" />
+		</item>
+		<item path="Manual/Pages">
+			<deny roles="Everyone" />
+		</item>
+		<item path="Manual/Pages/page.htm">
+			<allow roles="Allow Role;Allow By Group Role" />
+			<deny roles="Deny Role;Deny By Group Role" />
+		</item>
+	</permissions>
+</package>

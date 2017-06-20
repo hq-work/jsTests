@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+		<UserWithAll t:Id="jstestsAccessUser" Login="jstestsAccessUser" FirstName="jstestsAccessUser" LastName="jstestsAccessUser" Rights="0" TimeZone="1"
+				HomeSystemID="{$alternative-system.ID}" Email="jstestsAccessUser@user.com" ID="79E0049F-624C-4664-BCFF-3CEC7FAD0C7B"
+				SecretQuestion1="F4197A75-A6F2-4EBE-A000-16F0137B8AD1" SecretQuestion2="6079D1B7-1DFC-440B-BF35-373499658B35" SecretQuestion3="849504E7-052D-4E3A-B5AB-386A240ABC25" 
+				Answer1="{#password(1111)}" Answer2="{#password(1111)}" Answer3="{#password(1111)}">
+			<AccessSystemGroups>
+				<MappedIdNameUnique ID="{$group-owner.ID}" />
+			</AccessSystemGroups>
+			<HomeSystemGroups>
+				<MappedIdNameUnique Name="Administrators" />
+			</HomeSystemGroups>
+		</UserWithAll>
+		<UserWithAll t:Id="jstestsAccessUser_copy1" Login="jstestsAccessUser_copy1" FirstName="jstestsAccessUser_copy1" LastName="jstestsAccessUser_copy1" Rights="0" TimeZone="1"
+				HomeSystemID="{$alternative-system.ID}" Email="jstestsAccessUser_copy1@user.com" ID="DDC75CF0-36A9-430C-87E8-64E91138F1FB"
+				SecretQuestion1="F4197A75-A6F2-4EBE-A000-16F0137B8AD1" SecretQuestion2="6079D1B7-1DFC-440B-BF35-373499658B35" SecretQuestion3="849504E7-052D-4E3A-B5AB-386A240ABC25"
+				Answer1="{#password(1111)}" Answer2="{#password(1111)}" Answer3="{#password(1111)}">
+			<AccessSystemGroups>
+				<MappedIdNameUnique ID="{$group-owner.ID}" />
+			</AccessSystemGroups>
+			<HomeSystemGroups>
+				<MappedIdNameUnique Name="Administrators" />
+			</HomeSystemGroups>
+		</UserWithAll>
+		<UserWithAll t:Id="jstestsAccessUser_copy2" Login="jstestsAccessUser_copy2" FirstName="jstestsAccessUser_copy2" LastName="jstestsAccessUser_copy2" Rights="0" TimeZone="1"
+				HomeSystemID="{$alternative-system.ID}" Email="jstestsAccessUser_copy2@user.com" ID="557549AD-08D5-4B1E-9A98-3303739EE818"
+				SecretQuestion1="F4197A75-A6F2-4EBE-A000-16F0137B8AD1" SecretQuestion2="6079D1B7-1DFC-440B-BF35-373499658B35" SecretQuestion3="849504E7-052D-4E3A-B5AB-386A240ABC25"
+				Answer1="{#password(1111)}" Answer2="{#password(1111)}" Answer3="{#password(1111)}">
+			<AccessSystemGroups>
+				<MappedIdNameUnique ID="{$group-owner.ID}" />
+			</AccessSystemGroups>
+			<HomeSystemGroups>
+				<MappedIdNameUnique Name="Administrators" />
+			</HomeSystemGroups>
+		</UserWithAll>
+		<UserWithAll t:Id="jstestsAccessUser_copy3" Login="jstestsAccessUser_copy3" FirstName="jstestsAccessUser_copy3" LastName="jstestsAccessUser_copy3" Rights="0" TimeZone="1"
+				HomeSystemID="{$alternative-system.ID}" Email="jstestsAccessUser_copy3@user.com" ID="2F932721-883F-42DB-9B2D-78F30725789E"
+				SecretQuestion1="F4197A75-A6F2-4EBE-A000-16F0137B8AD1" SecretQuestion2="6079D1B7-1DFC-440B-BF35-373499658B35" SecretQuestion3="849504E7-052D-4E3A-B5AB-386A240ABC25"
+				Answer1="{#password(1111)}" Answer2="{#password(1111)}" Answer3="{#password(1111)}">
+			<AccessSystemGroups>
+				<MappedIdNameUnique ID="{$group-owner.ID}" />
+			</AccessSystemGroups>
+			<HomeSystemGroups>
+				<MappedIdNameUnique Name="Administrators" />
+			</HomeSystemGroups>
+		</UserWithAll>
+		<UserWithAll t:Id="jstestsAccessUser_copy4" Login="jstestsAccessUser_copy4" FirstName="jstestsAccessUser_copy4" LastName="jstestsAccessUser_copy4" Rights="0" TimeZone="1"
+				HomeSystemID="{$alternative-system.ID}" Email="jstestsAccessUser_copy4@user.com" ID="1B3D942F-33DE-491A-B2AB-26739F72A6CB"
+				SecretQuestion1="F4197A75-A6F2-4EBE-A000-16F0137B8AD1" SecretQuestion2="6079D1B7-1DFC-440B-BF35-373499658B35" SecretQuestion3="849504E7-052D-4E3A-B5AB-386A240ABC25"
+				Answer1="{#password(1111)}" Answer2="{#password(1111)}" Answer3="{#password(1111)}">
+			<AccessSystemGroups>
+				<MappedIdNameUnique ID="{$group-owner.ID}" />
+			</AccessSystemGroups>
+			<HomeSystemGroups>
+				<MappedIdNameUnique Name="Administrators" />
+			</HomeSystemGroups>
+		</UserWithAll>
+		<UserWithAll t:Id="jstestsAccessUser_copy5" Login="jstestsAccessUser_copy5" FirstName="jstestsAccessUser_copy5" LastName="jstestsAccessUser_copy5" Rights="0" TimeZone="1"
+				HomeSystemID="{$alternative-system.ID}" Email="jstestsAccessUser_copy5@user.com" ID="3365C847-FFA6-42F8-BF32-5D1D29623BF3"
+				SecretQuestion1="F4197A75-A6F2-4EBE-A000-16F0137B8AD1" SecretQuestion2="6079D1B7-1DFC-440B-BF35-373499658B35" SecretQuestion3="849504E7-052D-4E3A-B5AB-386A240ABC25"
+				Answer1="{#password(1111)}" Answer2="{#password(1111)}" Answer3="{#password(1111)}">
+			<AccessSystemGroups>
+				<MappedIdNameUnique ID="{$group-owner.ID}" />
+			</AccessSystemGroups>
+			<HomeSystemGroups>
+				<MappedIdNameUnique Name="Administrators" />
+			</HomeSystemGroups>
+		</UserWithAll>
+		<UserWithAll t:Id="jstestsWPermissions" Login="jstestsWPermissions" FirstName="jstestsWPermissions" LastName="jstestsWPermissions" Rights="0" TimeZone="1" ID="7CEE4020-264B-4754-B104-DC13724FBE15" />
+		<UserWithAll t:Id="jstestsNotAccessUser" Login="jstestsNotAccessUser" FirstName="jstestsNotAccessUser" LastName="jstestsNotAccessUser" Rights="0" TimeZone="1" GrantAccess="false" HomeSystemID="{$alternative-system.ID}" />
+		<UserWithAll t:Id="jstestsDeletedUser" Login="jstestsDeletedUser" FirstName="jstestsDeletedUser" LastName="jstestsDeletedUser" Rights="0" TimeZone="1" Deleted="true" />
+		<UserWithAll t:Id="jstestsLockedUser" Login="jstestsLockedUser" FirstName="jstestsLockedUser" LastName="jstestsLockedUser" Rights="0" TimeZone="1" Locked="true" />
+		<UserWithAll t:Id="jstestsExpiredUser" Login="jstestsExpiredUser" FirstName="jstestsExpiredUser" LastName="jstestsExpiredUser" Rights="0" TimeZone="1" ExpirationDate="2010-01-01T00:00:00" />
+		<UserWithAll t:Id="jstestsWPermissionsWithOverrides" Login="jstestsWPermissionsWithOverrides" FirstName="jstestsWPermissionsWithOverrides" LastName="jstestsWPermissionsWithOverrides" Rights="0" TimeZone="1" />
+		<UserWithAll t:Id="jstestsPackageAccessUser" Login="jstestsPackageAccessUser" FirstName="jstestsPackageAccessUser" LastName="jstestsPackageAccessUser" Rights="2560" TimeZone="1" ID="17BF9E81-A210-4729-9240-A3DAFBA5944E">
+			<HomeSystemGroups>
+				<MappedIdNameUnique ID="{$jstestsAccessGroup.ID}" />
+			</HomeSystemGroups>
+		</UserWithAll>
+		<UserWithAll t:Id="jstestsPackageNotAccessUser" Login="jstestsPackageNotAccessUser" FirstName="jstestsPackageNotAccessUser" LastName="jstestsPackageNotAccessUser" Rights="0" TimeZone="1">
+			<HomeSystemGroups>
+				<MappedIdNameUnique ID="{$jstestsNoAccessGroup.ID}" />
+			</HomeSystemGroups>
+		</UserWithAll>
+		<UserWithAll t:Id="jstestsMustChangePasswordUser" Login="jstestsMustChangePasswordUser" FirstName="jstestsMustChangePasswordUser" LastName="jstestsMustChangePasswordUser" Rights="0" TimeZone="1" MustChangePassword="true" />
+		<UserWithAll t:Id="jstestsTempPasswordUser" Login="jstestsTempPasswordUser" FirstName="jstestsTempPasswordUser" LastName="jstestsTempPasswordUser" Rights="0" TimeZone="1" TempPassword="{#password(2222)}" TempPasswordExpirationDate="2020-01-01T00:00:00" />
+		<UserWithAll t:Id="jstestsUserToRemoveFromAdminGroup" Login="jstestsUserToRemoveFromAdminGroup" FirstName="jstestsUserToRemoveFromAdminGroup" LastName="jstestsUserToRemoveFromAdminGroup" Rights="0" TimeZone="1" />
+		<UserWithAll t:Id="jstestsUserWithNoPermissionsToObject" Login="jstestsUserWithNoPermissionsToObject" FirstName="jstestsUserWithNoPermissionsToObject" LastName="jstestsUserWithNoPermissionsToObject" Rights="0" TimeZone="1" ID="38499784-6BE9-444F-9F76-358E28698B76"/>
+		<UserWithAll t:Id="jstestsUserWithDocumentPermission" Login="jstestsUserWithDocumentPermission" FirstName="jstestsUserWithDocumentPermission" LastName="jstestsUserWithDocumentPermission" Rights="192928447" TimeZone="1" />
+		<UserWithAll t:Id="jstestsPortalUser" Login="jstestsPortalUser" FirstName="jstestsPortalUser" LastName="jstestsPortalUser" Rights="0" TimeZone="1" ID="D770FCFF-5F59-4ABA-99E3-8E1E0205FB4D">
+			<HomeSystemGroups>
+				<MappedIdNameUnique ID="{$jstestsAccessGroup.ID}" />
+			</HomeSystemGroups>
+		</UserWithAll>
+		
+		<BuildList t:Id="buildList-users" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="jstestsAccessUser"/>
+				<BuildListItem Name="jstestsAccessUser_copy1"/>
+				<BuildListItem Name="jstestsAccessUser_copy2"/>
+				<BuildListItem Name="jstestsAccessUser_copy3"/>
+				<BuildListItem Name="jstestsAccessUser_copy4"/>
+				<BuildListItem Name="jstestsAccessUser_copy5"/>
+				<BuildListItem Name="jstestsWPermissions"/>
+				<BuildListItem Name="jstestsNotAccessUser"/>
+				<BuildListItem Name="jstestsDeletedUser"/>
+				<BuildListItem Name="jstestsLockedUser"/>
+				<BuildListItem Name="jstestsExpiredUser"/>
+				<BuildListItem Name="jstestsWPermissionsWithOverrides"/>
+				<BuildListItem Name="jstestsPackageAccessUser"/>
+				<BuildListItem Name="jstestsPackageNotAccessUser"/>
+				<BuildListItem Name="jstestsMustChangePasswordUser"/>
+				<BuildListItem Name="jstestsTempPasswordUser"/>
+				<BuildListItem Name="jstestsUserToRemoveFromAdminGroup"/>
+				<BuildListItem Name="jstestsUserWithNoPermissionsToObject"/>
+				<BuildListItem Name="jstestsUserWithDocumentPermission"/>
+				<BuildListItem Name="jstestsPortalUser"/>
+			</List>
+		</BuildList>
+	</t:Templates>
+</t:Data>

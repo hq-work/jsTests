@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+		<Task t:Id="task-document-association" ID="185FD881-3658-4500-8DDA-0EBBB7288C4A" TypeID="1" Name="Js Tests Task" Description="JS Test Task Description"
+			  ParentID="185FD881-3658-4500-8DDA-0EBBB7288C4A" HistoryID="{#guid}" TimeZone="1" Assignor="{$jstestsAccessUser.ID}" />
+
+		<Task t:Id="task-with-triggered-workflow" ID="82F1D726-77DF-434A-9345-D0E0EF42A3D6" TypeID="1" Name="Js Tests Task With Triggered Workflow" Description="Js Tests Task With Triggered Workflow Description"
+						ParentID="82F1D726-77DF-434A-9345-D0E0EF42A3D6" HistoryID="{#guid}" TimeZone="1" Assignor="{$jstestsAccessUser.ID}" />
+
+		<Task t:Id="task-with-triggered-workflow-2" ID="1252ED77-8AAD-471B-9E59-A442A4BDC155" TypeID="1" Name="Js Tests Task With Triggered Workflow 2" Description="Js Tests Task With Triggered Workflow 2 Description"
+						ParentID="1252ED77-8AAD-471B-9E59-A442A4BDC155" HistoryID="{#guid}" TimeZone="1" Assignor="{$jstestsAccessUser.ID}" />
+
+		<Task t:Id="task-with-triggered-workflow-3" ID="9F68EBC5-09F1-49A4-8E8A-13CCE2F15085" TypeID="1" Name="Js Tests Task With Triggered Workflow 3" Description="Js Tests Task With Triggered Workflow 3 Description"
+						ParentID="9F68EBC5-09F1-49A4-8E8A-13CCE2F15085" HistoryID="{#guid}" TimeZone="1" Assignor="{$jstestsAccessUser.ID}" />
+
+		<Task t:Id="task-with-workflow-trigger-1" ID="A1EEB06A-77BB-4056-92B2-63A38DA7099C" TypeID="1" Name="task-with-workflow-trigger-1" Description="Js Tests Task With Workflow Trigger Description"
+				ParentID="A1EEB06A-77BB-4056-92B2-63A38DA7099C" HistoryID="{#guid}" TimeZone="1" Assignor="{$jstestsAccessUser.ID}" />
+		
+		<TaskWorkflowTrigger t:Id="task-workflow-trigger-1" t:BaseTemplate="{#default(EntityObject)}"
+														 TaskHistoryID="{$task-with-workflow-trigger-1.HistoryID}"
+														 WorkflowDefinitionID="{$wftype5.ID}"
+														 WorkflowDueDateFlags="8192"
+														 WorkflowDueDateAmount="0"
+														 WorkflowCalendarsMask="5"
+														 Flags="114708"
+														 CompleteStatus="50"
+														 Amount="0"
+														 WorkflowName="Triggered Workflow 1"/>
+		<TaskWorkflowTriggerAssociationInfo t:Id="task-workflow-trigger-association-info-1" TaskWorkflowTriggerID="{$task-workflow-trigger-1.ID}" t:BaseTemplate="{#default(EntityObject)}" >
+			<UserAssignees>
+				<MappedIdUnique ID="{$jstestsAccessUser.ID}" />
+			</UserAssignees>
+		</TaskWorkflowTriggerAssociationInfo>
+
+		<TaskAssociationInfo t:Id="task-association-1" TaskHistoryID="{$task-document-association.HistoryID}" >
+			<UserAssignees>
+				<MappedIdUnique ID="{$jstestsAccessUser.ID}" />
+			</UserAssignees>
+			<Objects>
+				<MappedIdUnique ID="{$division-3-document-association-1.ID}"/>
+			</Objects>
+		</TaskAssociationInfo>
+
+		<NotificationTemplate t:Id="task-notification-template-1" ID="2DABED31-7866-49DF-A599-BD24AA96020A" Name="task-notification-template-1" TemplateSubject="task-notification-template-1"
+		TemplateBody="task-notification-template-1 Body" HTMLTemplateBody="task-notification-template-1 HTML Body" />
+
+		<NotificationTemplate t:Id="task-notification-template-2" ID="75992232-914F-4332-BFEE-1943C5D7F904" Name="task-notification-template-2" TemplateSubject="task-notification-template-2"
+		TemplateBody="task-notification-template-2 Body" HTMLTemplateBody="task-notification-template-2 HTML Body" />
+
+		<TaskTemplate t:Id="task-template-1" Name="task-template-1" ID="5D27C1C6-CFFF-4393-83C6-2297FD6A5E8E" ViewTask="true" SystemCalendar="true" ObjectCalendar="true" Amount="10" AmountType="2" />
+
+		<TaskTemplateNotification t:Id="task-template-notification-1" t:BaseTemplate="{#default(EntityObject)}"
+															TaskTemplateID="{$task-template-1.ID}" 
+															Flags="98670"
+															CompleteStatus="50"
+															Comments="JsTestsTaskTmplateNotification comment"
+															Amount="0"
+															/>
+
+		<TaskTemplate t:Id="task-template-with-trigger-1" Name="task-template-with-trigger-1" ViewTask="true" SystemCalendar="true" ObjectCalendar="true" Amount="10" AmountType="2" />
+
+		<TaskTemplateWorkflowTrigger t:Id="task-template-workflow-trigger-1" t:BaseTemplate="{#default(EntityObject)}"
+																 TaskTemplateID="{$task-template-with-trigger-1.ID}"
+																 WorkflowDefinitionID="{$wftype2.ID}" 
+																 WorkflowDueDateFlags="8192"
+																 WorkflowDueDateAmount="0"
+																 WorkflowCalendarsMask="5"
+																 Flags="114708"
+																 CompleteStatus="50"
+																 Amount="0" 
+																 WorkflowName="Triggered Workflow From Template 1"/>
+		<TaskTemplateWorkflowTriggerAssociationInfo t:Id="task-template-workflow-trigger-association-info-1" TaskTemplateWorkflowTriggerID="{$task-template-workflow-trigger-1.ID}" t:BaseTemplate="{#default(EntityObject)}" >
+			<UserAssignees>
+				<MappedIdUnique ID="{$jstestsAccessUser.ID}" />
+			</UserAssignees>
+		</TaskTemplateWorkflowTriggerAssociationInfo>
+
+		<TaskTemplate t:Id="task-template-with-trigger-2" Name="task-template-with-trigger-2" ViewTask="true" SystemCalendar="true" ObjectCalendar="true" Amount="10" AmountType="2" />
+
+		<TaskTemplateWorkflowTrigger t:Id="task-template-workflow-trigger-2" t:BaseTemplate="{#default(EntityObject)}"
+																 TaskTemplateID="{$task-template-with-trigger-2.ID}"
+																 WorkflowDefinitionID="{$wftype2.ID}" 
+																 WorkflowDueDateFlags="8192"
+																 WorkflowDueDateAmount="0"
+																 WorkflowCalendarsMask="5"
+																 Flags="8212"
+																 CompleteStatus="0"
+																 Amount="0" 
+																 WorkflowName="Triggered Workflow From Template 2"/>
+		<TaskTemplateWorkflowTriggerAssociationInfo t:Id="task-template-workflow-trigger-association-info-2" TaskTemplateWorkflowTriggerID="{$task-template-workflow-trigger-2.ID}" t:BaseTemplate="{#default(EntityObject)}" >
+			<UserAssignees>
+				<MappedIdUnique ID="{$jstestsAccessUser.ID}" />
+			</UserAssignees>
+		</TaskTemplateWorkflowTriggerAssociationInfo>
+		
+		<Document t:Id="task-template-document-content-1" Name="JsTestsDocument content 1" ParentID="{$system.ID}" Description="JsTestsDocument content description" />
+		<DocumentVersion t:Id="task-template-document-content-v1" Version="1" DocumentID="{$task-template-document-content-1.ID}" Comments="JsTestsDocument content comment"
+						 Url="" Type="0" MimeType="text/plain" FileGuid="{#guid}" FileSize="1024" Extension="txt"/>
+		
+		<DocumentAssociationInfo t:BaseTemplate="{#default(EntityObject)}" t:Id="task-template-document-association-info-1" DocumentID="{$task-template-document-content-1.ID}">
+			<TaskTemplates>
+				<MappedIdUnique ID="{$task-template-1.ID}"/>
+				<MappedIdUnique ID="{$task-template-with-trigger-1.ID}"/>
+			</TaskTemplates>
+		</DocumentAssociationInfo>
+			
+		<TaskAssociationInfo t:Id="task-association-2" TaskHistoryID="{$task-with-triggered-workflow.HistoryID}" >
+			<UserAssignees>
+				<MappedIdUnique ID="{$jstestsAccessUser.ID}" />
+			</UserAssignees>
+			<Objects>
+				<MappedIdUnique ID="{$division-3-document-association-1.ID}"/>
+			</Objects>
+		</TaskAssociationInfo>
+
+		<TaskAssociationInfo t:Id="task-association-3" TaskHistoryID="{$task-with-workflow-trigger-1.HistoryID}" >
+			<UserAssignees>
+				<MappedIdUnique ID="{$jstestsAccessUser.ID}" />
+			</UserAssignees>
+			<Objects>
+				<MappedIdUnique ID="{$division-3-document-association-1.ID}"/>
+			</Objects>
+		</TaskAssociationInfo>
+		
+		<TaskAssociationInfo t:Id="task-association-4" TaskHistoryID="{$task-with-triggered-workflow-2.HistoryID}" >
+			<UserAssignees>
+				<MappedIdUnique ID="{$jstestsAccessUser.ID}" />
+			</UserAssignees>
+			<Objects>
+				<MappedIdUnique ID="{$division-3-document-association-1.ID}"/>
+			</Objects>
+		</TaskAssociationInfo>
+		
+		<TaskAssociationInfo t:Id="task-association-5" TaskHistoryID="{$task-with-triggered-workflow-3.HistoryID}" >
+			<UserAssignees>
+				<MappedIdUnique ID="{$jstestsAccessUser.ID}" />
+			</UserAssignees>
+			<Objects>
+				<MappedIdUnique ID="{$division-3-document-association-1.ID}"/>
+			</Objects>
+		</TaskAssociationInfo>
+		
+		<TaskScheduleInfo t:Id="task-with-triggered-workflow-schedule-1" 
+								ID="{#guid}"
+								TaskHistoryID="{$task-with-triggered-workflow.HistoryID}" 
+								PeriodStartTime="{#datetime(2014-03-20)}" 
+								PeriodEndTime="{#datetime(2014-09-20)}"
+								NextOccurrenceTime="{#datetime(2010-09-20)}"
+								RecurrenceType="8"
+								Interval="0"
+								DayOfWeekMask="0"
+								DayOfMonth="0"
+								Instance="0"
+								MonthOfYear="0"
+								HourlyStartTime="{#datetime(9999-12-31)}"
+								HourlyEndTime="{#datetime(9999-12-31)}"/>
+
+		<TaskScheduleInfo t:Id="task-with-triggered-workflow-schedule-2" 
+								ID="{#guid}"
+								TaskHistoryID="{$task-with-triggered-workflow-2.HistoryID}" 
+								PeriodStartTime="{#datetime(2014-03-20)}" 
+								PeriodEndTime="{#datetime(2014-09-20)}"
+								NextOccurrenceTime="{#datetime(2010-09-20)}"
+								RecurrenceType="8"
+								Interval="0"
+								DayOfWeekMask="0"
+								DayOfMonth="0"
+								Instance="0"
+								MonthOfYear="0"
+								HourlyStartTime="{#datetime(9999-12-31)}"
+								HourlyEndTime="{#datetime(9999-12-31)}"/>
+
+		<TaskScheduleInfo t:Id="task-with-triggered-workflow-schedule-3" 
+								ID="{#guid}"
+								TaskHistoryID="{$task-with-triggered-workflow-3.HistoryID}" 
+								PeriodStartTime="{#datetime(2014-03-20)}" 
+								PeriodEndTime="{#datetime(2014-09-20)}"
+								NextOccurrenceTime="{#datetime(2010-09-20)}"
+								RecurrenceType="8"
+								Interval="0"
+								DayOfWeekMask="0"
+								DayOfMonth="0"
+								Instance="0"
+								MonthOfYear="0"
+								HourlyStartTime="{#datetime(9999-12-31)}"
+								HourlyEndTime="{#datetime(9999-12-31)}"/>		
+		
+		<WorkflowInstanceTask t:Id="workflow-instance-task" TaskID="{$task-with-triggered-workflow.ID}" WorkflowInstanceID="{$workflow-instance-triggered.ID}" TaskHistoryID="{$task-with-triggered-workflow.HistoryID}" TaskDueDate="{$task-with-triggered-workflow-schedule-1.PeriodStartTime}" />
+
+		<WorkflowInstanceTask t:Id="workflow-instance-task-2" TaskID="{$task-with-triggered-workflow-2.ID}" WorkflowInstanceID="{$workflow-instance-triggered-2.ID}" TaskHistoryID="{$task-with-triggered-workflow-2.HistoryID}" TaskDueDate="{$task-with-triggered-workflow-schedule-2.PeriodStartTime}" />
+
+		<WorkflowInstanceTask t:Id="workflow-instance-task-3" TaskID="{$task-with-triggered-workflow-3.ID}" WorkflowInstanceID="{$workflow-instance-triggered-3.ID}" TaskHistoryID="{$task-with-triggered-workflow-3.HistoryID}" TaskDueDate="{$task-with-triggered-workflow-schedule-3.PeriodStartTime}" />
+		
+		<BuildList t:Id="buildList-tasks" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="task-document-association"/>
+				<BuildListItem Name="task-with-triggered-workflow"/>
+				<BuildListItem Name="task-with-triggered-workflow-2"/>
+				<BuildListItem Name="task-with-triggered-workflow-3"/>
+				<BuildListItem Name="task-with-triggered-workflow-schedule-1"/>
+				<BuildListItem Name="task-with-triggered-workflow-schedule-2"/>
+				<BuildListItem Name="task-with-triggered-workflow-schedule-3"/>
+				<BuildListItem Name="workflow-instance-task"/>
+				<BuildListItem Name="workflow-instance-task-2"/>
+				<BuildListItem Name="workflow-instance-task-3"/>
+				<BuildListItem Name="task-notification-template-1"/>
+				<BuildListItem Name="task-notification-template-2"/>
+				<BuildListItem Name="task-template-1"/>
+				<BuildListItem Name="task-template-with-trigger-1"/>
+				<BuildListItem Name="task-template-with-trigger-2"/>
+				<BuildListItem Name="task-template-notification-1"/>
+				<BuildListItem Name="task-template-document-content-v1"/>
+				<BuildListItem Name="task-template-document-association-info-1"/>
+				<BuildListItem Name="task-template-workflow-trigger-1"/>
+				<BuildListItem Name="task-template-workflow-trigger-2"/>
+				<BuildListItem Name="task-template-workflow-trigger-association-info-1"/>
+				<BuildListItem Name="task-template-workflow-trigger-association-info-2"/>
+				<BuildListItem Name="task-with-workflow-trigger-1"/>
+				<BuildListItem Name="task-workflow-trigger-1"/>
+				<BuildListItem Name="task-workflow-trigger-association-info-1"/>
+				<BuildListItem Name="task-association-1"/>
+				<BuildListItem Name="task-association-2"/>
+				<BuildListItem Name="task-association-3"/>
+				<BuildListItem Name="task-association-4"/>
+				<BuildListItem Name="task-association-5"/>
+			</List>
+		</BuildList>
+	</t:Templates>
+</t:Data>

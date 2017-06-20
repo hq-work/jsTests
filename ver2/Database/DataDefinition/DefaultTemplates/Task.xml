@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+		<Task t:BaseTemplate="{#default(EntityObject)}" />
+
+		<TaskAssociationInfo t:BaseTemplate="{#default(EntityObject)}" />
+
+		<NotificationTemplate t:BaseTemplate="{#default(EntityObject)}"
+			Type="2" Description="Task Notification Template Description" TemplateSubject="Task Notification Template Subject"
+			TemplateBody="Task Notification Template Body" HTMLTemplateBody="Task Notification Template HTML Body" />
+		
+		<WorkflowInstanceTask t:BaseTemplate="{#default(EntityObject)}"/>
+		
+		<TaskScheduleInfo t:BaseTemplate="{#default(EntityObject)}"/>
+	</t:Templates>
+</t:Data>

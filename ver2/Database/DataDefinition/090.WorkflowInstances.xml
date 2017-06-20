@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+		<WorkflowInstance t:Id="workflow-instance-document-association" ID="6E339BE4-D35A-412e-8CAA-D116EED32802" Name="WorkflowInstance Generated (Document module)"
+								  UniqueID="6E339BE4-D35A-412e-8CAA-D116EED32802" WorkflowDefinitionVersionID="{$wftype5-v1.ID}" />
+
+		<WorkflowInstanceStepInfo t:Id="workflow-instance-step-1" ID="{#guid}" WorkflowInstanceID="{$workflow-instance-document-association.ID}"
+								  WorkflowDefinitionVersionStepID="{$wftype5-v1:step1.ID}" CompletedDate="1753-01-01T00:00"/>
+
+		<WorkflowInstance t:Id="workflow-instance-triggered" ID="5EDA5F04-2E43-4368-ADBB-54EADAC55785" Name="WorkflowInstance Generated (Triggered)"
+							UniqueID="5EDA5F04-2E43-4368-ADBB-54EADAC55785" WorkflowDefinitionVersionID="{$wftype5-v1.ID}" />
+
+		<WorkflowInstanceStepInfo t:Id="workflow-instance-triggered-step-1" ID="{#guid}" WorkflowInstanceID="{$workflow-instance-triggered.ID}"
+								  WorkflowDefinitionVersionStepID="{$wftype5-v1:step1.ID}" CompletedDate="1753-01-01T00:00"/>
+
+		<WorkflowInstance t:Id="workflow-instance-triggered-2" ID="4802A696-EDB3-42D0-80A3-F72047DEDBEF" Name="WorkflowInstance 2 Generated (Triggered)"
+							UniqueID="4802A696-EDB3-42D0-80A3-F72047DEDBEF" WorkflowDefinitionVersionID="{$wftype5-v1.ID}" />
+
+		<WorkflowInstanceStepInfo t:Id="workflow-instance-triggered-2-step-1" ID="{#guid}" WorkflowInstanceID="{$workflow-instance-triggered-2.ID}"
+								  WorkflowDefinitionVersionStepID="{$wftype5-v1:step1.ID}" CompletedDate="1753-01-01T00:00"/>
+
+		<WorkflowInstance t:Id="workflow-instance-triggered-3" ID="AA680AC8-59C5-44C0-9F21-9852A29C847F" Name="WorkflowInstance 3 Generated (Triggered)"
+							UniqueID="AA680AC8-59C5-44C0-9F21-9852A29C847F" WorkflowDefinitionVersionID="{$wftype5-v1.ID}" />
+
+		<WorkflowInstanceStepInfo t:Id="workflow-instance-triggered-3-step-1" ID="{#guid}" WorkflowInstanceID="{$workflow-instance-triggered-3.ID}"
+								  WorkflowDefinitionVersionStepID="{$wftype5-v1:step1.ID}" CompletedDate="1753-01-01T00:00"/>
+
+
+		<BuildList t:Id="buildList-workflows" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="workflow-instance-document-association"/>
+				<BuildListItem Name="workflow-instance-step-1"/>
+				<BuildListItem Name="workflow-instance-triggered"/>
+				<BuildListItem Name="workflow-instance-triggered-step-1"/>
+				<BuildListItem Name="workflow-instance-triggered-2"/>
+				<BuildListItem Name="workflow-instance-triggered-2-step-1"/>
+				<BuildListItem Name="workflow-instance-triggered-3"/>
+				<BuildListItem Name="workflow-instance-triggered-3-step-1"/>
+			</List>
+		</BuildList>
+	</t:Templates>
+</t:Data>

@@ -1,0 +1,13 @@
+--- Materials.xml
++++ Materials.xml
+@@ -19,6 +19,8 @@
+ 	<NewChemicalListHistoryItem t:BaseTemplate="{#nothing}" t:Instantiator="database" BeginDate="1753-01-01T00:00:00" EndDate="9999-12-31T00:00:00" />
+ 	<NewChemicalLimitItem t:BaseTemplate="{#nothing}" t:Instantiator="database"/>
+ 	<NewMaterial t:BaseTemplate="{#default(EntityObject)}" />
+-		<ChemicalConcentrationHistory t:BaseTemplate="{#default(EntityObject)}"/>
++	<ChemicalConcentrationHistory t:BaseTemplate="{#default(EntityObject)}"/>
++	<TagScheme t:BaseTemplate="{#default(EntityObject)}"  t:Instantiator="database" Description=""/>
++	<Tag t:BaseTemplate="{#default(EntityObject)}"  t:Instantiator="database" Description=""/>
+   </t:Templates>
+ </t:Data>
+\ No newline at end of file

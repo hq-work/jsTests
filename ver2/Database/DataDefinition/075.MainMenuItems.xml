@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+		<MainMenuItemWithAll t:Id="js-tests-package-menu-1" Name="{$package-tests-v1.Name}" Description="{$package-tests-v1.Description}" PositionIndex="7" PackageID="{$package-tests-v1.ID}" />
+		<MainMenuItemWithAll t:Id="js-tests-package-menu-2" Name="{$package-tests-v2.Name}" Description="{$package-tests-v2.Description}" PositionIndex="7" PackageID="{$package-tests-v2.ID}" />
+
+		<BuildList t:Id="buildList-mainmenuitems" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="js-tests-package-menu-1"/>
+				<BuildListItem Name="js-tests-package-menu-2"/>
+			</List>
+		</BuildList>
+	</t:Templates>
+</t:Data>

@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+		<Division t:Id="division-1" Name="UDF_division" t:Instantiator="database" />
+		<Facility t:Id="facility-1" ID="217CA62A-80F2-4B14-81B8-66C9C0AC87D1" Name="UDF_facility" ParentID="{$division-1.ID}" TimeZone="7" t:Instantiator="database" />
+		<Division t:Id="division-2" Name="XLS_Division_date" t:Instantiator="database" />
+		<Facility t:Id="facility-2" ID="2E127C2C-D5B2-454C-8E03-0CFC49FFB1AC" Name="XLS_facility_date" ParentID="{$division-2.ID}" TimeZone="7" t:Instantiator="database" />
+
+		<Division t:Id="division-3-document-association-1" ID="045D36BC-AB1E-4155-BC18-86B257068BEA" Name="jsTestsDivision document association 1" t:Instantiator="database" />
+		<Division t:Id="division-4-document-association-2" ID="AE3A951B-A557-4b70-BDB2-6779937A1533" Name="jsTestsDivision document association 2" t:Instantiator="database" />
+		
+		<UdfTemplate t:Id="udf-template2" Name="MAS Custom Field Template" />
+		<UdfTemplateToUdfMap t:Id="udf-template2-map-1" UDFID="{$udf-text-tb4.ID}" GroupID="{$udf-template2.ID}" Order="0" />
+		<UdfTemplateToUdfMap t:Id="udf-template2-map-2" UDFID="{$udf-text-ddl1.ID}" GroupID="{$udf-template2.ID}" Order="1" />
+		<UdfTemplateToUdfMap t:Id="udf-template2-map-3" UDFID="{$udf-hl1.ID}" GroupID="{$udf-template2.ID}" Order="2" />
+
+		<BuildList t:Id="buildList-ut-2" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="udf-template2-map-1"/>
+				<BuildListItem Name="udf-template2-map-2"/>
+				<BuildListItem Name="udf-template2-map-3"/>
+			</List>
+		</BuildList>
+
+		<TagScheme t:Id="location-tagScheme-1" Name="Location Tag Scheme" EnforceUniqueness="0"  t:Instantiator="database" />
+		<Tag t:Id="location-tag-1" Name="Location Tag 1" TagSchemeId="{$location-tagScheme-1.ID}"  t:Instantiator="database" />
+		<Tag t:Id="location-tag-2" Name="Location Tag 2" TagSchemeId="{$location-tagScheme-1.ID}"  t:Instantiator="database" />
+
+		<BuildList t:Id="buildList-co-tag" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="location-tag-1"/>
+				<BuildListItem Name="location-tag-2"/>
+			</List>
+		</BuildList>
+
+		<CalcTemplate t:Id="calc-template2" Name="Calc Udf Template" Description="Calc Udf Template"/>
+		<CalcTemplateToUdfMap t:Id="calc-template2-map-1" PropertyID="{$calc-udf-num-tb.ID}" TemplateID="{$calc-template2.ID}"  Order="0"/>
+		<CalcTemplateToUdfMap t:Id="calc-template2-map-2" PropertyID="{$calc-udf-num-tb-tvh.ID}" TemplateID="{$calc-template2.ID}"  Order="1"/>
+		<CalcTemplateToUdfMap t:Id="calc-template2-map-3" PropertyID="{$calc-udf-num-ddl.ID}" TemplateID="{$calc-template2.ID}"  Order="2"/>
+		<CalcTemplateToUdfMap t:Id="calc-template2-map-4" PropertyID="{$calc-udf-num-ddl-tvh.ID}" TemplateID="{$calc-template2.ID}"  Order="3"/>
+		<CalcTemplateToUdfMap t:Id="calc-template2-map-5" PropertyID="{$calc-udf-num-lookup.ID}" TemplateID="{$calc-template2.ID}"  Order="4"/>
+		<CalcTemplateToUdfMap t:Id="calc-template2-map-6" PropertyID="{$calc-udf-num-lookup-tvh.ID}" TemplateID="{$calc-template2.ID}"  Order="5"/>
+		<CalcTemplateToUdfMap t:Id="calc-template2-map-7" PropertyID="{$calc-udf-bool-cb.ID}" TemplateID="{$calc-template2.ID}"  Order="6"/>
+		<CalcTemplateToUdfMap t:Id="calc-template2-map-8" PropertyID="{$calc-udf-bool-cb-tvh.ID}" TemplateID="{$calc-template2.ID}"  Order="7"/>
+		<CalcTemplateToUdfMap t:Id="calc-template2-map-9" PropertyID="{$calc-udf-bool-ddl.ID}" TemplateID="{$calc-template2.ID}"  Order="9"/>
+		<CalcTemplateToUdfMap t:Id="calc-template2-map-10" PropertyID="{$calc-udf-bool-ddl-tvh.ID}" TemplateID="{$calc-template2.ID}"  Order="10"/>
+		<CalcTemplateToUdfMap t:Id="calc-template2-map-11" PropertyID="{$calc-udf-calc-num-3.ID}" TemplateID="{$calc-template2.ID}"  Order="11"/>
+
+		<BuildList t:Id="buildList-ut-2-calc" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="calc-template2-map-1"/>
+				<BuildListItem Name="calc-template2-map-2"/>
+				<BuildListItem Name="calc-template2-map-3"/>
+				<BuildListItem Name="calc-template2-map-4"/>
+				<BuildListItem Name="calc-template2-map-5"/>
+				<BuildListItem Name="calc-template2-map-6"/>
+				<BuildListItem Name="calc-template2-map-7"/>
+				<BuildListItem Name="calc-template2-map-8"/>
+				<BuildListItem Name="calc-template2-map-9"/>
+				<BuildListItem Name="calc-template2-map-10"/>
+				<BuildListItem Name="calc-template2-map-11"/>
+			</List>
+		</BuildList>
+		
+		<UdfTemplate t:Id="udf-template3" Name="XLS_Custom Field Template (all)" />
+		<UdfTemplateToUdfMap t:Id="udf-template3-map-1" UDFID="{$udf-text-tb3.ID}" GroupID="{$udf-template3.ID}" Order="0" />
+		<UdfTemplateToUdfMap t:Id="udf-template3-map-2" UDFID="{$udf-text-ddl1.ID}" GroupID="{$udf-template3.ID}" Order="1" />
+		<UdfTemplateToUdfMap t:Id="udf-template3-map-3" UDFID="{$udf-hl1.ID}" GroupID="{$udf-template3.ID}" Order="2" />
+
+		<BuildList t:Id="buildList-ut-3" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="udf-template3-map-1"/>
+				<BuildListItem Name="udf-template3-map-2"/>
+				<BuildListItem Name="udf-template3-map-3"/>				
+			</List>
+		</BuildList>
+
+		<UdfTemplate t:Id="udf-template4" Name="HSTR_Custom Field Template" />
+		<UdfTemplateToUdfMap t:Id="udf-template4-map-1" UDFID="{$udf-text-tb-tvh3.ID}" GroupID="{$udf-template4.ID}" Order="1" />
+		<UdfTemplateToUdfMap t:Id="udf-template4-map-2" UDFID="{$udf-text-ddl-tvh1.ID}" GroupID="{$udf-template4.ID}" Order="2" />
+		<UdfTemplateToUdfMap t:Id="udf-template4-map-3" UDFID="{$udf-num-tb-tvh1.ID}" GroupID="{$udf-template4.ID}" Order="3" />
+		<UdfTemplateToUdfMap t:Id="udf-template4-map-4" UDFID="{$udf-num-ddltb-tvh1.ID}" GroupID="{$udf-template4.ID}" Order="4" />
+		<UdfTemplateToUdfMap t:Id="udf-template4-map-5" UDFID="{$udf-dt-dt-tvh1.ID}" GroupID="{$udf-template4.ID}" Order="5" />
+		<UdfTemplateToUdfMap t:Id="udf-template4-map-6" UDFID="{$udf-bool-cb-tvh1.ID}" GroupID="{$udf-template4.ID}" Order="6" />
+		<UdfTemplateToUdfMap t:Id="udf-template4-map-7" UDFID="{$udf-text-tb4.ID}" GroupID="{$udf-template4.ID}" Order="0" />
+
+		<BuildList t:Id="buildList-ut-4" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="udf-template4-map-1"/>
+				<BuildListItem Name="udf-template4-map-2"/>
+				<BuildListItem Name="udf-template4-map-3"/>
+				<BuildListItem Name="udf-template4-map-4"/>
+				<BuildListItem Name="udf-template4-map-5"/>
+				<BuildListItem Name="udf-template4-map-6"/>
+				<BuildListItem Name="udf-template4-map-7"/>
+			</List>
+		</BuildList>
+
+
+		<Division t:Id="division-5" Name="Division Generated (Locations module)" t:Instantiator="database" />
+		<Facility t:Id="facility-3" ID="0DC171ED-A211-40a0-9C63-787000F84580" Name="Facility with Address and Geolocation Generated (Locations module)" ParentID="{$division-5.ID}" UdfTemplateID="{$udf-template2.ID}"  CalcTemplateID="{$calc-template2.ID}"
+				  SiteAddress1="1028 Arch Ave" SiteAddress2="1029 Arch Ave" SiteCity="San Diego" SiteCounty="San Diego" SitePostalCode="92024" LongEW="W" LongDeg="77" LongMin="0" LongSec="32" LatNS="N" LatDeg="38"
+				  LatMin="53" LatSec="23" TimeZone="1" ActivateDate="1753-01-01T00:00:00" DeactivateDate="9999-12-31T00:00:00"
+				  EventNotificationType="0" ResponsibleUserID="{$user-owner.ID}" SiteCountry="US" SiteState="{$state-CA.ID}" t:Instantiator="database" />
+		<!--<UdfValue t:Id="calc-template2-udfvalue1" ID="{$calc-udf-num-tb.ID}" Value="1" ObjectID="{$facility-3.ID}" />-->
+
+		<Division t:Id="division-6" Name="Division for move Generated (Locations module)" t:Instantiator="database" />
+		<Facility t:Id="facility-4" ID="2DEA4489-9BDE-4e57-BACF-BE410823109C" Name="Facility without Address and Geolocation Generated (Locations module)" ParentID="{$division-5.ID}" UdfTemplateID="{$udf-template2.ID}"
+				  ResponsibleUserID="{$user-owner.ID}" t:Instantiator="database" />
+
+		<Division t:Id="division-7" Name="Division with historizable UDF"  UdfTemplateID="{$udf-template4.ID}"  CalcTemplateID="{$calc-template2.ID}" t:Instantiator="database" />
+		<UdfValue t:Id="udf-template4-udfvalue1" ID="{$udf-text-tb-tvh3.ID}" Value="UDF Text Value" BeginDate="2010-01-01T00:00:00" EndDate="2011-01-01T00:00:00" ObjectID="{$division-7.ID}" />
+		<UdfValue t:Id="udf-template4-udfvalue2" ID="{$udf-num-tb-tvh1.ID}" Value="555" BeginDate="2010-01-01T00:00:00" EndDate="2011-01-01T00:00:00" ObjectID="{$division-7.ID}" />
+		<UdfValue t:Id="udf-template4-udfvalue3" ID="{$udf-bool-cb-tvh1.ID}" Value="False" BeginDate="2010-01-01T00:00:00" EndDate="2011-01-01T00:00:00" ObjectID="{$division-7.ID}" />
+
+		<Division t:Id="division-8" Name="Division For Update with historizable UDF"  t:Instantiator="database" />
+
+		<BuildList t:Id="buildList-udf-values-hist-1" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="udf-template4-udfvalue1"/>
+				<BuildListItem Name="udf-template4-udfvalue2"/>
+				<BuildListItem Name="udf-template4-udfvalue3"/>
+			</List>
+		</BuildList>
+
+
+		<Unit t:Id="unit-1" Name="Unit Generated (Locations module)" ParentID="{$facility-3.ID}" t:Instantiator="database" />
+
+		<UdfValue t:Id="udf-text-tb4-udfvalue" ID="{$udf-text-tb4.ID}" Value="new Facility" ObjectID="{$facility-3.ID}" />
+		<UdfHyperLinkValue t:Id="udf-hl1-udfvalue" UdfID="{$udf-hl1.ID}" Url="http://moto.kiev.ua" Label="HyperLink label" ObjectID="{$facility-3.ID}" />
+		<UdfItemToObjectMap t:Id="udf-item-to-object-map-1" ID="{#guid}" UdfID="{$udf-text-ddl1.ID}" UdfItemID="{$udf-text-ddl1:udf-text-ddl1-item-1.ID}" ObjectID="{$facility-3.ID}" Order="{$udf-text-ddl1:udf-text-ddl1-item-1.Order}" />
+
+		<BuildList t:Id="buildList-udf-values-1" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="udf-text-tb4-udfvalue"/>
+				<BuildListItem Name="udf-hl1-udfvalue"/>
+				<BuildListItem Name="udf-item-to-object-map-1"/>
+			</List>
+		</BuildList>
+
+		<ComplianceObjectPermissions t:Id="facility-1-permissions" ObjectID="{$facility-1.ID}">
+			<Permissions>
+				<ComplianceObjectUserPermission UserID="{$jstestsWPermissionsWithOverrides.ID}" Permission="387"/>
+				<ComplianceObjectUserPermission UserID="{$jstestsUserWithNoPermissionsToObject.ID}" Permission="-1"/>
+			</Permissions>
+		</ComplianceObjectPermissions>
+
+		<RequirementTemplate t:Id="rt-1" Key="Requirement Template 1"/>
+		<ParameterRequirement t:Id="parameter-1" Name="UDF_parameter" ParentID="{$facility-1.ID}" TemplateID="{$rt-1.ID}" />
+		<ParameterRequirement t:Id="parameter-2" Name="XLS_par. Req. empty_fields" ParentID="{$facility-1.ID}" TemplateID="{$rt-1.ID}" />
+
+		<EventTemplate t:Id="et-1" Name="ET_all_UDF" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-1" PropertyID="{$udf-text-tb2.ID}" TemplateID="{$et-1.ID}" Order="0" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-2" PropertyID="{$udf-text-tb3.ID}" TemplateID="{$et-1.ID}" Order="1" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-3" PropertyID="{$udf-text-tb4.ID}" TemplateID="{$et-1.ID}" Order="2" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-4" PropertyID="{$udf-text-ddl1.ID}" TemplateID="{$et-1.ID}" Order="3" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-5" PropertyID="{$linked-udf-text-ddl1.ID}" TemplateID="{$et-1.ID}" Order="4" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-6" PropertyID="{$udf-text-ddltb1.ID}" TemplateID="{$et-1.ID}" Order="5" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-7" PropertyID="{$udf-text-multitb1.ID}" TemplateID="{$et-1.ID}" Order="6" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-8" PropertyID="{$udf-num-tb1.ID}" TemplateID="{$et-1.ID}" Order="7" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-9" PropertyID="{$udf-num-ddl2.ID}" TemplateID="{$et-1.ID}" Order="8" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-10" PropertyID="{$linked-udf-num-ddl1.ID}" TemplateID="{$et-1.ID}" Order="9" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-11" PropertyID="{$udf-num-ddltb1.ID}" TemplateID="{$et-1.ID}" Order="10" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-12" PropertyID="{$udf-num-nlup1.ID}" TemplateID="{$et-1.ID}" Order="11" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-13" PropertyID="{$linked-udf-num-nlup1.ID}" TemplateID="{$et-1.ID}" Order="12" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-14" PropertyID="{$udf-dt-date1.ID}" TemplateID="{$et-1.ID}" Order="13" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-15" PropertyID="{$udf-dt-time1.ID}" TemplateID="{$et-1.ID}" Order="14" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-16" PropertyID="{$udf-dt-dt1.ID}" TemplateID="{$et-1.ID}" Order="15" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-17" PropertyID="{$udf-bool-ddl3.ID}" TemplateID="{$et-1.ID}" Order="16" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-18" PropertyID="{$udf-bool-cb1.ID}" TemplateID="{$et-1.ID}" Order="17" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-19" PropertyID="{$udf-hl1.ID}" TemplateID="{$et-1.ID}" Order="18" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-20" PropertyID="{$udf-hl2.ID}" TemplateID="{$et-1.ID}" Order="19" />
+		<EventTemplateToUdfMapItem t:Id="et-1-map-21" PropertyID="{$udf-utag.ID}" TemplateID="{$et-1.ID}" Order="20" />
+
+		<BuildList t:Id="buildList-et-1" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="et-1-map-1"/>
+				<BuildListItem Name="et-1-map-2"/>
+				<BuildListItem Name="et-1-map-3"/>
+				<BuildListItem Name="et-1-map-4"/>
+				<BuildListItem Name="et-1-map-5"/>
+				<BuildListItem Name="et-1-map-6"/>
+				<BuildListItem Name="et-1-map-7"/>
+				<BuildListItem Name="et-1-map-8"/>
+				<BuildListItem Name="et-1-map-9"/>
+				<BuildListItem Name="et-1-map-10"/>
+				<BuildListItem Name="et-1-map-11"/>
+				<BuildListItem Name="et-1-map-12"/>
+				<BuildListItem Name="et-1-map-13"/>
+				<BuildListItem Name="et-1-map-14"/>
+				<BuildListItem Name="et-1-map-15"/>
+				<BuildListItem Name="et-1-map-16"/>
+				<BuildListItem Name="et-1-map-17"/>
+				<BuildListItem Name="et-1-map-18"/>
+				<BuildListItem Name="et-1-map-19"/>
+				<BuildListItem Name="et-1-map-20"/>
+				<BuildListItem Name="et-1-map-21"/>
+			</List>
+		</BuildList>
+
+		<EventTemplate t:Id="et-2" Name="HTML_Tags" />
+		<EventTemplateToUdfMapItem t:Id="et-2-map-1" PropertyID="{$udf-text-tb2.ID}" TemplateID="{$et-2.ID}" Order="0" />
+		<EventTemplateToUdfMapItem t:Id="et-2-map-2" PropertyID="{$udf-text-tb3.ID}" TemplateID="{$et-2.ID}" Order="1" />
+		<EventTemplateToUdfMapItem t:Id="et-2-map-3" PropertyID="{$udf-text-tb4.ID}" TemplateID="{$et-2.ID}" Order="2" />
+		<EventTemplateToUdfMapItem t:Id="et-2-map-4" PropertyID="{$udf-text-ddl1.ID}" TemplateID="{$et-2.ID}" Order="3" />
+		<EventTemplateToUdfMapItem t:Id="et-2-map-5" PropertyID="{$udf-text-ddltb1.ID}" TemplateID="{$et-2.ID}" Order="4" />
+		<EventTemplateToUdfMapItem t:Id="et-2-map-6" PropertyID="{$linked-udf-text-ddl1.ID}" TemplateID="{$et-2.ID}" Order="5" />
+		<EventTemplateToUdfMapItem t:Id="et-2-map-7" PropertyID="{$udf-bool-cb1.ID}" TemplateID="{$et-2.ID}" Order="6" />
+		<EventTemplateToUdfMapItem t:Id="et-2-map-8" PropertyID="{$udf-text-multitb1.ID}" TemplateID="{$et-2.ID}" Order="7" />
+		<EventTemplateToUdfMapItem t:Id="et-2-map-9" PropertyID="{$udf-bool-ddl2.ID}" TemplateID="{$et-2.ID}" Order="8" />
+		<EventTemplateToUdfMapItem t:Id="et-2-map-10" PropertyID="{$udf-hl2.ID}" TemplateID="{$et-2.ID}" Order="9" />
+
+		<BuildList t:Id="buildList-et-2" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="et-2-map-1"/>
+				<BuildListItem Name="et-2-map-2"/>
+				<BuildListItem Name="et-2-map-3"/>
+				<BuildListItem Name="et-2-map-4"/>
+				<BuildListItem Name="et-2-map-5"/>
+				<BuildListItem Name="et-2-map-6"/>
+				<BuildListItem Name="et-2-map-7"/>
+				<BuildListItem Name="et-2-map-8"/>
+				<BuildListItem Name="et-2-map-9"/>
+				<BuildListItem Name="et-2-map-10"/>
+			</List>
+		</BuildList>
+
+		<UdfTemplate t:Id="udf-template1" Name="Udf Template 1" />
+		<UdfTemplateToUdfMap t:Id="udf-template1-map-1" UDFID="{$udf-utag.ID}" GroupID="{$udf-template1.ID}" Order="0" />
+
+		<BuildList t:Id="buildList-ut-1" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="udf-template1-map-1"/>
+			</List>
+		</BuildList>
+
+		<TaskTemplate t:Id="tt-1" Name="XLS_task text"
+			ViewTask="true" SystemCalendar="true" ObjectCalendar="true" Amount="10" AmountType="2" />
+
+		<EventLog t:Id="el-1" Name="UDF_event log manual" ParentID="{$facility-1.ID}" EventTemplateID="{$et-1.ID}"
+			ActivateDate="2010-1-1T00:00:00" DeactivateDate="2030-2-2T00:00:00"
+			CreateDate="2009-07-09T00:00:00" ResponsibleUserID="{$user-owner.ID}"
+			UdfTemplateID="{$udf-template1.ID}" TaskTemplateID="{$tt-1.ID}" AssignorFromDataEntry="false"/>
+
+		<ComplianceObjectTaskTemplateInfo t:Id="el-1-tti" Assignor="{$user-owner.ID}" LimitType="I">
+			<Objects>
+				<MappedIdUnique ID="{$el-1.ID}"/>
+			</Objects>
+			<UserAssignees>
+				<MappedIdUnique ID="{$user-owner.ID}"/>
+			</UserAssignees>
+		</ComplianceObjectTaskTemplateInfo>
+
+		<EventToRequirementMapItem t:Id="el-1-map-1" EventLogID="{$el-1.ID}" RequirementID="{$parameter-1.ID}" />
+
+		<TaskEventInstance t:Id="el-1-ei-1" Name="el-1-ei-1" EventLogID="{$el-1.ID}" ObjectID="{$parameter-1.ID}" State="1"
+			BeginDate="2010-1-1T00:00:00" EndDate="2010-2-2T00:00:00" Type="0" ReqParentID="{$parameter-1.ID}"
+			AcceptAsDeviation="false" LogicalEventID="00000000-0000-0000-0000-000000000000" />
+
+		<TaskEventInstance t:Id="el-1-ei-2" Name="el-1-ei-2" EventLogID="{$el-1.ID}" ObjectID="{$parameter-1.ID}" State="1"
+			BeginDate="2010-3-3T00:00:00" EndDate="2010-4-4T00:00:00" Type="0" ReqParentID="{$parameter-1.ID}"
+			AcceptAsDeviation="false" LogicalEventID="00000000-0000-0000-0000-000000000000" />
+
+		<EventPropertyValue t:Id="el-1-ei-2-epd-1" InstanceID="{$el-1-ei-2.ID}" PropertyID="{$udf-utag.ID}" Value="Unique Tag-  yes" />
+
+		<UdfValue t:Id="el-1-udfvalue-1" ObjectID="{$el-1.ID}" ID="{$udf-utag.ID}"
+			Value="123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789v" />
+
+		<EventLog t:Id="el-2" ID="E75CD2C4-B84D-436C-80C2-70FF56C0CA31" Name="XLS_EvLM_" ParentID="{$facility-1.ID}" EventTemplateID="{$et-2.ID}"
+			ActivateDate="2010-1-1T00:00:00" DeactivateDate="2030-2-2T00:00:00"
+			CreateDate="2009-07-09T00:00:00" ResponsibleUserID="{$user-owner.ID}" />
+
+		<EventToRequirementMapItem t:Id="el-2-map-1" EventLogID="{$el-2.ID}" RequirementID="{$parameter-2.ID}" />
+
+		<EventLog t:Id="el-3" ID="FF7831F9-EA4B-4825-81A3-A404EC6CDEB4" Name="UDF_event log auto" ParentID="{$facility-1.ID}" EventTemplateID="{$et-1.ID}"
+			ActivateDate="2010-1-1T00:00:00" DeactivateDate="2030-2-2T00:00:00"
+			CreateDate="2009-07-09T00:00:00" ResponsibleUserID="{$user-owner.ID}" DataEntryType="0" />
+
+		<EventToRequirementMapItem t:Id="el-3-map-1" EventLogID="{$el-3.ID}" RequirementID="{$parameter-1.ID}" />
+
+		<EventInstance t:Id="el-3-ei-1" Name="el-3-ei-1" EventLogID="{$el-3.ID}" ObjectID="{$parameter-1.ID}" State="1"
+			BeginDate="2010-3-3T00:00:00" EndDate="2010-4-4T00:00:00" Type="0"
+			AcceptAsDeviation="false" LogicalEventID="00000000-0000-0000-0000-000000000000" />
+
+		<EventPropertyValue t:Id="el-3-ei-1-epd-1" InstanceID="{$el-3-ei-1.ID}" PropertyID="{$udf-utag.ID}" Value="Auto Event Instance Tag 1" />
+
+		<!--DataService data-->	
+		<QualityTemplate t:Id="dqt-with-all-udfs-1" Name="Data Quality Template with all UDFs"/>
+		<UdfTemplate t:Id="udf-template-with-unique-tag" Name="Udf Template With Unique Tag" />
+		<Facility t:Id="facility-for-data-service-1" Name="Facility-for-data-service" />
+		<ParameterRequirement t:Id="parameter-with-dqt-with-all-udfs-1" UdfTemplateID="{$udf-template-with-unique-tag.ID}" Name="Parameter Requirement with Data Quality Template with all UDFs - 1" ParentID="{$facility-for-data-service-1.ID}" TemplateID="{$rt-1.ID}"  QualityTemplateID="{$dqt-with-all-udfs-1.ID}" Min="-1000" Max="1000"/>
+		<ParameterRequirement t:Id="parameter-with-dqt-with-all-udfs-2" UdfTemplateID="{$udf-template-with-unique-tag.ID}" Name="Parameter Requirement with Data Quality Template with all UDFs - 2" ParentID="{$facility-for-data-service-1.ID}" TemplateID="{$rt-1.ID}"  QualityTemplateID="{$dqt-with-all-udfs-1.ID}" Min="-1000" Max="1000"/>
+		<ParameterRequirement t:Id="parameter-with-dqt-with-all-udfs-3" UdfTemplateID="{$udf-template-with-unique-tag.ID}" Name="Parameter Requirement with Data Quality Template with all UDFs - 3" ParentID="{$facility-for-data-service-1.ID}" TemplateID="{$rt-1.ID}"  QualityTemplateID="{$dqt-with-all-udfs-1.ID}" Min="-1000" Max="1000"/>
+		<ParameterRequirement t:Id="parameter-with-dqt-with-all-udfs-4" UdfTemplateID="{$udf-template-with-unique-tag.ID}" Name="Parameter Requirement with Data Quality Template with all UDFs - 4" ParentID="{$facility-for-data-service-1.ID}" TemplateID="{$rt-1.ID}"  QualityTemplateID="{$dqt-with-all-udfs-1.ID}" Min="-1000" Max="1000" AcronymXML="&lt;ITEMS>&lt;ITEM Acronym=&quot;reqId4testAcronym&quot; Value=&quot;55.67&quot; />&lt;/ITEMS>"/>
+		<UdfValue t:Id="udf-value-unique-tag-pr1" ID="{$udf-utag.ID}" Value="Parameter Requirement with DQT - unique tag - 1" ObjectID="{$parameter-with-dqt-with-all-udfs-1.ID}" />
+		<UdfValue t:Id="udf-value-unique-tag-pr2" ID="{$udf-utag.ID}" Value="Parameter Requirement with DQT - unique tag - 2" ObjectID="{$parameter-with-dqt-with-all-udfs-2.ID}" />
+		<UdfValue t:Id="udf-value-unique-tag-pr3" ID="{$udf-utag.ID}" Value="Parameter Requirement with DQT - unique tag - 3" ObjectID="{$parameter-with-dqt-with-all-udfs-3.ID}" />
+		<UdfValue t:Id="udf-value-unique-tag-pr4" ID="{$udf-utag.ID}" Value="Parameter Requirement with DQT - unique tag - 4" ObjectID="{$parameter-with-dqt-with-all-udfs-4.ID}" />
+		
+		<QualityTemplateToUdfMap t:Id="dqt-map-ds-1" PropertyID="{$udf-calc1.ID}" TemplateID="{$dqt-with-all-udfs-1.ID}" Order="0" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-ds-2" PropertyID="{$udf-num-ddl2.ID}" TemplateID="{$dqt-with-all-udfs-1.ID}" Order="1" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-ds-3" PropertyID="{$udf-num-ddl-tvh1.ID}" TemplateID="{$dqt-with-all-udfs-1.ID}" Order="2" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-ds-4" PropertyID="{$linked-udf-num-ddl1.ID}" TemplateID="{$dqt-with-all-udfs-1.ID}" Order="3" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-ds-5" PropertyID="{$udf-num-nlup-tvh2.ID}" TemplateID="{$dqt-with-all-udfs-1.ID}" Order="4" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-ds-6" PropertyID="{$udf-num-nlup1.ID}" TemplateID="{$dqt-with-all-udfs-1.ID}" Order="5" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-ds-7" PropertyID="{$linked-udf-num-nlup1.ID}" TemplateID="{$dqt-with-all-udfs-1.ID}" Order="6" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-ds-8" PropertyID="{$udf-num-tb1.ID}" TemplateID="{$dqt-with-all-udfs-1.ID}" Order="7" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-ds-9" PropertyID="{$udf-num-tb-tvh1.ID}" TemplateID="{$dqt-with-all-udfs-1.ID}" Order="8" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-ds-10" PropertyID="{$udf-bool-cb2.ID}" TemplateID="{$dqt-with-all-udfs-1.ID}" Order="9" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-ds-11" PropertyID="{$udf-bool-cb-tvh1.ID}" TemplateID="{$dqt-with-all-udfs-1.ID}" Order="10" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-ds-12" PropertyID="{$udf-bool-ddl1.ID}" TemplateID="{$dqt-with-all-udfs-1.ID}" Order="11" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-ds-13" PropertyID="{$udf-bool-ddl3.ID}" TemplateID="{$dqt-with-all-udfs-1.ID}" Order="12" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-ds-14" PropertyID="{$udf-text-tb6.ID}" TemplateID="{$dqt-with-all-udfs-1.ID}" Order="13" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-ds-15" PropertyID="{$udf-text-tb-tvh3.ID}" TemplateID="{$dqt-with-all-udfs-1.ID}" Order="14" />
+		<UdfTemplateToUdfMap t:Id="udf-template-map-with-unique-tag-1" UDFID="{$udf-utag.ID}" GroupID="{$udf-template-with-unique-tag.ID}" Order="0" />
+
+		<BuildList t:Id="buildList-ds-map-1" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="dqt-map-ds-1"/>
+				<BuildListItem Name="dqt-map-ds-2"/>
+				<BuildListItem Name="dqt-map-ds-3"/>
+				<BuildListItem Name="dqt-map-ds-4"/>
+				<BuildListItem Name="dqt-map-ds-5"/>
+				<BuildListItem Name="dqt-map-ds-6"/>
+				<BuildListItem Name="dqt-map-ds-7"/>
+				<BuildListItem Name="dqt-map-ds-8"/>
+				<BuildListItem Name="dqt-map-ds-9"/>
+				<BuildListItem Name="dqt-map-ds-10"/>
+				<BuildListItem Name="dqt-map-ds-11"/>
+				<BuildListItem Name="dqt-map-ds-12"/>
+				<BuildListItem Name="dqt-map-ds-13"/>
+				<BuildListItem Name="dqt-map-ds-14"/>
+				<BuildListItem Name="dqt-map-ds-15"/>
+				<BuildListItem Name="udf-template-map-with-unique-tag-1"/>
+			</List>
+		</BuildList>
+		<!--DataService data end-->
+
+		<BuildList t:Id="buildList-complianceobjects" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="division-1"/>
+				<BuildListItem Name="facility-1"/>
+				<BuildListItem Name="division-2"/>
+				<BuildListItem Name="division-3-document-association-1"/>
+				<BuildListItem Name="division-4-document-association-2"/>
+				<BuildListItem Name="facility-2"/>
+				<BuildListItem Name="facility-1-permissions"/>
+				<BuildListItem Name="parameter-1"/>
+				<BuildListItem Name="parameter-2"/>
+				<BuildListItem Name="buildList-et-1"/>
+				<BuildListItem Name="buildList-et-2"/>
+				<BuildListItem Name="buildList-ut-1"/>
+				<BuildListItem Name="buildList-ut-2"/>
+				<BuildListItem Name="buildList-ut-2-calc"/>
+				<BuildListItem Name="buildList-ut-3"/>
+				<BuildListItem Name="buildList-ut-4"/>
+				<BuildListItem Name="division-5"/>
+				<BuildListItem Name="division-6"/>
+				<BuildListItem Name="division-7"/>
+				<BuildListItem Name="division-8"/>
+				<BuildListItem Name="facility-3"/>
+				<BuildListItem Name="facility-4"/>
+				<BuildListItem Name="unit-1"/>
+				<BuildListItem Name="el-1-map-1"/>
+				<BuildListItem Name="el-1-udfvalue-1"/>
+				<BuildListItem Name="el-1-tti"/>
+				<BuildListItem Name="el-1-ei-1"/>
+				<BuildListItem Name="el-1-ei-2"/>
+				<!--<BuildListItem Name="task-event-document-association"/>-->
+				<BuildListItem Name="el-1-ei-2-epd-1"/>
+				<BuildListItem Name="el-2-map-1"/>
+				<BuildListItem Name="el-3-map-1"/>
+				<BuildListItem Name="el-3-ei-1"/>
+				<BuildListItem Name="el-3-ei-1-epd-1"/>
+				<!--<BuildListItem Name="buildList-udf-values-1"/>-->
+				<BuildListItem Name="facility-for-data-service-1"/>
+				<BuildListItem Name="parameter-with-dqt-with-all-udfs-1"/>
+				<BuildListItem Name="parameter-with-dqt-with-all-udfs-2"/>
+				<BuildListItem Name="parameter-with-dqt-with-all-udfs-3"/>
+				<BuildListItem Name="parameter-with-dqt-with-all-udfs-4"/>
+				<BuildListItem Name="buildList-ds-map-1"/>
+				<BuildListItem Name="udf-value-unique-tag-pr1"/>
+				<BuildListItem Name="udf-value-unique-tag-pr2"/>
+				<BuildListItem Name="udf-value-unique-tag-pr3"/>
+				<BuildListItem Name="udf-value-unique-tag-pr4"/>
+				<BuildListItem Name="buildList-udf-values-1"/>
+				<BuildListItem Name="buildList-udf-values-hist-1"/>
+				<BuildListItem Name="buildList-co-tag"/>				
+			</List>
+		</BuildList>
+	</t:Templates>
+</t:Data>

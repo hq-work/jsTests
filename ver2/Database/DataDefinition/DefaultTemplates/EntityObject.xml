@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Configuration>
+		<RegisterInstantiator Instantiator="database" Type="DdfDataGenerator.Instantiators.DatabaseInstantiator, DdfDataGenerator" />
+		<RegisterInstantiator Instantiator="system" Type="DdfDataGenerator.Instantiators.SystemInstantiator, DdfDataGenerator" />
+		<RegisterInstantiator Instantiator="memory" Type="Enviance.Framework.Data.Xml.ObjectTemplates.Instantiators.ActivatorInstantiator, Enviance.Framework.Data.Xml" />
+	</t:Configuration>
+
+	<t:Templates>
+		<EntityObject ID="{#guid}" t:Instantiator="database" />
+		<IdName t:Id="system" t:Instantiator="system" t:InstantiatorParams="" t:BaseTemplate="{#nothing}" />
+		<IdName t:Id="alternative-system" t:Instantiator="system" t:InstantiatorParams="" Name="{#configurationparameter(AccessSystem1)}" t:BaseTemplate="{#nothing}" />
+
+		<CountryState t:Id="state-CA" ID="2873B6C2-9CC2-41A6-A6F5-4E1C97332537" Country="US" Code="CA" Name="California" t:Instantiator="memory"/>
+	</t:Templates>
+</t:Data>

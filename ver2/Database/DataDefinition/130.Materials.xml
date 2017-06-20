@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+
+		<UserWithAll t:Id="userWPermissionsMaterial" Login="userWPermissionsMaterial" FirstName="userWPermissionsMaterial" LastName="userWPermissionsMaterial" Rights="0" TimeZone="1"/>
+		<UserWithAll t:Id="userWPermissionsMatGroup" Login="userWPermissionsMatGroup" FirstName="userWPermissionsMatGroup" LastName="userWPermissionsMatGroup" Rights="0" TimeZone="1"/>
+
+		<MaterialTemplate t:Id="material-template-3" ID="81a0ca34-3c48-4015-a72f-76e0c4ccc465" Name="Material Template 3" Description="Material Template 3 Description" />
+		<MaterialTemplateUDFMapItem t:Id="material-template-3-1" ParentID="{$material-template-3.ID}" ChildID="{$udf-text-tb4.ID}" Order="0"/>
+		<MaterialTemplateUDFMapItem t:Id="material-template-3-2" ParentID="{$material-template-3.ID}" ChildID="{$udf-text-ddl1.ID}" Order="1"/>
+		<BuildList t:Id="buildList-material-template-3-maps" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="material-template-3-1"/>
+				<BuildListItem Name="material-template-3-2"/>
+			</List>
+		</BuildList>
+		
+		<Chemical t:Id="chemical-for-material-1" ID="e9a57b59-677a-4faa-bcff-00e5931058b2" Name="Chemical for Material 1" CasNum="0" Alias ="CfM1" IsStandard="true" Description="Chemical 1 Description" >
+			<ChemicalHistory>
+				<ChemicalHistoryItem ChemicalID="{$chemical-for-material-1.ID}" t:Id="chemical-for-material-1-history-1" BeginDate="2010-12-08T00:00:00" EndDate="2012-12-08T00:00:00" />
+				<ChemicalHistoryItem ChemicalID="{$chemical-for-material-1.ID}" t:Id="chemical-for-material-1-history-2" BeginDate="2012-12-08T00:00:00" EndDate="9999-12-31T00:00:00" />
+			</ChemicalHistory>
+		</Chemical>
+
+		<Chemical t:Id="chemical-for-material-2" ID="6b828805-a428-46e6-bc99-0a27578e3124" Name="Chemical for Material 2" CasNum="0" Alias ="CfM2" IsStandard="true" Description="Chemical 2 Description" >
+			<ChemicalHistory>
+				<ChemicalHistoryItem ChemicalID="{$chemical-for-material-2.ID}" t:Id="chemical-for-material-2-history-1" BeginDate="2010-12-08T00:00:00" EndDate="2012-12-08T00:00:00" />
+				<ChemicalHistoryItem ChemicalID="{$chemical-for-material-2.ID}" t:Id="chemical-for-material-2-history-2" BeginDate="2012-12-08T00:00:00" EndDate="9999-12-31T00:00:00" />
+			</ChemicalHistory>
+		</Chemical>
+
+		<Material t:Id="material-1" ID="fc95106b-e643-4d10-a59d-d3e55bd8f809" Name="Material 1" Description="Material 1 Description" MaterialAvailabilityFlag="true">
+			<Chemicals>
+				<MaterialChemicalMap MaterialID="{$material-1.ID}" ChemicalID="{$chemical-for-material-1.ID}">
+					<ConcentrationHistory>
+						<ChemicalConcentrationHistory t:Id="material-1-chemical-history-1" MaterialID="{$material-1.ID}" ChemicalID="{$chemical-for-material-1.ID}" BeginDate="2014-12-19T00:00:00" Present="true" MinConc="0" EndDate="9999-12-31T00:00:00" AvgConc="50" MaxConc="100" />
+					</ConcentrationHistory>
+				</MaterialChemicalMap>
+			</Chemicals>
+		</Material>
+
+		<Material t:Id="material-2" ID="ceb46418-3be8-470d-9f75-04ca3d516ebc" Name="Material 2" Description="Material 2 Description" MaterialAvailabilityFlag="true">
+			<Chemicals>
+				<MaterialChemicalMap MaterialID="{$material-2.ID}" ChemicalID="{$chemical-for-material-1.ID}">
+					<ConcentrationHistory>
+						<ChemicalConcentrationHistory t:Id="material-2-chemical-history-1" MaterialID="{$material-2.ID}" ChemicalID="{$chemical-for-material-1.ID}" BeginDate="2014-12-19T00:00:00" Present="true" MinConc="0" EndDate="9999-12-31T00:00:00" AvgConc="50" MaxConc="100" />
+					</ConcentrationHistory>
+				</MaterialChemicalMap>
+			</Chemicals>
+		</Material>
+
+		<Material t:Id="material-to-delete-1" ID="cc34ed2d-6185-480d-ac6d-311816bc4d50" Name="Material to delete-1" Description="Material to delete Description" MaterialAvailabilityFlag="true">
+			<Chemicals>
+				<MaterialChemicalMap MaterialID="{$material-to-delete-1.ID}" ChemicalID="{$chemical-for-material-1.ID}">
+					<ConcentrationHistory>
+						<ChemicalConcentrationHistory t:Id="material-del-1-chemical-history-1" MaterialID="{$material-to-delete-1.ID}" ChemicalID="{$chemical-for-material-1.ID}" BeginDate="2014-12-19T00:00:00" Present="true" MinConc="0" EndDate="9999-12-31T00:00:00" AvgConc="50" MaxConc="100" />
+					</ConcentrationHistory>
+				</MaterialChemicalMap>
+			</Chemicals>
+		</Material>
+		
+		<Material t:Id="material-to-delete-2" ID="a33a4237-76c6-491e-84c3-b2b1794d99e8" Name="Material to delete-2" Description="Material to delete Description" MaterialAvailabilityFlag="true">
+			<Chemicals>
+				<MaterialChemicalMap MaterialID="{$material-to-delete-2.ID}" ChemicalID="{$chemical-for-material-1.ID}">
+					<ConcentrationHistory>
+						<ChemicalConcentrationHistory t:Id="material-del-2-chemical-history-1" MaterialID="{$material-to-delete-2.ID}" ChemicalID="{$chemical-for-material-1.ID}" BeginDate="2014-12-19T00:00:00" Present="true" MinConc="0" EndDate="9999-12-31T00:00:00" AvgConc="50" MaxConc="100" />
+					</ConcentrationHistory>
+				</MaterialChemicalMap>
+			</Chemicals>
+		</Material>
+
+		<Material t:Id="material-to-delete-3" Name="Material to delete-3" Description="Material to delete Description" MaterialAvailabilityFlag="true">
+			<Chemicals>
+				<MaterialChemicalMap MaterialID="{$material-to-delete-3.ID}" ChemicalID="{$chemical-for-material-1.ID}">
+					<ConcentrationHistory>
+						<ChemicalConcentrationHistory t:Id="material-del-3-chemical-history-1" MaterialID="{$material-to-delete-3.ID}" ChemicalID="{$chemical-for-material-1.ID}" BeginDate="2014-12-19T00:00:00" Present="true" MinConc="0" EndDate="9999-12-31T00:00:00" AvgConc="50" MaxConc="100" />
+					</ConcentrationHistory>
+				</MaterialChemicalMap>
+			</Chemicals>
+		</Material>
+
+		<Material t:Id="material-to-update-1" ID="84497561-3628-4bea-b98a-a693de9573dc" Name="Material to update 1" Description="Material to update 1 Description" MaterialAvailabilityFlag="true">
+			<Chemicals>
+				<MaterialChemicalMap MaterialID="{$material-to-update-1.ID}" ChemicalID="{$chemical-for-material-1.ID}">
+					<ConcentrationHistory>
+						<ChemicalConcentrationHistory t:Id="material-upd-1-chemical-history-1" MaterialID="{$material-to-update-1.ID}" ChemicalID="{$chemical-for-material-1.ID}" BeginDate="2014-12-19T00:00:00" Present="true" MinConc="0" EndDate="9999-12-31T00:00:00" AvgConc="50" MaxConc="100" />
+					</ConcentrationHistory>
+				</MaterialChemicalMap>
+			</Chemicals>
+		</Material>
+
+		<MaterialGroup t:Id="material-group-1" ID="0bebb6c8-2a6d-449a-8e31-0b1c71b261c3" Name="Material Group 1" Description="Material Group 1 Description">
+			<Materials>
+				<MaterialGroupMaterialMap GroupID="{$material-group-1.ID}" MaterialID="{$material-1.ID}" />
+				<MaterialGroupMaterialMap GroupID="{$material-group-1.ID}" MaterialID="{$material-2.ID}" />
+			</Materials>
+		</MaterialGroup>
+
+		<MaterialGroup t:Id="material-group-2" ID="429d7d94-7de6-4e12-ae73-021d267b5f71" Name="Material Group 2" Description="Material Group 2 Description">
+			<Materials>
+				<MaterialGroupMaterialMap GroupID="{$material-group-2.ID}" MaterialID="{$material-1.ID}" />
+			</Materials>
+		</MaterialGroup>
+
+		<MaterialProperty t:Id="property-2-pfbp" ID="93087317-b45d-4aa9-be56-82852a9a1ad4" Name="PFBP 1" PropertyType="2" DataType="0">
+			<FormulaHistory>
+				<MaterialFormulaHistory Script="SUM([Chem_MW])"/>
+			</FormulaHistory>
+		</MaterialProperty>
+		<MaterialProperty t:Id="property-3-sfbp" ID="6466e9fb-296d-4c11-adbf-6ecd6ec8c1d7" Name="SFBP 1" PropertyType="3" DataType="0">
+			<FormulaHistory>
+				<MaterialFormulaHistory Script="SUM([Chem_MW])"/>
+			</FormulaHistory>
+		</MaterialProperty>
+		<MaterialProperty t:Id="property-4-tfbp" ID="9e6ad015-7707-4899-b4c3-4684dc092231" Name="TFBP 1" PropertyType="4" DataType="0">
+			<FormulaHistory>
+				<MaterialFormulaHistory Script="SUM([Chem_MW])"/>
+			</FormulaHistory>
+		</MaterialProperty>
+
+		<MaterialProperty t:Id="property-1-mvbp" ID="3186f7ca-216f-4e7d-8d00-cc3c9b7456a0" Name="MVBP 1" PropertyType="0" DataType="0" />
+
+		<Material t:Id="material-to-update-2" ID="76cf0056-1b49-4bce-a216-8ded7f5fc7be" Name="Material to update 2" Description="Material to update 2 Description" MaterialAvailabilityFlag="true">
+			<Chemicals>
+				<MaterialChemicalMap MaterialID="{$material-to-update-2.ID}" ChemicalID="{$chemical-for-material-1.ID}">
+					<ConcentrationHistory>
+						<ChemicalConcentrationHistory t:Id="material-chemical-history-21" MaterialID="{$material-to-update-2.ID}" ChemicalID="{$chemical-for-material-1.ID}" BeginDate="2014-12-19T00:00:00" Present="true" MinConc="0" EndDate="9999-12-31T00:00:00" AvgConc="50" MaxConc="100" />
+					</ConcentrationHistory>
+				</MaterialChemicalMap>
+			</Chemicals>
+			<Properties>
+				<MaterialPropertyMap MaterialID="{$material-to-update-2.ID}" PropertyID="{$property-2-pfbp.ID}"/>
+				<MaterialPropertyMap MaterialID="{$material-to-update-2.ID}" PropertyID="{$property-3-sfbp.ID}"/>
+				<MaterialPropertyMap MaterialID="{$material-to-update-2.ID}" PropertyID="{$property-4-tfbp.ID}"/>
+			</Properties>
+		</Material>
+
+
+		<Material t:Id="material-gr-1" ID="07ae24ff-b739-4736-8b81-a8e18196dbef" Name="Material for group 1" Description="Material 1 Description" MaterialAvailabilityFlag="true">
+			<Chemicals>
+				<MaterialChemicalMap MaterialID="{$material-gr-1.ID}" ChemicalID="{$chemical-for-material-1.ID}">
+					<ConcentrationHistory>
+						<ChemicalConcentrationHistory t:Id="material-1-chemical-history-1" MaterialID="{$material-gr-1.ID}" ChemicalID="{$chemical-for-material-1.ID}" BeginDate="2014-12-19T00:00:00" Present="true" MinConc="0" EndDate="9999-12-31T00:00:00" AvgConc="50" MaxConc="100" />
+					</ConcentrationHistory>
+				</MaterialChemicalMap>
+			</Chemicals>
+		</Material>
+
+		<Material t:Id="material-gr-2" ID="34fd7bb6-8a4c-4de8-96a8-900f85eedfbf" Name="Material for group 2" Description="Material 2 Description" MaterialAvailabilityFlag="true">
+			<Chemicals>
+				<MaterialChemicalMap MaterialID="{$material-gr-2.ID}" ChemicalID="{$chemical-for-material-1.ID}">
+					<ConcentrationHistory>
+						<ChemicalConcentrationHistory t:Id="material-2-chemical-history-1" MaterialID="{$material-gr-2.ID}" ChemicalID="{$chemical-for-material-1.ID}" BeginDate="2014-12-19T00:00:00" Present="true" MinConc="0" EndDate="9999-12-31T00:00:00" AvgConc="50" MaxConc="100" />
+					</ConcentrationHistory>
+				</MaterialChemicalMap>
+			</Chemicals>
+		</Material>
+
+
+		<MaterialGroup t:Id="material-group-3" ID="0bebb6c8-2a6d-449a-8e31-0b1c71b261c8" Name="Material Group 3" Description="Material Group 3 Description">
+			<Materials>
+				<MaterialGroupMaterialMap GroupID="{$material-group-3.ID}" MaterialID="{$material-gr-1.ID}" />
+				<MaterialGroupMaterialMap GroupID="{$material-group-3.ID}" MaterialID="{$material-gr-2.ID}" />
+			</Materials>
+		</MaterialGroup>
+
+		<MacRequirementContainer  t:Id="mac-for-grdep-1"  ID="62e29301-c0cc-41be-a9bb-8013267e9366" Name="MAC for MaterialGroup Dependency" ParentID="{$facility-m-1.ID}"  CalcDesc="111"
+			ActivityID="{$activity-m-1.ID}"
+			UdfTemplateID="{$udf-template-m-1.ID}"
+			TemplateID="{$rt-m-1.ID}"
+			MACType="0">
+			<Materials>
+				<MacRequirementMaterialMap MaterialID="{$material-gr-1.ID}" ContainerID="{$mac-for-grdep-1.ID}" />
+				<MacRequirementMaterialMap MaterialID="{$material-gr-1.ID}" MaterialGroupID="{$material-group-3.ID}" ContainerID="{$mac-for-grdep-1.ID}" />
+			</Materials>
+			<Scripts>
+				<MaterialFormulaHistory Script="1+1" BeginDate="2014-12-01T00:00:00" EndDate="2014-12-03T00:00:00"  RequirementID="{$mac-for-grdep-1.ID}" />
+			</Scripts>
+		</MacRequirementContainer>
+		
+		<BuildList t:Id="buildList-materials" t:Instantiator="memory">
+			<List>				
+				<BuildListItem Name="userWPermissionsMaterial"/>
+				<BuildListItem Name="userWPermissionsMatGroup"/>
+				<BuildListItem Name="chemical-for-material-1"/>
+				<BuildListItem Name="chemical-for-material-2"/>				
+				<BuildListItem Name="material-1"/>
+				<BuildListItem Name="material-2"/>
+				<BuildListItem Name="material-gr-1"/>
+				<BuildListItem Name="material-gr-2"/>
+				<BuildListItem Name="material-group-1"/>
+				<BuildListItem Name="material-group-2"/>
+				<BuildListItem Name="property-1-mvbp"/>
+				<BuildListItem Name="property-2-pfbp"/>
+				<BuildListItem Name="property-3-sfbp"/>
+				<BuildListItem Name="property-4-tfbp"/>
+				<BuildListItem Name="material-to-delete-1"/>
+				<BuildListItem Name="material-to-delete-2"/>
+				<BuildListItem Name="material-to-delete-3"/>
+				<BuildListItem Name="material-to-update-1"/>
+				<BuildListItem Name="material-to-update-2"/>
+				<BuildListItem Name="mac-for-grdep-1"/>				
+			</List>
+		</BuildList>
+	
+</t:Templates>
+</t:Data>

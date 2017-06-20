@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+		<FormTemplate t:Id="ft1" Name="UDF_FT" />
+		<FormTemplateVersion t:Id="ftv-ft1-v1" TemplateID="{$ft1.ID}" Version="1">
+			<Udfs>
+				<TemplateToUdfMap UdfID="{$udf-text-tb-tvh1.ID}" Order="0" />
+				<TemplateToUdfMap UdfID="{$udf-text-tb-tvh2.ID}" Order="1" />
+				<TemplateToUdfMap UdfID="{$udf-text-tb-tvh3.ID}" Order="2" />
+				<TemplateToUdfMap UdfID="{$udf-text-tb2.ID}" Order="3" />
+				<TemplateToUdfMap UdfID="{$udf-text-tb3.ID}" Order="4" />
+				<TemplateToUdfMap UdfID="{$udf-text-tb4.ID}" Order="5" />
+				<TemplateToUdfMap UdfID="{$udf-text-ddl-tvh1.ID}" Order="6" />
+				<TemplateToUdfMap UdfID="{$udf-text-ddl-tvh2.ID}" Order="7" />
+				<TemplateToUdfMap UdfID="{$udf-text-ddl1.ID}" Order="8" />
+				<TemplateToUdfMap UdfID="{$linked-udf-text-ddl1.ID}" Order="9" />
+				<TemplateToUdfMap UdfID="{$udf-text-ddltb-tvh1.ID}" Order="10" />
+				<TemplateToUdfMap UdfID="{$udf-text-ddltb1.ID}" Order="11" />
+				<TemplateToUdfMap UdfID="{$udf-text-multitb1.ID}" Order="12" />
+				<TemplateToUdfMap UdfID="{$udf-text-tb5.ID}" Order="13" />
+				<TemplateToUdfMap UdfID="{$udf-num-tb-tvh1.ID}" Order="14" />
+				<TemplateToUdfMap UdfID="{$linked-udf-num-ddl-tvh1.ID}" Order="15" />
+				<TemplateToUdfMap UdfID="{$udf-num-ddl-tvh1.ID}" Order="16" />
+				<TemplateToUdfMap UdfID="{$udf-num-ddl2.ID}" Order="17" />
+				<TemplateToUdfMap UdfID="{$linked-udf-num-ddl1.ID}" Order="18" />
+				<TemplateToUdfMap UdfID="{$udf-num-ddltb1.ID}" Order="19" />
+				<TemplateToUdfMap UdfID="{$udf-num-ddltb-tvh1.ID}" Order="20" />
+				<TemplateToUdfMap UdfID="{$linked-udf-num-nlup-tvh1.ID}" Order="21" />
+				<TemplateToUdfMap UdfID="{$udf-num-nlup-tvh2.ID}" Order="22" />
+				<TemplateToUdfMap UdfID="{$udf-num-nlup1.ID}" Order="23" />
+				<TemplateToUdfMap UdfID="{$linked-udf-num-nlup1.ID}" Order="24" />
+				<TemplateToUdfMap UdfID="{$udf-calc1.ID}" Order="25">
+					<Scripts>
+						<TemplateScript Script="$$100-[{$linked-udf-num-ddl1.ID}]" >
+							<UdfDependencies>
+								<ScriptUdfDependency UdfID="{$linked-udf-num-ddl1.ID}" />
+							</UdfDependencies>
+						</TemplateScript>
+					</Scripts>
+				</TemplateToUdfMap>
+				<TemplateToUdfMap UdfID="{$udf-dt-date1.ID}" Order="26" />
+				<TemplateToUdfMap UdfID="{$udf-dt-date-tvh1.ID}" Order="27" />
+				<TemplateToUdfMap UdfID="{$udf-dt-time1.ID}" Order="28" />
+				<TemplateToUdfMap UdfID="{$udf-dt-time-tvh1.ID}" Order="29" />
+				<TemplateToUdfMap UdfID="{$udf-dt-dt1.ID}" Order="30" />
+				<TemplateToUdfMap UdfID="{$udf-dt-dt-tvh1.ID}" Order="31" />
+				<TemplateToUdfMap UdfID="{$udf-bool-cb-tvh1.ID}" Order="32" />
+				<TemplateToUdfMap UdfID="{$udf-bool-cb1.ID}" Order="33" />
+				<TemplateToUdfMap UdfID="{$udf-bool-ddl1.ID}" Order="34" />
+				<TemplateToUdfMap UdfID="{$udf-bool-ddl2.ID}" Order="35" />
+				<TemplateToUdfMap UdfID="{$udf-hl1.ID}" Order="36" />
+			</Udfs>
+		</FormTemplateVersion>
+
+		<FormTemplate t:Id="ft2" Name="XLS_WF_form template_text" />
+		<FormTemplateVersion t:Id="ftv-ft2-v1" TemplateID="{$ft2.ID}" Version="1">
+			<Udfs>
+				<TemplateToUdfMap UdfID="{$udf-hl2.ID}" Order="0" />
+				<TemplateToUdfMap UdfID="{$udf-text-multitb1.ID}" Order="1" />
+				<TemplateToUdfMap UdfID="{$udf-text-ddl1.ID}" Order="2" />
+				<TemplateToUdfMap UdfID="{$udf-text-ddltb1.ID}" Order="3" />
+				<TemplateToUdfMap UdfID="{$linked-udf-text-ddl1.ID}" Order="4" />
+				<TemplateToUdfMap UdfID="{$udf-text-tb2.ID}" Order="5" />
+				<TemplateToUdfMap UdfID="{$udf-text-tb3.ID}" Order="6" />
+				<TemplateToUdfMap UdfID="{$udf-text-tb4.ID}" Order="7" />
+				<TemplateToUdfMap UdfID="{$udf-bool-cb1.ID}" Order="8" />
+				<TemplateToUdfMap UdfID="{$udf-bool-ddl2.ID}" Order="9" />
+			</Udfs>
+		</FormTemplateVersion>
+
+		<FormTemplate t:Id="ft3" Name="XLS_kio_form_template1" />
+		<FormTemplateVersion t:Id="ftv-ft3-v1" TemplateID="{$ft3.ID}" Version="1">
+			<Udfs>
+				<TemplateToUdfMap UdfID="{$udf-text-tb5.ID}" Order="0" />
+				<TemplateToUdfMap UdfID="{$udf-text-tb6.ID}" Order="1" />
+			</Udfs>
+		</FormTemplateVersion>
+
+		<FormTemplate t:Id="form-role-permissions" Name="Template for workflow permissions" />
+		<FormTemplateVersion t:Id="form-role-permissions-ver1" Version="1" TemplateID="{$form-role-permissions.ID}" />
+
+		<WorkflowRole t:Id="wfrole1" Name="XLS_kio_role1" />
+
+		<WorkflowDefinition t:Id="wftype1" Name="UDF_Workflow Type" IdGenScheme="{Year}.{Month}.{Day}.{Hour}.{AlphaID}"/>
+		<WorkflowDefinitionVersionWithAll t:Id="wftype1-v1" Configuration=""
+			WorkflowDefinitionID="{$wftype1.ID}" Comments="" Version="1">
+
+			<StepActions>
+				<WorkflowDefinitionVersionStepAction t:Id="go-to-next-step" Name="go to next step" DestinationStepID="{$this:step2.ID}" Flags="0" />
+			</StepActions>
+
+			<Steps>
+				<WorkflowDefinitionVersionStepWithMaps t:Id="step1" Name="S1" StatusName="start" Order="0">
+					<FormTemplateVersion ID="{$ftv-ft1-v1.ID}" Name="{$ft1.Name}" />
+					<WorkflowDefinitionVersionRole ID="{$this:role-creator.ID}" />
+					<StepActions>
+						<WorkflowDefinitionVersionStepMapItem MappedID="{$this:go-to-next-step.ID}">
+							<Roles>
+								<MappedIdUnique ID="{$this:role-creator.ID}" />
+								<MappedIdUnique ID="{$this:role-assignee.ID}" />
+							</Roles>
+						</WorkflowDefinitionVersionStepMapItem>
+					</StepActions>
+					<StepPermissions>
+						<WorkflowDefinitionRoleStepPermission RoleID="{$this:role-creator.ID}" LocalPermission="7" GlobalPermission="7" />
+					</StepPermissions>
+				</WorkflowDefinitionVersionStepWithMaps>
+
+				<WorkflowDefinitionVersionStepWithMaps t:Id="step2" Name="S2" StatusName="process" Order="1">
+					<FormTemplateVersion ID="{$ftv-ft1-v1.ID}" Name="{$ft1.Name}" />
+					<WorkflowDefinitionVersionRole ID="{$this:role-assignee.ID}" />
+					<StepPermissions>
+						<WorkflowDefinitionRoleStepPermission RoleID="{$this:role-assignee.ID}" LocalPermission="7" GlobalPermission="0" />
+					</StepPermissions>
+				</WorkflowDefinitionVersionStepWithMaps>
+			</Steps>
+		</WorkflowDefinitionVersionWithAll>
+
+		<WorkflowDefinition t:Id="wftype2" Name="!Workflow Type 1" IdGenScheme="{Year}.{Month}.{Day}.{Hour}.{AlphaID}"/>
+		<WorkflowDefinitionVersionWithAll t:Id="wftype2-v1" t:BaseTemplate="empty-wdv" Configuration=""
+			WorkflowDefinitionID="{$wftype2.ID}" Comments="" Version="1">
+
+			<Roles>
+				<WorkflowDefinitionVersionRole t:Id="role-creator" PermissionMask="65600">
+					<WorkflowRole ID="{$wfrole-creator.ID}" Name="{$wfrole-creator.Name}" RoleType="{$wfrole-creator.RoleType}" />
+				</WorkflowDefinitionVersionRole>
+				<WorkflowDefinitionVersionRole t:Id="role-assignee">
+					<WorkflowRole ID="{$wfrole-assignee.ID}" Name="{$wfrole-assignee.Name}" RoleType="{$wfrole-assignee.RoleType}" />
+				</WorkflowDefinitionVersionRole>
+				<WorkflowDefinitionVersionRole t:Id="role-prevassignee">
+					<WorkflowRole ID="{$wfrole-prevassignee.ID}" Name="{$wfrole-prevassignee.Name}" RoleType="{$wfrole-prevassignee.RoleType}" />
+				</WorkflowDefinitionVersionRole>
+				<WorkflowDefinitionVersionRole t:Id="role-managers">
+					<WorkflowRole ID="{$wfrole-managers.ID}" Name="{$wfrole-managers.Name}" RoleType="{$wfrole-managers.RoleType}" />
+				</WorkflowDefinitionVersionRole>
+			</Roles>
+
+			<StepActions>
+				<WorkflowDefinitionVersionStepAction t:Id="go-to-next-step" Name="go to next step" DestinationStepID="{$this:step2.ID}" Flags="0" />
+			</StepActions>
+
+			<Steps>
+				<WorkflowDefinitionVersionStepWithMaps t:Id="step1" Name="S1" StatusName="start" Order="0">
+					<FormTemplateVersion ID="{$ftv-ft2-v1.ID}" Name="{$ft2.Name}" />
+					<WorkflowDefinitionVersionRole ID="{$this:role-creator.ID}" />
+					<StepActions>
+						<WorkflowDefinitionVersionStepMapItem MappedID="{$this:go-to-next-step.ID}">
+							<Roles>
+								<MappedIdUnique ID="{$this:role-creator.ID}" />
+								<MappedIdUnique ID="{$this:role-assignee.ID}" />
+							</Roles>
+						</WorkflowDefinitionVersionStepMapItem>
+					</StepActions>
+					<StepPermissions>
+						<WorkflowDefinitionRoleStepPermission RoleID="{$this:role-creator.ID}" LocalPermission="7" GlobalPermission="7" />
+					</StepPermissions>
+				</WorkflowDefinitionVersionStepWithMaps>
+
+				<WorkflowDefinitionVersionStepWithMaps t:Id="step2" Name="S2" StatusName="process" Order="1">
+					<FormTemplateVersion ID="{$ftv-ft2-v1.ID}" Name="{$ft2.Name}" />
+					<WorkflowDefinitionVersionRole ID="{$this:role-assignee.ID}" />
+					<StepPermissions>
+						<WorkflowDefinitionRoleStepPermission RoleID="{$this:role-assignee.ID}" LocalPermission="7" GlobalPermission="0" />
+					</StepPermissions>
+				</WorkflowDefinitionVersionStepWithMaps>
+			</Steps>
+		</WorkflowDefinitionVersionWithAll>
+
+		<WorkflowDefinition t:Id="wftype3" Name="XLS_kio_WF_type1" IdGenScheme="&lt;br&gt; {Year}&lt;!--{Month}&lt;!--{Day}&lt;!--{Hour}&lt;!--{AlphaID}"/>
+		<WorkflowDefinitionVersionWithAll t:Id="wftype3-v1" Configuration="" WorkflowDefinitionID="{$wftype3.ID}" Comments="" Version="1">
+			<Roles>
+				<WorkflowDefinitionVersionRole t:Id="role-user" PermissionMask="2048">
+					<WorkflowRole ID="{$wfrole1.ID}" Name="{$wfrole1.Name}" />
+					<Users>
+						<MappedUserIdNameInfo ID="{$jstestsWPermissionsWithOverrides.ID}" />
+					</Users>
+				</WorkflowDefinitionVersionRole>
+			</Roles>
+
+			<Initiators>
+				<WorkflowDefinitionVersionInitiator t:Id="initiator1" Name="&lt;!-- initiator 1" InitiatedWorkflowDefinitionVersionID="{$wftype2-v1.ID}" />
+			</Initiators>
+
+			<Steps>
+				<WorkflowDefinitionVersionStepWithMaps t:Id="step1" Name="&lt;br&gt; step 1" StatusName="&lt;!-- step 1" Order="0">
+					<FormTemplateVersion ID="{$ftv-ft3-v1.ID}" Name="{$ft3.Name}" />
+					<WorkflowDefinitionVersionRole ID="{$this:role-user.ID}" />
+					<Initiators>
+						<WorkflowDefinitionVersionStepMapItem MappedID="{$this:initiator1.ID}">
+							<Roles>
+								<MappedIdUnique ID="{$this:role-user.ID}" />
+							</Roles>
+						</WorkflowDefinitionVersionStepMapItem>
+					</Initiators>
+					<StepPermissions>
+						<WorkflowDefinitionRoleStepPermission RoleID="{$this:role-user.ID}" LocalPermission="7" GlobalPermission="7" />
+					</StepPermissions>
+				</WorkflowDefinitionVersionStepWithMaps>
+			</Steps>
+		</WorkflowDefinitionVersionWithAll>
+
+		<WorkflowDefinition t:Id="wftype4" Name="XLS_kio_WF_type2" IdGenScheme="&lt;br&gt; {Year}&lt;!--{Month}&lt;!--{Day}&lt;!--{Hour}&lt;!--{AlphaID}"/>
+		<WorkflowDefinitionVersionWithAll t:Id="wftype4-v1" Configuration="" WorkflowDefinitionID="{$wftype4.ID}" Comments="" Version="1">
+			<Roles>
+				<WorkflowDefinitionVersionRole t:Id="role-user" PermissionMask="2048">
+					<WorkflowRole ID="{$wfrole1.ID}" Name="{$wfrole1.Name}" />
+				</WorkflowDefinitionVersionRole>
+			</Roles>
+
+			<Initiators>
+				<WorkflowDefinitionVersionInitiator t:Id="initiator1" Name="&lt;!-- initiator 1" InitiatedWorkflowDefinitionVersionID="{$wftype2-v1.ID}" />
+			</Initiators>
+
+			<Steps>
+				<WorkflowDefinitionVersionStepWithMaps t:Id="step1" Name="&lt;br&gt; step 1" StatusName="&lt;!-- step 1" Order="0">
+					<FormTemplateVersion ID="{$ftv-ft3-v1.ID}" Name="{$ft3.Name}" />
+					<WorkflowDefinitionVersionRole ID="{$this:role-user.ID}" />
+					<Initiators>
+						<WorkflowDefinitionVersionStepMapItem MappedID="{$this:initiator1.ID}">
+							<Roles>
+								<MappedIdUnique ID="{$this:role-user.ID}" />
+							</Roles>
+						</WorkflowDefinitionVersionStepMapItem>
+					</Initiators>
+					<StepPermissions>
+						<WorkflowDefinitionRoleStepPermission RoleID="{$this:role-user.ID}" LocalPermission="7" GlobalPermission="7" />
+					</StepPermissions>
+				</WorkflowDefinitionVersionStepWithMaps>
+			</Steps>
+		</WorkflowDefinitionVersionWithAll>
+
+		<WorkflowDefinition t:Id="wftype5" Name="Workflow Type Generated (Document module)" IdGenScheme="{Year}.{Month}.{Day}.{Hour}.{AlphaID}"/>
+		<WorkflowDefinitionVersionWithAll t:Id="wftype5-v1" Configuration=""
+			WorkflowDefinitionID="{$wftype5.ID}" Comments="" Version="1">
+
+			<StepActions>
+				<WorkflowDefinitionVersionStepAction t:Id="go-to-next-step" Name="go to next step" DestinationStepID="{$this:step2.ID}" Flags="0" />
+			</StepActions>
+
+			<Steps>
+				<WorkflowDefinitionVersionStepWithMaps t:Id="step1" Name="S1" StatusName="start" Order="0">
+					<FormTemplateVersion ID="{$ftv-ft1-v1.ID}" Name="{$ft1.Name}" />
+					<WorkflowDefinitionVersionRole ID="{$this:role-creator.ID}" />
+					<StepActions>
+						<WorkflowDefinitionVersionStepMapItem MappedID="{$this:go-to-next-step.ID}">
+							<Roles>
+								<MappedIdUnique ID="{$this:role-creator.ID}" />
+								<MappedIdUnique ID="{$this:role-assignee.ID}" />
+							</Roles>
+						</WorkflowDefinitionVersionStepMapItem>
+					</StepActions>
+					<StepPermissions>
+						<WorkflowDefinitionRoleStepPermission RoleID="{$this:role-creator.ID}" LocalPermission="7" GlobalPermission="7" />
+					</StepPermissions>
+				</WorkflowDefinitionVersionStepWithMaps>
+
+				<WorkflowDefinitionVersionStepWithMaps t:Id="step2" Name="S2" StatusName="process" Order="1">
+					<FormTemplateVersion ID="{$ftv-ft1-v1.ID}" Name="{$ft1.Name}" />
+					<WorkflowDefinitionVersionRole ID="{$this:role-assignee.ID}" />
+					<StepPermissions>
+						<WorkflowDefinitionRoleStepPermission RoleID="{$this:role-assignee.ID}" LocalPermission="7" GlobalPermission="0" />
+					</StepPermissions>
+				</WorkflowDefinitionVersionStepWithMaps>
+			</Steps>
+		</WorkflowDefinitionVersionWithAll>
+
+		<WorkflowDefinition t:Id="wftype6" Name="WF_permissions_rename" />
+		<WorkflowDefinitionVersionWithAll t:Id="wftype6-v1" WorkflowDefinitionID="{$wftype6.ID}">
+			<Roles>
+				<!-- 8 means "Rename"-->
+				<WorkflowDefinitionVersionRole t:Id="wfdv-role1" PermissionMask="8"	>
+					<WorkflowRole ID="{$wfrole1.ID}" Name="{wfrole1.Name}" />
+					<Users>
+						<MappedUserIdNameInfo ID="{$jstestsWPermissions.ID}" Name="{$jstestsWPermissions.FirstName}" />
+					</Users>
+				</WorkflowDefinitionVersionRole>
+			</Roles>
+			<Steps>
+				<WorkflowDefinitionVersionStepWithMaps t:Id="wfdv-step1" Name="Step1" StatusName="Step1 Status">
+					<FormTemplateVersion ID="{$form-role-permissions-ver1.ID}" Name="{$form-role-permissions.Name}" />
+					<WorkflowDefinitionVersionRole ID="{$this:wfdv-role1.ID}" />
+				</WorkflowDefinitionVersionStepWithMaps>
+			</Steps>
+		</WorkflowDefinitionVersionWithAll>
+
+		<WorkflowDefinition t:Id="wftype7" Name="WF_permissions_uniqueId" />
+		<WorkflowDefinitionVersionWithAll t:Id="wftype7-v1" WorkflowDefinitionID="{$wftype7.ID}">
+			<Roles>
+				<!-- 65536 means "SetWorkflowId"-->
+				<WorkflowDefinitionVersionRole t:Id="wfdv-role1" PermissionMask="65536"	>
+					<WorkflowRole ID="{$wfrole1.ID}" Name="{wfrole1.Name}" />
+					<Users>
+						<MappedUserIdNameInfo ID="{$jstestsWPermissions.ID}" Name="{$jstestsWPermissions.FirstName}" />
+					</Users>
+				</WorkflowDefinitionVersionRole>
+			</Roles>
+			<Steps>
+				<WorkflowDefinitionVersionStepWithMaps t:Id="wfdv-step1" Name="Step1" StatusName="Step1 Status">
+					<FormTemplateVersion ID="{$form-role-permissions-ver1.ID}" Name="{$form-role-permissions.Name}" />
+					<WorkflowDefinitionVersionRole ID="{$this:wfdv-role1.ID}" />
+				</WorkflowDefinitionVersionStepWithMaps>
+			</Steps>
+		</WorkflowDefinitionVersionWithAll>
+
+		<BuildList t:Id="buildList-workflowtypes" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="wftype1-v1"/>
+				<BuildListItem Name="wftype2-v1"/>
+				<BuildListItem Name="wftype3-v1"/>
+				<BuildListItem Name="wftype4-v1"/>
+				<BuildListItem Name="wftype5-v1"/>
+				<BuildListItem Name="wftype6-v1" />
+				<BuildListItem Name="wftype7-v1" />
+			</List>
+		</BuildList>
+	</t:Templates>
+</t:Data>

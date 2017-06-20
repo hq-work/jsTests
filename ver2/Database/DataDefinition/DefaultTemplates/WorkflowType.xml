@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Configuration>
+		<RegisterInstantiator Instantiator="wfrole-predefined" Type="DdfDataGenerator.Instantiators.WorkflowPredefinedRoleInstantiator, DdfDataGenerator" />
+
+		<Entity Name="WorkflowDefinitionVersionStepAction">
+			<Attribute Name="DestinationStepID" PostProcessing="true" />
+		</Entity>
+	</t:Configuration>
+
+	<t:Templates>
+		<WorkflowRole t:BaseTemplate="{#default(EntityObject)}" RoleType="0" Description="" />
+		<WorkflowRoleWithMaps t:BaseTemplate="{#default(WorkflowRole)}" />
+
+		<WorkflowRole t:Id="wfrole-creator" t:Instantiator="wfrole-predefined" t:InstantiatorParams="1" t:BaseTemplate="{#nothing}" />
+		<WorkflowRole t:Id="wfrole-assignee" t:Instantiator="wfrole-predefined" t:InstantiatorParams="3" t:BaseTemplate="{#nothing}" />
+		<WorkflowRole t:Id="wfrole-prevassignee" t:Instantiator="wfrole-predefined" t:InstantiatorParams="2" t:BaseTemplate="{#nothing}" />
+		<WorkflowRole t:Id="wfrole-managers" t:Instantiator="wfrole-predefined" t:InstantiatorParams="4" t:BaseTemplate="{#nothing}" />
+
+		<FormTemplate t:BaseTemplate="{#default(EntityObject)}" Description="" />
+		<FormTemplateVersion t:BaseTemplate="{#default(EntityObject)}" Version="1" Comments="" Created="{#today}" />
+		<TemplateToUdfMap t:BaseTemplate="{#default(EntityObject)}" Order="0" />
+		<TemplateScript t:BaseTemplate="{#default(EntityObject)}" BeginDate="1753-01-01 00:00:00.000" EndDate="9999-12-31 00:00:00.000" />
+		<TemplateToUdfMapValidation RequiredValidationScope="0" LengthValidationScope="0" Length="0" RangeValidationScope="0" RegExValidationScope="0" RegEx="" />
+
+		<WorkflowDefinition t:BaseTemplate="{#default(EntityObject)}" Description="" Created="{#today}" IdGenScheme="{Year}.{Month}.{Day}.{Hour}.{AlphaID}" ForAppConfiguration="true"/>
+		<WorkflowDefinitionVersionWithAll t:BaseTemplate="{#default(EntityObject)}" Version="1" TypeName="" Configuration="" Rules="" Comments="" Created="{#today}" >
+			<Roles>
+				<WorkflowDefinitionVersionRole t:Id="role-assignee">
+					<WorkflowRole ID="{$wfrole-assignee.ID}" Name="{$wfrole-assignee.Name}" RoleType="{$wfrole-assignee.RoleType}" />
+				</WorkflowDefinitionVersionRole>
+				<WorkflowDefinitionVersionRole t:Id="role-prevassignee">
+					<WorkflowRole ID="{$wfrole-prevassignee.ID}" Name="{$wfrole-prevassignee.Name}" RoleType="{$wfrole-prevassignee.RoleType}" />
+				</WorkflowDefinitionVersionRole>
+				<WorkflowDefinitionVersionRole t:Id="role-creator">
+					<WorkflowRole ID="{$wfrole-creator.ID}" Name="{$wfrole-creator.Name}" RoleType="{$wfrole-creator.RoleType}" />
+				</WorkflowDefinitionVersionRole>
+				<WorkflowDefinitionVersionRole t:Id="role-managers">
+					<WorkflowRole ID="{$wfrole-managers.ID}" Name="{$wfrole-managers.Name}" RoleType="{$wfrole-managers.RoleType}" />
+				</WorkflowDefinitionVersionRole>
+			</Roles>
+		</WorkflowDefinitionVersionWithAll>
+		<WorkflowDefinitionVersionWithAll t:Id="empty-wdv" t:BaseTemplate="{#default(EntityObject)}" Version="1" TypeName="" Configuration="" Rules="" Comments="" Created="{#today}" />
+		<WorkflowDefinitionVersionRole t:BaseTemplate="{#default(EntityObject)}" PermissionMask="0" />
+		<WorkflowDefinitionVersionStepWithMaps t:BaseTemplate="{#default(EntityObject)}" Order="0" Flags="0" />
+		<WorkflowDefinitionVersionStepAction t:BaseTemplate="{#default(EntityObject)}" Flags="0" />
+		<WorkflowDefinitionVersionInitiator t:BaseTemplate="{#default(EntityObject)}" />
+		<WorkflowDefinitionVersionStepMapItem Order="0" />
+		<WorkflowDefinitionRoleStepPermission LocalPermission="0" GlobalPermission="0" />
+		<WorkflowDefinitionRoleFieldPermission Permission="0" />
+	</t:Templates>
+</t:Data>

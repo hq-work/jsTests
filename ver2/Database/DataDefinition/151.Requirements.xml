@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+
+		<UserWithAll t:Id="userWPermissionsParamReq" Login="userWPermissionsParamReq" FirstName="userWPermissionsParamReq" LastName="userWPermissionsParamReq" Rights="0" TimeZone="1"/>
+		<UserWithAll t:Id="userWPermissionsCalcReq" Login="userWPermissionsCalcReq" FirstName="userWPermissionsCalcReq" LastName="userWPermissionsCalcReq" Rights="0" TimeZone="1"/>
+		<UserWithAll t:Id="userWPermissionsCbCalcReq" Login="userWPermissionsCbCalcReq" FirstName="userWPermissionsCbCalcReq" LastName="userWPermissionsCbCalcReq" Rights="0" TimeZone="1"/>
+		<UserWithAll t:Id="userWPermissionsTbCalcReq" Login="userWPermissionsTbCalcReq" FirstName="userWPermissionsTbCalcReq" LastName="userWPermissionsTbCalcReq" Rights="0" TimeZone="1"/>
+		<UserWithAll t:Id="userWPermissionsTbaReq" Login="userWPermissionsTbaReq" FirstName="userWPermissionsTbaReq" LastName="userWPermissionsTbaReq" Rights="0" TimeZone="1"/>
+		<UserWithAll t:Id="userWPermissionsTbsReq" Login="userWPermissionsTbsReq" FirstName="userWPermissionsTbsReq" LastName="userWPermissionsTbsReq" Rights="0" TimeZone="1"/>
+		<UserWithAll t:Id="userWPermissionsMacReq" Login="userWPermissionsMacReq" FirstName="userWPermissionsMacReq" LastName="userWPermissionsMacReq" Rights="0" TimeZone="1"/>
+		<UserWithAll t:Id="userWPermissionsSysVar" Login="userWPermissionsSysVar" FirstName="userWPermissionsSysVar" LastName="userWPermissionsSysVar" Rights="0" TimeZone="1"/>
+		
+		<Division t:Id="division-req-1" Name="Division For Requirements Test" t:Instantiator="database" />
+		<Facility t:Id="facility-req-1" Name="Facility For Requirements Test" ParentID="{$division-req-1.ID}" t:Instantiator="database" />
+		<Unit t:Id="unit-req-1" ParentID="{$facility-req-1.ID}" Name="Unit for Req"/>
+		<POI t:Id="poi-req-1" ParentID="{$facility-req-1.ID}" Name="POI for Req"/>
+
+		<RequirementTemplate t:Id="commonReq-templ" Key="Common Requirement Template" Description="commonReq-templ"/>
+		<RequirementTemplate t:Id="commonReqUpd-templ" Key="Common Requirement Upd Template" Description="Common Requirement Upd Template"/>
+
+		<TagScheme t:Id="commonReq-tagScheme-1" Name="commonReq Tag Scheme" EnforceUniqueness="0"  t:Instantiator="database" />
+		<Tag t:Id="commonReq-tag1" Name="commonReq Tag 1" TagSchemeId="{$commonReq-tagScheme-1.ID}"  t:Instantiator="database" />
+		<Tag t:Id="commonReq-tag2" Name="commonReq Tag 2" TagSchemeId="{$commonReq-tagScheme-1.ID}"  t:Instantiator="database" />
+		
+		<UdfTemplate t:Id="udf-commonReq-templ" Name="commonReq Custom Field Template" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReq-templ-map-1" UDFID="{$udf-text-tb4.ID}" GroupID="{$udf-commonReq-templ.ID}" Order="0"/>
+		<UdfTemplateToUdfMap t:Id="udf-commonReq-templ-map-2" UDFID="{$udf-text-tb-tvh3.ID}" GroupID="{$udf-commonReq-templ.ID}" Order="1" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReq-templ-map-3" UDFID="{$udf-text-ddl-tvh1.ID}" GroupID="{$udf-commonReq-templ.ID}" Order="2" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReq-templ-map-4" UDFID="{$udf-num-tb-tvh1.ID}" GroupID="{$udf-commonReq-templ.ID}" Order="3" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReq-templ-map-5" UDFID="{$udf-num-ddltb-tvh1.ID}" GroupID="{$udf-commonReq-templ.ID}" Order="4" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReq-templ-map-6" UDFID="{$udf-dt-dt-tvh1.ID}" GroupID="{$udf-commonReq-templ.ID}" Order="5" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReq-templ-map-7" UDFID="{$udf-bool-cb-tvh1.ID}" GroupID="{$udf-commonReq-templ.ID}" Order="6" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReq-templ-map-8" UDFID="{$udf-text-tb3.ID}" GroupID="{$udf-commonReq-templ.ID}" Order="7" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReq-templ-map-9" UDFID="{$udf-text-ddl1.ID}" GroupID="{$udf-commonReq-templ.ID}" Order="8" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReq-templ-map-10" UDFID="{$udf-hl1.ID}" GroupID="{$udf-commonReq-templ.ID}" Order="9" />
+		
+		<UdfTemplate t:Id="udf-commonReqUpd-templ" Name="commonReqUpd Custom Field Template" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReqUpd-templ-map-1" UDFID="{$udf-text-tb4.ID}" GroupID="{$udf-commonReqUpd-templ.ID}" Order="0"/>
+		<UdfTemplateToUdfMap t:Id="udf-commonReqUpd-templ-map-2" UDFID="{$udf-text-tb-tvh3.ID}" GroupID="{$udf-commonReqUpd-templ.ID}" Order="1" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReqUpd-templ-map-3" UDFID="{$udf-text-ddl-tvh1.ID}" GroupID="{$udf-commonReqUpd-templ.ID}" Order="2" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReqUpd-templ-map-4" UDFID="{$udf-num-tb-tvh1.ID}" GroupID="{$udf-commonReqUpd-templ.ID}" Order="3" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReqUpd-templ-map-5" UDFID="{$udf-num-ddltb-tvh1.ID}" GroupID="{$udf-commonReqUpd-templ.ID}" Order="4" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReqUpd-templ-map-6" UDFID="{$udf-dt-dt-tvh1.ID}" GroupID="{$udf-commonReqUpd-templ.ID}" Order="5" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReqUpd-templ-map-7" UDFID="{$udf-bool-cb-tvh1.ID}" GroupID="{$udf-commonReqUpd-templ.ID}" Order="6" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReqUpd-templ-map-8" UDFID="{$udf-text-tb3.ID}" GroupID="{$udf-commonReqUpd-templ.ID}" Order="7" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReqUpd-templ-map-9" UDFID="{$udf-text-ddl1.ID}" GroupID="{$udf-commonReqUpd-templ.ID}" Order="8" />
+		<UdfTemplateToUdfMap t:Id="udf-commonReqUpd-templ-map-10" UDFID="{$udf-hl1.ID}" GroupID="{$udf-commonReqUpd-templ.ID}" Order="9" />
+
+		<BuildList t:Id="buildList-commonReq-1" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="udf-commonReq-templ-map-1"/>
+				<BuildListItem Name="udf-commonReq-templ-map-2"/>
+				<BuildListItem Name="udf-commonReq-templ-map-3"/>
+				<BuildListItem Name="udf-commonReq-templ-map-4"/>
+				<BuildListItem Name="udf-commonReq-templ-map-5"/>
+				<BuildListItem Name="udf-commonReq-templ-map-6"/>
+				<BuildListItem Name="udf-commonReq-templ-map-7"/>
+				<BuildListItem Name="udf-commonReq-templ-map-8"/>
+				<BuildListItem Name="udf-commonReq-templ-map-9"/>
+				<BuildListItem Name="udf-commonReq-templ-map-10"/>
+			</List>
+		</BuildList>
+		<BuildList t:Id="buildList-commonReqUpd-1" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="udf-commonReqUpd-templ-map-1"/>
+				<BuildListItem Name="udf-commonReqUpd-templ-map-2"/>
+				<BuildListItem Name="udf-commonReqUpd-templ-map-3"/>
+				<BuildListItem Name="udf-commonReqUpd-templ-map-4"/>
+				<BuildListItem Name="udf-commonReqUpd-templ-map-5"/>
+				<BuildListItem Name="udf-commonReqUpd-templ-map-6"/>
+				<BuildListItem Name="udf-commonReqUpd-templ-map-7"/>
+				<BuildListItem Name="udf-commonReqUpd-templ-map-8"/>
+				<BuildListItem Name="udf-commonReqUpd-templ-map-9"/>
+				<BuildListItem Name="udf-commonReqUpd-templ-map-10"/>
+			</List>
+		</BuildList>
+
+		<TaskTemplate t:Id="task-template-r-1" Name="task-template-r-1" ViewTask="true" SystemCalendar="true" ObjectCalendar="true" Amount="10" AmountType="2" />
+		<TaskTemplate t:Id="task-template-r-2" Name="task-template-r-2" ViewTask="true" SystemCalendar="true" ObjectCalendar="true" Amount="5" AmountType="3" />
+		<TaskTemplate t:Id="task-template-upd-r-1" Name="task-template-upd-r-1" ViewTask="true" SystemCalendar="true" ObjectCalendar="true" Amount="5" AmountType="3" />
+		<TaskTemplate t:Id="task-template-upd-r-2" Name="task-template-upd-r-2" ViewTask="true" SystemCalendar="true" ObjectCalendar="true" Amount="5" AmountType="3" />
+
+		<BuildList t:Id="buildList-taskTemplates-1" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="task-template-r-1"/>
+				<BuildListItem Name="task-template-r-2"/>
+				<BuildListItem Name="task-template-upd-r-1"/>
+				<BuildListItem Name="task-template-upd-r-2"/>
+			</List>
+		</BuildList>
+
+		<QualityTemplate t:Id="qTemplate-for-req-1" Name="Quality Template for Req"/>
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-1" PropertyID="{$udf-calc1.ID}" TemplateID="{$qTemplate-for-req-1.ID}" Order="0" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-2" PropertyID="{$udf-num-ddl2.ID}" TemplateID="{$qTemplate-for-req-1.ID}" Order="1" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-3" PropertyID="{$udf-num-ddl-tvh1.ID}" TemplateID="{$qTemplate-for-req-1.ID}" Order="2" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-4" PropertyID="{$linked-udf-num-ddl1.ID}" TemplateID="{$qTemplate-for-req-1.ID}" Order="3" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-5" PropertyID="{$udf-num-nlup-tvh2.ID}" TemplateID="{$qTemplate-for-req-1.ID}" Order="4" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-6" PropertyID="{$udf-num-nlup1.ID}" TemplateID="{$qTemplate-for-req-1.ID}" Order="5" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-7" PropertyID="{$linked-udf-num-nlup1.ID}" TemplateID="{$qTemplate-for-req-1.ID}" Order="6" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-8" PropertyID="{$udf-num-tb1.ID}" TemplateID="{$qTemplate-for-req-1.ID}" Order="7" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-9" PropertyID="{$udf-num-tb-tvh1.ID}" TemplateID="{$qTemplate-for-req-1.ID}" Order="8" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-10" PropertyID="{$udf-bool-cb2.ID}" TemplateID="{$qTemplate-for-req-1.ID}" Order="9" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-11" PropertyID="{$udf-bool-cb-tvh1.ID}" TemplateID="{$qTemplate-for-req-1.ID}" Order="10" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-12" PropertyID="{$udf-bool-ddl1.ID}" TemplateID="{$qTemplate-for-req-1.ID}" Order="11" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-13" PropertyID="{$udf-bool-ddl3.ID}" TemplateID="{$qTemplate-for-req-1.ID}" Order="12" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-14" PropertyID="{$udf-text-tb6.ID}" TemplateID="{$qTemplate-for-req-1.ID}" Order="13" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-15" PropertyID="{$udf-text-tb-tvh3.ID}" TemplateID="{$qTemplate-for-req-1.ID}" Order="14" />		
+		
+		<QualityTemplate t:Id="qTemplate-for-req-upd-1" Name="QualityTemplate for Req Upd"/>
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-upd-1" PropertyID="{$udf-calc1.ID}" TemplateID="{$qTemplate-for-req-upd-1.ID}" Order="0" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-upd-2" PropertyID="{$udf-num-ddl2.ID}" TemplateID="{$qTemplate-for-req-upd-1.ID}" Order="1" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-upd-3" PropertyID="{$udf-num-ddl-tvh1.ID}" TemplateID="{$qTemplate-for-req-upd-1.ID}" Order="2" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-upd-4" PropertyID="{$linked-udf-num-ddl1.ID}" TemplateID="{$qTemplate-for-req-upd-1.ID}" Order="3" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-upd-5" PropertyID="{$udf-num-nlup-tvh2.ID}" TemplateID="{$qTemplate-for-req-upd-1.ID}" Order="4" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-upd-6" PropertyID="{$udf-num-nlup1.ID}" TemplateID="{$qTemplate-for-req-upd-1.ID}" Order="5" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-upd-7" PropertyID="{$linked-udf-num-nlup1.ID}" TemplateID="{$qTemplate-for-req-upd-1.ID}" Order="6" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-upd-8" PropertyID="{$udf-num-tb1.ID}" TemplateID="{$qTemplate-for-req-upd-1.ID}" Order="7" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-upd-9" PropertyID="{$udf-num-tb-tvh1.ID}" TemplateID="{$qTemplate-for-req-upd-1.ID}" Order="8" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-upd-10" PropertyID="{$udf-bool-cb2.ID}" TemplateID="{$qTemplate-for-req-upd-1.ID}" Order="9" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-upd-11" PropertyID="{$udf-bool-cb-tvh1.ID}" TemplateID="{$qTemplate-for-req-upd-1.ID}" Order="10" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-upd-12" PropertyID="{$udf-bool-ddl1.ID}" TemplateID="{$qTemplate-for-req-upd-1.ID}" Order="11" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-upd-13" PropertyID="{$udf-bool-ddl3.ID}" TemplateID="{$qTemplate-for-req-upd-1.ID}" Order="12" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-upd-14" PropertyID="{$udf-text-tb6.ID}" TemplateID="{$qTemplate-for-req-upd-1.ID}" Order="13" />
+		<QualityTemplateToUdfMap t:Id="dqt-map-req-upd-15" PropertyID="{$udf-text-tb-tvh3.ID}" TemplateID="{$qTemplate-for-req-upd-1.ID}" Order="14" />
+
+		<BuildList t:Id="buildList-qTemplate-map-1" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="dqt-map-req-1"/>
+				<BuildListItem Name="dqt-map-req-2"/>
+				<BuildListItem Name="dqt-map-req-3"/>
+				<BuildListItem Name="dqt-map-req-4"/>
+				<BuildListItem Name="dqt-map-req-5"/>
+				<BuildListItem Name="dqt-map-req-6"/>
+				<BuildListItem Name="dqt-map-req-7"/>
+				<BuildListItem Name="dqt-map-req-8"/>
+				<BuildListItem Name="dqt-map-req-9"/>
+				<BuildListItem Name="dqt-map-req-10"/>
+				<BuildListItem Name="dqt-map-req-11"/>
+				<BuildListItem Name="dqt-map-req-12"/>
+				<BuildListItem Name="dqt-map-req-13"/>
+				<BuildListItem Name="dqt-map-req-14"/>
+				<BuildListItem Name="dqt-map-req-15"/>
+			</List>
+		</BuildList>
+
+		<BuildList t:Id="buildList-qTemplate-upd-map-1" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="dqt-map-req-upd-1"/>
+				<BuildListItem Name="dqt-map-req-upd-2"/>
+				<BuildListItem Name="dqt-map-req-upd-3"/>
+				<BuildListItem Name="dqt-map-req-upd-4"/>
+				<BuildListItem Name="dqt-map-req-upd-5"/>
+				<BuildListItem Name="dqt-map-req-upd-6"/>
+				<BuildListItem Name="dqt-map-req-upd-7"/>
+				<BuildListItem Name="dqt-map-req-upd-8"/>
+				<BuildListItem Name="dqt-map-req-upd-9"/>
+				<BuildListItem Name="dqt-map-req-upd-10"/>
+				<BuildListItem Name="dqt-map-req-upd-11"/>
+				<BuildListItem Name="dqt-map-req-upd-12"/>
+				<BuildListItem Name="dqt-map-req-upd-13"/>
+				<BuildListItem Name="dqt-map-req-upd-14"/>
+				<BuildListItem Name="dqt-map-req-upd-15"/>
+			</List>
+		</BuildList>
+
+		<!-- NonNumericRequirement -->
+		<NonNumericRequirement t:Id="NonNum-req-1" Name="Non Numeric Req" ParentID="{$facility-req-1.ID}" 
+							   TemplateID="{$commonReq-templ.ID}" UdfTemplateID="{$udf-commonReq-templ.ID}"/>
+		
+		<!-- ParameterRequirement -->
+		<ParameterRequirement t:Id="parameter-req-1" Name="Parameter Requirement" ParentID="{$facility-req-1.ID}" ID="a36358e5-4043-48eb-866a-0d6d4661bac0"
+							  TemplateID="{$commonReq-templ.ID}" UdfTemplateID="{$udf-commonReq-templ.ID}" />
+		
+		<ParameterRequirement t:Id="parameter-req-for-calc" Name="Parameter Requirement for Calc" ParentID="{$facility-req-1.ID}" ID="962766df-8366-4442-9857-bc3d62bbbd0d"
+							  TemplateID="{$commonReq-templ.ID}" UdfTemplateID="{$udf-commonReq-templ.ID}" />
+
+		<!-- AutoParameterRequirement -->
+		<AutoParameterRequirement t:Id="auto-param-req-1" Name="Autoparameter Requirement" ParentID="{$facility-req-1.ID}"
+								  TemplateID="{$commonReq-templ.ID}" UdfTemplateID="{$udf-commonReq-templ.ID}"/>
+		<AutoParameterHistoryEntry t:Id="auto-par-hist-entry-1" RequirementID="{$auto-param-req-1.ID}"/>
+
+		<AutoParameterRequirement t:Id="auto-param-req-for-calc" Name="Autoparameter Requirement for Calc" ParentID="{$facility-req-1.ID}"
+								  TemplateID="{$commonReq-templ.ID}" UdfTemplateID="{$udf-commonReq-templ.ID}"/>
+		<AutoParameterHistoryEntry t:Id="auto-par-hist-entry-for-calc" RequirementID="{$auto-param-req-for-calc.ID}"/>
+
+		<!-- SystemVariable -->
+		<SystemVariable t:Id="sys-var-req" Name="SystemVariable Requirement"  ParentID="{$facility-req-1.ID}"
+						TemplateID="{$commonReq-templ.ID}" UdfTemplateID="{$udf-commonReq-templ.ID}" />
+		<SystemVariableValue t:Id="sys-var-value" SystemVariableID="{$sys-var-req.ID}"
+			  BeginDate="2010-01-10T09:00:00" EndDate="2020-01-10T09:00:00" Value="2" />
+		
+		<SystemVariable t:Id="sys-var-for-calc" Name="System Variable for Calc"  ParentID="{$facility-req-1.ID}"
+						TemplateID="{$commonReq-templ.ID}" UdfTemplateID="{$udf-commonReq-templ.ID}" />
+		<SystemVariableValue t:Id="sys-var-val-for-calc" SystemVariableID="{$sys-var-for-calc.ID}" 
+			  BeginDate="2010-01-10T09:00:00" EndDate="2020-01-10T09:00:00" Value="2" />
+
+		<!-- CalculatedRequirement -->
+		<CalcRequirementContainer ParentID="{$facility-req-1.ID}" t:Id="calc-req" TemplateID="{$commonReq-templ.ID}" Name="Calculated Requirement"> 
+			<Scripts>
+				<CalcRequirementScriptDto BeginDate="2012-01-01T00:00:00" EndDate="2014-01-01T00:00:00" Script="$$100 + [{$sys-var-req.ID}]">
+					<Requirements>
+						<RequirementDependencyDto RequirementID="{$sys-var-req.ID}" />
+					</Requirements>
+				</CalcRequirementScriptDto>
+				<CalcRequirementScriptDto BeginDate="2014-01-01T00:00:00" EndDate="2015-01-01T00:00:00" Script="$$200 + [{$sys-var-req.ID}]">
+					<Requirements>
+						<RequirementDependencyDto RequirementID="{$sys-var-req.ID}" />
+					</Requirements>
+				</CalcRequirementScriptDto>
+			</Scripts>
+
+		</CalcRequirementContainer>
+		
+		<!-- CbCalculatedRequirement -->
+		<CbcRequirementContainer t:Id="cbcCalc-req"  Name="Count-Based Calculated Req" ParentID="{$facility-req-1.ID}" TemplateID="{$commonReq-templ.ID}">
+			<Intervals>
+				<CountBaseIntervalDto BeginDate="2012-01-01T00:00:00" EndDate="2014-01-01T00:00:00" BaseRequirementId="{$sys-var-req.ID}" RequiredDataCount="100" AggregationType="0" />
+				<CountBaseIntervalDto BeginDate="2014-01-01T00:00:00" EndDate="2015-01-01T00:00:00" BaseRequirementId="{$calc-req.ID}" RequiredDataCount="200" AggregationType="1" />
+			</Intervals>
+		</CbcRequirementContainer>
+
+		<!-- TbCalculatedRequirement IsRolling = False/True -->
+		<TbCalculatedRequirementEntity t:Id="tb-calc-req-fixed" Name="Time-Based Calculated Req" ParentID="{$facility-req-1.ID}" TemplateID="{$commonReq-templ.ID}" 
+									   MissingDataPercent="2147483647">
+			<Scripts>
+				<TbCalculatedRequirementScriptEntity Script="$$SUM([{$calc-req.ID}])"
+					BeginDate="2012-01-01T00:00:00" EndDate="2013-01-01T00:00:00" 
+					TBPeriodType="7"  TBPeriodDuration="1" IntermediatePeriodType="-1">
+					<Requirements>
+						<ScriptRequirementDependencyEntity RequirementID="{$calc-req.ID}" />
+					</Requirements>
+				</TbCalculatedRequirementScriptEntity>
+			</Scripts>
+		</TbCalculatedRequirementEntity>
+
+		<TbCalculatedRequirementEntity t:Id="tb-calc-req-IsRolling" Name="Time-Based Calculated Req IsRolling" ParentID="{$facility-req-1.ID}" TemplateID="{$commonReq-templ.ID}"
+									   IsRolling="True" MissingDataPercent="2147483647">
+			<Scripts>
+				<TbCalculatedRequirementScriptEntity Script="$$SUM([{$calc-req.ID}])"
+					BeginDate="2012-01-01T00:00:00" EndDate="2013-01-01T00:00:00"
+					TBPeriodType="7"  TBPeriodDuration="1" IntermediatePeriodType="-1">
+					<Requirements>
+						<ScriptRequirementDependencyEntity RequirementID="{$calc-req.ID}" />
+					</Requirements>
+				</TbCalculatedRequirementScriptEntity>
+			</Scripts>
+		</TbCalculatedRequirementEntity>
+
+		<!-- TBAggregationRequirement, TBSubRequirement -->
+		<TBAggregationRequirement t:Id="tba-calc-req" Name="Time-Based Aggr Req"  ParentID="{$facility-req-1.ID}" TemplateID="{$commonReq-templ.ID}"
+							BaseParameter="{$parameter-req-1.ID}"/>
+
+		<TbSubtractionRequirement t:Id="tbs-calc-req" Name="Time-Based Sub Req"  ParentID="{$facility-req-1.ID}" TemplateID="{$commonReq-templ.ID}"
+							BaseParameter="{$parameter-req-1.ID}"/>
+
+		<BuildList t:Id="buildList-requirements" t:Instantiator="memory">
+			<List>				
+				<BuildListItem Name="userWPermissionsParamReq"/>			
+				<BuildListItem Name="userWPermissionsCalcReq"/>
+				<BuildListItem Name="userWPermissionsCbCalcReq"/>
+				<BuildListItem Name="userWPermissionsTbCalcReq"/>
+				<BuildListItem Name="userWPermissionsTbaReq"/>
+				<BuildListItem Name="userWPermissionsTbsReq"/>
+				<BuildListItem Name="userWPermissionsMacReq"/>
+				<BuildListItem Name="userWPermissionsSysVar"/>
+				<BuildListItem Name="buildList-commonReq-1"/>
+				<BuildListItem Name="commonReqUpd-templ"/>
+				<BuildListItem Name="buildList-commonReqUpd-1"/>
+				<BuildListItem Name="buildList-qTemplate-map-1"/>
+				<BuildListItem Name="buildList-qTemplate-upd-map-1"/>
+				<BuildListItem Name="buildList-taskTemplates-1"/>
+				<BuildListItem Name="NonNum-req-1"/>
+				<BuildListItem Name="parameter-req-1"/>
+				<BuildListItem Name="parameter-req-for-calc"/>
+				<BuildListItem Name="auto-par-hist-entry-1"/>
+				<BuildListItem Name="auto-param-req-for-calc"/>
+				<BuildListItem Name="tb-calc-req-fixed"/>
+				<BuildListItem Name="tb-calc-req-IsRolling"/>				
+				<BuildListItem Name="sys-var-value"/>
+				<BuildListItem Name="sys-var-for-calc"/>
+				<BuildListItem Name="calc-req"/>
+				<BuildListItem Name="cbcCalc-req"/>
+				<BuildListItem Name="tba-calc-req"/>
+				<BuildListItem Name="tbs-calc-req"/>
+				<BuildListItem Name="unit-req-1"/>
+				<BuildListItem Name="poi-req-1"/>
+				<BuildListItem Name="commonReq-tagScheme-1"/>
+				<BuildListItem Name="commonReq-tag1"/>
+				<BuildListItem Name="commonReq-tag2"/>
+			</List>
+		</BuildList>		
+	</t:Templates>
+</t:Data>

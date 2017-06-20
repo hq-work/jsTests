@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Configuration>
+		<RegisterInstantiator Instantiator="linked-udf" Type="DdfDataGenerator.Instantiators.LinkedUdfInstantiator, DdfDataGenerator" />
+
+		<Entity Name="Udf">
+			<Attribute Name="Caption" PostProcessing="true" />
+		</Entity>
+	</t:Configuration>
+
+	<t:Templates>
+		<Udf t:BaseTemplate="{#default(EntityObject)}"
+			Description="" Caption="{$this.Name}" TrackValueHistory="false" NumericPrecision="2147483647"
+			MultiSelectSortByValue="false" />
+		<UdfItem t:BaseTemplate="{#default(EntityObject)}" Order="0" />
+
+		<LinkedUdf t:BaseTemplate="{#default(Udf)}" t:Instantiator="linked-udf" />
+		<LinkedUdfItem t:BaseTemplate="{#default(UdfItem)}" />
+
+		<!-- Text udf type - 0 -->
+		<Udf t:Id="template-udf-text-tb" Type="0" ValueEntryMethod="0" />
+		<Udf t:Id="template-udf-text-tb-tvh" Type="0" ValueEntryMethod="0" TrackValueHistory="true" />
+
+		<Udf t:Id="template-udf-text-ddl" Type="0" ValueEntryMethod="2" />
+		<LinkedUdf t:Id="template-linked-udf-text-ddl" Type="0" ValueEntryMethod="2" />
+		<Udf t:Id="template-udf-text-ddl-tvh" Type="0" ValueEntryMethod="2" TrackValueHistory="true" />
+		<LinkedUdf t:Id="template-linked-udf-text-ddl-tvh" Type="0" ValueEntryMethod="2" TrackValueHistory="true" />
+
+		<Udf t:Id="template-udf-text-ddltb" Type="0" ValueEntryMethod="1" />
+		<Udf t:Id="template-udf-text-ddltb-tvh" Type="0" ValueEntryMethod="1" TrackValueHistory="true" />
+
+		<Udf t:Id="template-udf-text-multitb" Type="0" ValueEntryMethod="9" />
+
+		<!-- Number udf type - 2 -->
+		<Udf t:Id="template-udf-num-tb" Type="2" ValueEntryMethod="0" />
+		<Udf t:Id="template-udf-num-tb-tvh" Type="2" ValueEntryMethod="0" TrackValueHistory="true" />
+
+		<Udf t:Id="template-udf-num-ddl" Type="2" ValueEntryMethod="2" />
+		<LinkedUdf t:Id="template-linked-udf-num-ddl" Type="2" ValueEntryMethod="2" />
+		<Udf t:Id="template-udf-num-ddl-tvh" Type="2" ValueEntryMethod="2" TrackValueHistory="true" />
+		<LinkedUdf t:Id="template-linked-udf-num-ddl-tvh" Type="2" ValueEntryMethod="2" TrackValueHistory="true" />
+
+		<Udf t:Id="template-udf-num-ddltb" Type="2" ValueEntryMethod="1" />
+		<Udf t:Id="template-udf-num-ddltb-tvh" Type="2" ValueEntryMethod="1" TrackValueHistory="true" />
+
+		<Udf t:Id="template-udf-num-id-autoinc" Type="2" ValueEntryMethod="7" />
+		<Udf t:Id="template-udf-num-id-maninc" Type="2" ValueEntryMethod="8" />
+
+		<Udf t:Id="template-udf-num-nlup" Type="2" ValueEntryMethod="13" />
+		<LinkedUdf t:Id="template-linked-udf-num-nlup" Type="2" ValueEntryMethod="13" />
+		<Udf t:Id="template-udf-num-nlup-tvh" Type="2" ValueEntryMethod="13" TrackValueHistory="true" />
+		<LinkedUdf t:Id="template-linked-udf-num-nlup-tvh" Type="2" ValueEntryMethod="13" TrackValueHistory="true" />
+
+		<!-- Calculated Numeric udf type - 6 -->
+		<Udf t:Id="template-udf-calc" Type="6" ValueEntryMethod="10" />
+
+		<!-- Date/Time udf type - 4 -->
+		<Udf t:Id="template-udf-dt-date" Type="4" ValueEntryMethod="4" />
+		<Udf t:Id="template-udf-dt-date-tvh" Type="4" ValueEntryMethod="4" TrackValueHistory="true" />
+
+		<Udf t:Id="template-udf-dt-time" Type="4" ValueEntryMethod="5" />
+		<Udf t:Id="template-udf-dt-time-tvh" Type="4" ValueEntryMethod="5" TrackValueHistory="true" />
+
+		<Udf t:Id="template-udf-dt-dt" Type="4" ValueEntryMethod="6" />
+		<Udf t:Id="template-udf-dt-dt-tvh" Type="4" ValueEntryMethod="6" TrackValueHistory="true" />
+
+		<!-- True/False udf type - 5 -->
+		<Udf t:Id="template-udf-bool-cb" Type="5" ValueEntryMethod="3" />
+		<Udf t:Id="template-udf-bool-cb-tvh" Type="5" ValueEntryMethod="3" TrackValueHistory="true" />
+
+		<Udf t:Id="template-udf-bool-ddl" Type="5" ValueEntryMethod="2" />
+		<Udf t:Id="template-udf-bool-ddl-tvh" Type="5" ValueEntryMethod="2" TrackValueHistory="true" />
+
+		<!-- Hyperlink udf type - 7 -->
+		<Udf t:Id="template-udf-hl" Type="7" ValueEntryMethod="0" />
+		<Udf t:Id="template-udf-hl-activity" Type="7" ValueEntryMethod="0" HyperlinkType="1" />
+		<Udf t:Id="template-udf-hl-task" Type="7" ValueEntryMethod="0" HyperlinkType="2" />
+		<Udf t:Id="template-udf-hl-object" Type="7" ValueEntryMethod="0" HyperlinkType="3" />
+		<Udf t:Id="template-udf-hl-chemical" Type="7" ValueEntryMethod="0" HyperlinkType="4" />
+		<Udf t:Id="template-udf-hl-material" Type="7" ValueEntryMethod="0" HyperlinkType="5" />
+		<Udf t:Id="template-udf-hl-chemlist" Type="7" ValueEntryMethod="0" HyperlinkType="6" />
+		<Udf t:Id="template-udf-hl-citation" Type="7" ValueEntryMethod="0" HyperlinkType="7" />
+		<Udf t:Id="template-udf-hl-taskcompletion" Type="7" ValueEntryMethod="0" HyperlinkType="8" />
+		<Udf t:Id="template-udf-hl-dataentry" Type="7" ValueEntryMethod="0" HyperlinkType="9" />
+
+		<!-- CitationHyperlink udf type - 8 -->
+		<Udf t:Id="template-udf-chl" Type="8" ValueEntryMethod="0" />
+
+		<!-- Unique Tag udf type - 9 -->
+		<Udf t:Id="template-udf-utag" Type="9" ValueEntryMethod="0" />
+
+		<!-- Label udf type - 11 -->
+		<Udf t:Id="template-udf-lbl" Type="11" ValueEntryMethod="0" />
+
+		<!-- Predefined udf type -->
+		<Udf t:Id="template-udf-num-predefined" Type="2" ValueEntryMethod="0" IsPredefined="true" />
+
+		<UdfValue t:BaseTemplate="{#default(EntityObject)}" />
+		<UdfHyperLinkValue t:BaseTemplate="{#default(EntityObject)}" Order="1" />
+		<UdfItemToObjectMap t:BaseTemplate="{#default(EntityObject)}" BeginDate="1753-01-01T00:00:00.000" EndDate="9999-12-31T00:00:00.000" />
+	</t:Templates>
+</t:Data>

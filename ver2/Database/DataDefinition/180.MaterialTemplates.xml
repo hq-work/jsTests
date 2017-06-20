@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+  <t:Templates>
+	  <UserWithAll t:Id="userWPermissionsMatTemplate" Login="userWPermissionsMatTemplate" FirstName="userWPermissionsMatTemplate" LastName="userWPermissionsMatTemplate" Rights="0" TimeZone="1"/>
+
+	  <MaterialTemplate t:Id="material-template-crt-1"  ID="b45fb1ea-95ed-4153-9b8c-16df043ccca3"  Name="Material Template - 1" Description="Material Template 1 desription"/>
+	  <MaterialTemplateUDFMapItem t:Id="material-template-crt-1-1" ParentID="{$material-template-crt-1.ID}" ChildID="{$udf-text-tb2.ID}" Order="0"/>
+	  <MaterialTemplateUDFMapItem t:Id="material-template-crt-1-2" ParentID="{$material-template-crt-1.ID}" ChildID="{$udf-text-ddltb1.ID}" Order="1"/>
+	  <MaterialTemplateUDFMapItem t:Id="material-template-crt-1-3" ParentID="{$material-template-crt-1.ID}" ChildID="{$udf-num-tb-tvh1.ID}" Order="2"/>
+
+	  <MaterialTemplate t:Id="material-template-upd-1"  ID="02df3b64-922a-4336-9833-ec9f77187816"  Name="Material Template - 2" Description="Material Template 2 desription"/>
+	  <MaterialTemplateUDFMapItem t:Id="material-template-upd-1-1" ParentID="{$material-template-upd-1.ID}" ChildID="{$udf-text-tb2.ID}" Order="0"/>
+
+	  <Udf t:Id="udf-num-idctrl1" t:BaseTemplate="template-udf-num-id-autoinc" Name="n_idctrl" />
+	  <Udf t:Id="udf-chl" Type="8" ValueEntryMethod="0" Name="XLS_cithl"/>
+
+	  <BuildList t:Id="buildList-materialtemplates" t:Instantiator="memory">
+		  <List>
+			  <BuildListItem Name="userWPermissionsMatTemplate"/>
+			  <BuildListItem Name="material-template-crt-1"/>
+			  <BuildListItem Name="material-template-crt-1-1"/>
+			  <BuildListItem Name="material-template-crt-1-2"/>
+			  <BuildListItem Name="material-template-crt-1-3"/>
+			  <BuildListItem Name="material-template-upd-1"/>
+			  <BuildListItem Name="material-template-upd-1-1"/>
+			  
+			  <BuildListItem Name="udf-num-idctrl1"/>
+			  <BuildListItem Name="udf-chl"/>
+		  </List>
+	  </BuildList>
+
+  </t:Templates>
+</t:Data>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+		<Document t:Id="doc-folder1" IsFolder="true" Name="250" />
+		<Document t:Id="doc-doc1" Name="99999.xls" ParentID="{$doc-folder1.ID}" />
+		<DocumentVersion t:Id="doc-doc1-v1" Version="1" DocumentID="{$doc-doc1.ID}" Comments="99999"
+						 Url="" Type="0" MimeType="application/vnd.ms-excel" FileGuid="{#guid}" FileSize="32" Extension="xls"/>
+
+		<Document t:Id="document-folder1-root" ID="9A06B15F-EFCF-43eb-9B6B-FE6C3AED1FE9" IsFolder="true" Name="JsTestsRootDocumentFolder Generated" Description="JsTestsRootDocumentFolder Generated description" />
+		<Document t:Id="document-folder2" ID="9D01FB8A-46CC-407f-9984-47497A28E023" IsFolder="true" Name="JsTestsDocumentFolder Generated" Description="JsTestsDocumentFolder Generated description" ParentID="{$document-folder1-root.ID}" />
+
+		<Document t:Id="document-content" ID="04D13A5B-F86F-493f-9D69-F7273DE11ECF" Name="JsTestsDocument content" ParentID="{$system.ID}" Description="JsTestsDocument content description" />
+		<DocumentVersion t:Id="document-content-v1" Version="1" DocumentID="{$document-content.ID}" Comments="JsTestsDocument content comment"
+						 Url="" Type="0" MimeType="text/plain" FileGuid="{#guid}" FileSize="1024" Extension="txt"/>
+
+		<Document t:Id="document-content-uri" ID="AE8C4455-9032-457b-B774-9CE151F3639D" Name="JsTestsDocument contentUri" ParentID="{$system.ID}" Description="JsTestsDocument contentUri description" />
+		<DocumentVersion t:Id="document-content-uri-v1" Version="1" DocumentID="{$document-content-uri.ID}" Comments="JsTestsDocument contentUri comment"
+						 Url="https://go.enviance.com/Documents/DocumentDownload.aspx" Type="1" MimeType="" Extension=""/>
+
+		<DocumentAssociationInfo t:BaseTemplate="{#default(EntityObject)}" t:Id="document-association-info-1" DocumentID="{$document-content.ID}">
+			<Objects>
+				<MappedIdUnique ID="{$division-3-document-association-1.ID}"/>
+			</Objects>
+			<Workflows>
+				<MappedIdUnique ID="{$workflow-instance-document-association.ID}"/>
+			</Workflows>
+			<Tasks>
+				<MappedIdUnique ID="{$task-document-association.HistoryID}"/>
+			</Tasks>
+		</DocumentAssociationInfo>
+
+		<DocumentPermissions t:Id="document-folder1-root-permissions" DocumentID="{$document-folder1-root.ID}">
+			<Permissions>
+				<DocumentUserPermission UserID="{$jstestsUserWithDocumentPermission.ID}" Permission="3"/>
+			</Permissions>
+		</DocumentPermissions>
+
+		<Document t:Id="folder-for-locations" IsFolder="true" Name="Folder for Location Generated" />
+		<Document t:Id="document-for-locations" Name="Document for Location Generated" ParentID="{$folder-for-locations.ID}" />
+		<DocumentVersion t:Id="document-for-locations-v1" Version="1" DocumentID="{$document-for-locations.ID}" Comments="Document for Location Generated"
+						 Url="" Type="0" MimeType="application/vnd.ms-excel" FileGuid="{#guid}" FileSize="32" Extension="xls"/>
+
+		<BuildList t:Id="buildList-documents" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="document-folder2"/>
+				<BuildListItem Name="doc-doc1-v1"/>
+				<BuildListItem Name="document-content-v1"/>
+				<BuildListItem Name="document-content-uri-v1"/>
+				<BuildListItem Name="document-association-info-1"/>
+				<BuildListItem Name="document-for-locations-v1"/>
+				<BuildListItem Name="document-folder1-root-permissions"/>
+			</List>
+		</BuildList>
+	</t:Templates>
+</t:Data>

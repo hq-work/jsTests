@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Templates>
+		<PackageForTest t:Id="package-base" Name="JS Tests Package - base" Description="JS Tests Package - base - description"
+										CreatedSetter="2013-01-01T18:00">
+			<CreatedBy ID="{$jstestsPackageAccessUser.ID}" />
+			<Items>
+				<PackageItemWithAll Path="index.html" Type="1" Size="0" Role="1" />
+				<PackageItemWithAll Path="page.html" Type="1" Size="0" Role="0" />
+				<PackageItemWithAll Path="icon.ico" Type="4" Size="0" Role="2" />
+			</Items>
+			<AppData>
+				<PackageAppData Key="Data/Key-1" Value="Value 1" />
+				<PackageAppData Key="Data/Key-2" Value="Value 2" />
+				<PackageAppData Key="Data/Key-3" Value="Value 3" />
+			</AppData>
+		</PackageForTest>
+		<PackageForTest t:Id="package-locked" Name="JS Tests Package - locked"
+										Description="JS Tests Package - locked - description" IsLocked="true">
+			<CreatedBy ID="{$jstestsPackageAccessUser.ID}" />
+			<Items>
+				<PackageItemWithAll Path="index.html" Type="1" Size="0" Role="1" />
+				<PackageItemWithAll Path="page.html" Type="1" Size="0" Role="0" />
+				<PackageItemWithAll Path="icon.ico" Type="4" Size="0" Role="2" />
+			</Items>
+		</PackageForTest>
+
+		<PackageForTest t:Id="package-tests-v1" Name="SDK Unit Tests v1" Description="Js-unit tests for SDK v1" IsLocked="false">
+			<CreatedBy ID="{$user-owner.ID}" />
+			<Items>
+				<PackageItemWithAll Path="Manual/jquery-ui.1.9.2.min.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../../ver1/Manual/jquery-ui.1.9.2.min.js)}" />
+				<PackageItemWithAll Path="Manual/app.css" Type="2" Size="0" Role="0"
+					Content="{#filetobinary(../../../ver1/Manual/app.css)}" />
+				<PackageItemWithAll Path="Manual/app.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../../ver1/Manual/app.js)}" />
+				<PackageItemWithAll Path="Manual/index.htm" Type="1" Size="0" Role="1"
+					Content="{#filetobinary(../../../ver1/Manual/index.htm)}" />
+				<PackageItemWithAll Path="Manual/qunit.css" Type="2" Size="0" Role="0"
+					Content="{#filetobinary(../../../ver1/Manual/qunit.css)}" />
+				<PackageItemWithAll Path="Manual/qunit.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../../ver1/Manual/qunit.js)}" />
+				<PackageItemWithAll Path="Manual/buildnumber.txt" Type="7" Size="0" Role="0"
+					Content="{#filetobinary(../../../ver1/Manual/buildnumber.txt)}" />
+				<PackageItemWithAll Path="manifest.xml" Type="5" Size="0" Role="0"
+					Content="{#filetobinary(../../../ver1/manifest.xml)}" />
+				<PackageItemWithAll Path="tests.framework.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../../ver1/tests.framework.js)}" />
+				<PackageItemWithAll Path="tests.authentication.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../../ver1/tests.authentication.js)}" />
+				<PackageItemWithAll Path="tests.eql.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../../ver1/tests.eql.js)}" />
+				<PackageItemWithAll Path="tests.events.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.events.js)}" />
+				<PackageItemWithAll Path="tests.infrastructure.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../../ver1/tests.infrastructure.js)}" />
+				<PackageItemWithAll Path="tests.utilities.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../../ver1/tests.utilities.js)}" />
+				<PackageItemWithAll Path="tests.workflows.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../../ver1/tests.workflows.js)}" />
+			</Items>
+			<Roles>
+				<PackageRoleWithAll Name="Allow Role" Description="Role for access users">
+					<Users>
+						<MappedIdNameUnique ID="{$jstestsPackageAccessUser.ID}" Name="{$jstestsPackageAccessUser.FirstName}"/>
+					</Users>
+				</PackageRoleWithAll>
+				<PackageRoleWithAll Name="Deny Role" Description="Role for deny users">
+					<Users>
+						<MappedIdNameUnique ID="{$jstestsPackageNotAccessUser.ID}" Name="{$jstestsPackageNotAccessUser.FirstName}"/>
+					</Users>
+				</PackageRoleWithAll>
+				<PackageRoleWithAll Name="Allow By Group Role" Description="Role for access groups">
+					<Groups>
+						<MappedIdNameUnique ID="{$jstestsAccessGroup.ID}" Name="{$jstestsAccessGroup.Name}"/>
+					</Groups>
+				</PackageRoleWithAll>
+				<PackageRoleWithAll Name="Deny By Group Role" Description="Role for deny groups">
+					<Groups>
+						<MappedIdNameUnique ID="{$jstestsNoAccessGroup.ID}" Name="{$jstestsNoAccessGroup.Name}"/>
+					</Groups>
+				</PackageRoleWithAll>
+			</Roles>
+		</PackageForTest>
+		<PackageContentSecurityPolicy t:Id="pcsp-tests-v1" ScriptSrc="* 'self' 'unsafe-eval' 'unsafe-inline'" PackageID="{$package-tests-v1.ID}" />
+
+		<PackageForTest t:Id="package-tests-v2" Name="SDK Unit Tests v2" Description="Js-unit tests for SDK v2" IsLocked="false">
+			<CreatedBy ID="{$user-owner.ID}" />
+			<Items>
+				<PackageItemWithAll Path="Manual/EqlQuery/EqlBroken.eql" Type="9" Size="0" Role="0"
+					Content="{#filetobinary(../../Manual/EqlQuery/EqlBroken.eql)}" />
+				<PackageItemWithAll Path="Manual/EqlQuery/JsonBroken.eql" Type="9" Size="0" Role="0"
+					Content="{#filetobinary(../../Manual/EqlQuery/JsonBroken.eql)}" />
+				<PackageItemWithAll Path="Manual/EqlQuery/SelectFacility.eql" Type="9" Size="0" Role="0"
+					Content="{#filetobinary(../../Manual/EqlQuery/SelectFacility.eql)}" />
+				<PackageItemWithAll Path="Manual/EqlQuery/SelectFacility.eqlx" Type="9" Size="0" Role="0"
+					Content="{#filetobinary(../../Manual/EqlQuery/SelectFacility.eqlx)}" />
+				<PackageItemWithAll Path="Manual/Pages/page.htm" Type="1" Size="0" Role="0"
+					Content="{#filetobinary(../../Manual/Pages/page.htm)}" />
+				<PackageItemWithAll Path="Manual/Pages/Page1.htm" Type="1" Size="0" Role="0"
+					Content="{#filetobinary(../../Manual/Pages/Page1.htm)}" />
+				<PackageItemWithAll Path="Manual/jquery-ui.1.9.2.min.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../Manual/jquery-ui.1.9.2.min.js)}" />
+				<PackageItemWithAll Path="Manual/app.css" Type="2" Size="0" Role="0"
+					Content="{#filetobinary(../../Manual/app.css)}" />
+				<PackageItemWithAll Path="Manual/app.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../Manual/app.js)}" />
+				<PackageItemWithAll Path="Manual/index.htm" Type="1" Size="0" Role="1"
+					Content="{#filetobinary(../../Manual/index.htm)}" />
+				<PackageItemWithAll Path="Manual/jsonRolesShim.json" Type="6" Size="0" Role="0"
+					Content="{#filetobinary(../../Manual/jsonRolesShim.json)}" />
+				<PackageItemWithAll Path="Manual/package.cfg" Type="8" Size="0" Role="0"
+					Content="{#filetobinary(../../Manual/package.cfg)}" />
+				<PackageItemWithAll Path="Manual/qunit.css" Type="2" Size="0" Role="0"
+					Content="{#filetobinary(../../Manual/qunit.css)}" />
+				<PackageItemWithAll Path="Manual/punit.css" Type="2" Size="0" Role="0"
+					Content="{#filetobinary(../../Manual/punit.css)}" />
+				<PackageItemWithAll Path="Manual/qunit.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../Manual/qunit.js)}" />
+				<PackageItemWithAll Path="Manual/buildnumber.txt" Type="7" Size="0" Role="0"
+					Content="{#filetobinary(../../Manual/buildnumber.txt)}" />
+				<PackageItemWithAll Path="Manual/warning16.png" Type="4" Size="0" Role="0"
+					Content="{#filetobinary(../../Manual/warning16.png)}" />
+				<PackageItemWithAll Path="framework.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../framework.js)}" />
+				<PackageItemWithAll Path="qunit-teamcity-log.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../qunit-teamcity-log.js)}" />
+				<PackageItemWithAll Path="manifest.xml" Type="5" Size="0" Role="0"
+					Content="{#filetobinary(../../manifest.xml)}" />
+				<PackageItemWithAll Path="tests.authentication.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.authentication.js)}" />
+				<PackageItemWithAll Path="tests.commands.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.commands.js)}" />
+				<PackageItemWithAll Path="tests.data.calcperiods.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.data.calcperiods.js)}" />
+				<PackageItemWithAll Path="tests.data.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.data.js)}" />				
+				<PackageItemWithAll Path="tests.documents.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.documents.js)}" />
+				<PackageItemWithAll Path="tests.eql.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.eql.js)}" />
+				<PackageItemWithAll Path="tests.events.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.events.js)}" />
+				<PackageItemWithAll Path="tests.groups.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.groups.js)}" />
+				<PackageItemWithAll Path="tests.infrastructure.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.infrastructure.js)}" />
+				<PackageItemWithAll Path="tests.locations.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.locations.js)}" />
+				<PackageItemWithAll Path="tests.messages.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.messages.js)}" />
+				<PackageItemWithAll Path="tests.package.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.package.js)}" />
+				<PackageItemWithAll Path="tests.packages.appData.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.packages.appData.js)}" />
+				<PackageItemWithAll Path="tests.packages.eql.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.packages.eql.js)}" />
+				<PackageItemWithAll Path="tests.packages.infrastructure.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.packages.infrastructure.js)}" />
+				<PackageItemWithAll Path="tests.packages.shims.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.packages.shims.js)}" />
+				<PackageItemWithAll Path="tests.packages.userData.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.packages.userData.js)}" />
+				<PackageItemWithAll Path="tests.portal.dashboard.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.portal.dashboard.js)}" />
+				<PackageItemWithAll Path="tests.reports.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.reports.js)}" />
+				<PackageItemWithAll Path="tests.tasks.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.tasks.js)}" />
+				<PackageItemWithAll Path="tests.utilities.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.utilities.js)}" />
+				<PackageItemWithAll Path="tests.workflows.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.workflows.js)}" />
+				<PackageItemWithAll Path="tests.activities.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.activities.js)}" />
+				<PackageItemWithAll Path="tests.chemicals.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.chemicals.js)}" />
+				<PackageItemWithAll Path="tests.chemicalGroups.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.chemicalGroups.js)}" />
+				<PackageItemWithAll Path="tests.chemicalLists.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.chemicalLists.js)}" />
+				<PackageItemWithAll Path="tests.tags.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.tags.js)}" />
+				<PackageItemWithAll Path="tests.tagSchemes.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.tagSchemes.js)}" />
+				
+				<PackageItemWithAll Path="tests.requirements.parameter.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.requirements.parameter.js)}" />
+				<PackageItemWithAll Path="tests.requirements.calculated.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.requirements.calculated.js)}" />
+				<PackageItemWithAll Path="tests.requirements.cbCalculated.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.requirements.cbCalculated.js)}" />
+				<PackageItemWithAll Path="tests.requirements.tbCalculated.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.requirements.tbCalculated.js)}" />
+				<PackageItemWithAll Path="tests.requirements.tbAggCalculated.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.requirements.tbAggCalculated.js)}" />
+				<PackageItemWithAll Path="tests.requirements.tbSubCalculated.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.requirements.tbSubCalculated.js)}" />
+				<PackageItemWithAll Path="tests.requirements.mac.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.requirements.mac.js)}" />
+				<PackageItemWithAll Path="tests.requirements.systemVariable.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.requirements.systemVariable.js)}" />
+				<PackageItemWithAll Path="tests.mdlGroupsUpload.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.mdlGroupsUpload.js)}" />
+				<PackageItemWithAll Path="tests.materialData.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.materialData.js)}" />
+				<PackageItemWithAll Path="tests.materials.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.materials.js)}" />
+				<PackageItemWithAll Path="tests.materialGroups.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.materialGroups.js)}" />
+				<PackageItemWithAll Path="tests.materialProperties.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.materialProperties.js)}" />
+				<PackageItemWithAll Path="tests.materialTemplates.js" Type="3" Size="0" Role="0"
+					Content="{#filetobinary(../../tests.materialTemplates.js)}" />
+			</Items>
+			<AppData>
+				<PackageAppData Key="Data/SystemUser" Value="jstestsAccessUser" />
+				<PackageAppData Key="Data/Password" Value="1111" />
+				<PackageAppData Key="Data/OriginalSystemName" Value="System for Tool (Home)" />
+			</AppData>
+			<Roles>
+				<PackageRoleWithAll Name="Allow Role" Description="Role for access users">
+					<Users>
+						<MappedIdNameUnique ID="{$jstestsPackageAccessUser.ID}" Name="{$jstestsPackageAccessUser.FirstName}"/>
+					</Users>
+				</PackageRoleWithAll>
+				<PackageRoleWithAll Name="Deny Role" Description="Role for deny users">
+					<Users>
+						<MappedIdNameUnique ID="{$jstestsPackageNotAccessUser.ID}" Name="{$jstestsPackageNotAccessUser.FirstName}"/>
+					</Users>
+				</PackageRoleWithAll>
+				<PackageRoleWithAll Name="Allow By Group Role" Description="Role for access groups">
+					<Groups>
+						<MappedIdNameUnique ID="{$jstestsAccessGroup.ID}" Name="{$jstestsAccessGroup.Name}"/>
+					</Groups>
+				</PackageRoleWithAll>
+				<PackageRoleWithAll Name="Deny By Group Role" Description="Role for deny groups">
+					<Groups>
+						<MappedIdNameUnique ID="{$jstestsNoAccessGroup.ID}" Name="{$jstestsNoAccessGroup.Name}"/>
+					</Groups>
+				</PackageRoleWithAll>
+			</Roles>
+		</PackageForTest>
+		<PackageContentSecurityPolicy t:Id="pcsp-tests-v2" ScriptSrc="* 'self' 'unsafe-eval' 'unsafe-inline'" StyleSrc="* 'self' 'unsafe-inline'" PackageID="{$package-tests-v2.ID}" />
+
+		<BuildList t:Id="buildList-packages" t:Instantiator="memory">
+			<List>
+				<BuildListItem Name="package-base"/>
+				<BuildListItem Name="package-locked"/>
+				<BuildListItem Name="package-tests-v1"/>
+				<BuildListItem Name="pcsp-tests-v1"/>
+				<BuildListItem Name="package-tests-v2"/>
+				<BuildListItem Name="pcsp-tests-v2"/>
+			</List>
+		</BuildList>
+	</t:Templates>
+</t:Data>

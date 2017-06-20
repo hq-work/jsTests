@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<t:Data xmlns:t="http://www.enviance.com/2008/data-definition">
+	<t:Configuration>
+		<RegisterInstantiator Instantiator="userwithall-instantiator" Type="DdfDataGenerator.Instantiators.UserWithAllInstantiator, DdfDataGenerator" />
+		<RegisterInstantiator Instantiator="owner-user" Type="DdfDataGenerator.Instantiators.OwnerUserInstantiator, DdfDataGenerator" />
+	</t:Configuration>
+
+	<t:Templates>
+		<User t:BaseTemplate="{#default(EntityObject)}" Title="" Deleted="false" Company="" Addr1="" Addr2="" Addr3="" City="" PostalCode="" TelExt="" FaxNo="" MobileNo="" TimeZone="1" EmailHTMLEnabled="true" ExpirationDate="9999-12-31 00:00:00.000" Comments="" IsRevokeAccess="false" CultureID="1033" />
+		<UserWithAll t:BaseTemplate="{#default(User)}" t:Instantiator="userwithall-instantiator" Rights="24891647" Password="{#password(1111)}" FailedLogins="0" MustChangePassword="false"
+					 CanChangePassword="true" PasswordDoesNotExpire="true" Locked="false" HomeSystemID="{$system.ID}" GrantAccess="true" />
+		<User t:Id="user-owner" t:Instantiator="owner-user" t:InstantiatorParams="" t:BaseTemplate="{#nothing}" />
+	</t:Templates>
+</t:Data>
