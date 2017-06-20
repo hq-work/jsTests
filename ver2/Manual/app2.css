@@ -1,0 +1,297 @@
+﻿body {
+	margin: 0px;
+	padding: 10px;
+	background-color: #E2F2F1 /*#EEEEEE*/;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.hide {
+	display: none;
+}
+
+#app-header, #app-banner, #app-userAgent {
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+}
+
+#app-header, #app-banner, #app-userAgent {
+    margin: 0;
+    padding: 0;
+}
+
+#app-header {
+    padding: 0.5em 0 0.5em 0.5em;
+    color: #8699a4;
+    background-color: #244545;
+    font-size: 1.5em;
+    line-height: 1em;
+    font-weight: normal;
+    border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+}
+
+#app-header a {
+    text-decoration: none;
+    color: #c2ccd1;
+	
+	vertical-align: text-top;
+    margin-left: 5px;
+}
+
+
+#app-userAgent {
+    padding: 0.5em 1em 0.5em 1em;
+    background-color: #92A2A1;
+    color: #FFF;
+    text-shadow: rgba(0, 0, 0, 0.5) 2px 2px 1px;
+}
+
+#app-userAgent{
+    font-size: small;
+}
+
+#app-banner {
+    height: 5px;
+    font-size: 1px;
+}
+
+#app-header img.logo {
+	display: inline-block;
+	border: 0;
+	
+	/*background-color: #E2F2F1;*/
+	width: 25px;
+}
+
+#modulesContainer li {
+	background-color: #B2C2C1; /*#CCD6E4;*/
+	/*border: 1px solid #92A2A1; /*#99B1D8;*/
+	/*border-bottom-color: #829291;
+	border-right-color: #829291;*/
+	
+	line-height: 1em;
+}
+#modulesContainer li :hover, .mhover {
+	background-color: /*#DCDEEC*/ #C2D2D1 !important;
+	
+	cursor: pointer;
+	/*cursor: hand;*/
+}
+.app-start-panel {
+	background-color: #A2B2B1; /*#CCD6E4;*/
+	border: 1px solid #B2C2C1; /*#99B1D8;*/
+	border-bottom-color: #92A2A1;
+	border-right-color: #92A2A1;
+	
+	color: #555555;
+	font-family: Verdana;
+	font-size: 12px;
+	padding: 10px;
+	position: absolute;
+	min-width: 320px;
+	
+	right: 10px;
+	top: 96px;
+}
+
+.app-start-panel-header, .app-start-panel-footer {
+	border: 1px solid #efefef;
+	font-weight: bold;
+	padding: 5px;
+	cursor: move;
+	line-height: 1em;
+}
+
+.app-start-panel-header {
+	padding-bottom: 2px;
+	clear:both;
+}
+
+.app-start-panel-footer input {
+	cursor: auto;
+	width: 20px;
+	padding-left: 3px;
+}
+
+.app-start-panel-header .head-buttons  {
+	float:right;
+	margin-top: 3px
+}
+
+.app-start-panel-header .head-buttons:hover{
+	cursor: pointer;
+}
+
+.app-start-panel-header  .head-buttons b {
+	color: #444;
+	text-shadow:rgba(255, 255, 255, 0.5) 1px 1px 2px;
+}
+
+.app-start-panel-header  .head-buttons b.on {
+	color: White;
+	text-shadow:rgba(0, 0, 0, 0.5) 1px 1px 2px;
+}
+
+
+.app-modules {
+	/*border: 1px solid #efefef;*/
+	list-style-type: none;
+	margin: 0px;
+	padding: 2px; /*5px*/
+	
+	background-color: #B2C2C1;
+	
+	border: 2px solid #92A2A1; 
+	border-bottom-color: #C2D2D1;
+	border-right-color: #C2D2D1;
+}
+
+.app-buttons {
+	padding: 5px 0px 0px 0px;
+	text-align: center;
+}
+
+.app-run-button {
+	background-color: #546F9C;
+	border: 1px solid white;
+	color: white;
+	padding: 5px 30px;
+}
+
+/*Options Panel*/
+
+.app-options-panel {
+	border: 1px solid #cccccc;
+	width: 400px;
+	background-color: #D4E8B0;
+	font-size: 11px;
+	font-family: Verdana;
+	padding: 5px;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+.app-options-panel-body {
+	width: 100%;
+}
+
+.app-options-panel td {
+	padding: 2px 3px;
+}
+
+.app-options-panel select {
+	width: 100px;
+}
+
+.app-options-panel-btn {
+	background-color: #9EAD83;
+	border: 1px solid white;
+	color: white;
+	padding: 5px;
+	cursor: pointer;
+}
+
+.app-options-panel-tab {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 14px;
+	height: 14px;
+	line-height: 14px;
+	font-size: 14px;
+	border: 1px solid white;
+	background-color: #9EAD83;
+	cursor: pointer;
+	color: white;
+}
+
+/* QUnit extentions */
+#punit-tests li .runtime {
+	float: right;
+	font-size: smaller;
+}
+
+.punit-assert-list {
+	margin-top: 0.5em;
+	padding: 0.5em;
+
+	background-color: #FFF;
+
+	border-radius: 5px;
+}
+
+/*#punit-tests li.running {
+	
+}*/
+
+#moduleTabs { display: inline; margin-left: 0; padding-left: 0 }
+#moduleTabs li { display:inline-block; *display: inline; line-height: 32px; cursor:pointer; }
+#moduleTabs li span:hover { background-color:#6C87B4;}
+#moduleTabs li span { white-space: nowrap; }
+
+.app-modules span {
+	*float: left;
+}
+.app-modules span.runtimer, .app-modules span.fintimer, .app-modules span.failtimer {
+	margin-top: 3px; /* 1px;*/
+	float: right;
+	margin-left: 10px
+}
+.app-modules span.fintimer {
+	color: #7c914c;
+}
+
+.app-modules span.failtimer {
+	color: #A12c2c;
+}
+
+.app-modules li {
+	clear: both;
+}
+
+.app-modules li span img {
+	margin-left: 3px;
+	width: 16px;
+	height: 16px;
+	border: 0;
+	margin-bottom: -4px;
+}
+
+.app-modules label.caption, .app-start-panel-header label.caption {
+	white-space: nowrap;
+	max-width: 225px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: inline-block;
+}
+
+.app-modules label.caption {
+	margin-top: 3px;
+}
+
+#modules-wrapper {
+	max-height: 450px;
+	overflow: scroll;
+	overflow-x: hidden;
+	border: 1px solid #efefef;
+	margin: 3px 0px;
+}
+
+/*#modulesContainer label.caption b.hide {
+	display: inline;
+}*/
+
+#modulesContainer label.caption b { /* ok, nok, prog > ( count, max-count )  */
+	font-weight: normal;
+}
+

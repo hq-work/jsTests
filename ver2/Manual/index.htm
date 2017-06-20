@@ -5,16 +5,25 @@
 		<title>Enviance REST API Unit Tests</title>
 		<link rel="stylesheet" href="punit.css" />
 		<link rel="stylesheet" href="app.css" />
-		<script language="javascript" type="text/javascript" src="../../../Packages/Libs/jquery.1.8.3.min.js"> </script>
+		<script language="javascript" type="text/javascript" src="../../Libs/jquery.1.8.3.min.js"> </script>
 		<script language="javascript" type="text/javascript" src="jquery-ui.1.9.2.min.js"> </script>
-		<script language="javascript" type="text/javascript" src="../../../Packages/Libs/json2.js"> </script>
+		<script language="javascript" type="text/javascript" src="../../Libs/json2.js"> </script>
 		<script type="text/javascript">
+			// Tricks to move in trusted zone
+			/*{
+				var l = location, p = l.pathname.replace(/(^..)(:)/, "$1$$");
+				
+				if(l.pathname != p)
+					l.href = l.protocol + "//127.0.0.1" + p;
+			}*/
+		
+		
 			//Workaround: disable envianceSdk encapsulation
 			var envianceSdk = { };
 			envianceSdk._seal = function() {
 			};
 		</script>
-		<script language="javascript" type="text/javascript" src="../../../Packages/Api/Enviance.Packages.ver2.js"> </script>
+		<script language="javascript" type="text/javascript" src="../../Api/Enviance.Packages.ver2.js"> </script>
 		<script type="text/javascript">
 			var options = { };
 			if (typeof window.localStorage == "object") {
@@ -29,11 +38,11 @@
 				}
 			}
 
-			envianceSdk.packages.init(options, function() {
+			/*envianceSdk.packages.init(options, function() {
 				envianceSdk.configure({
 					refreshPageOnUnauthorized: false
 				});
-			});
+			});*/
 
 			authConfig = {
 				//accessUserName: "jstestsAccessUser",
@@ -237,5 +246,18 @@
 		<script type="text/javascript" src="../tests.packages.userData.js"> </script>
 		<script type="text/javascript" src="../tests.packages.eql.js"> </script>
 		<textarea id="qunit-teamcity-log" style="display: none" rows="0" cols="0"></textarea>
+		<div style="position: fixed !important; border: solid 1px #AAA; height:150px; bottom:0; left: 0; right: 0; background-color:#EEE;">
+			<div style="position: relative !important; border-bottom: solid 1px #CCC; height:26px; top:0; left: 0; right: 0; background-color:#EEE;">
+			<i> *** </i><b>Debug Console</b><i></i>
+			</div>
+			<div style="position: relative !important; top:0; bottom:0; left: 0; right: 0; background-color:#F0F0F0; height:122px; max-height:123px; overflow: auto; padding: 2px 1px 2px 5px; font-family: Consolas, Courier New;" >
+			aaaa<br />
+			aaaa<br />
+			aaaaaaaa<br />
+			aaaa<br />
+			aaaa<br />
+
+			</div>
+		</div>
 	</body>
 </html>

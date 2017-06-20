@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Enviance REST API Unit Tests</title>
+		<link rel="stylesheet" href="app2.css" />
+		<!-- <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"> -->
+		<script language="javascript" type="text/javascript" src="../../Libs/jquery.1.8.3.min.js"> </script>
+		<script language="javascript" type="text/javascript" src="jquery-ui.1.9.2.min.js"> </script>
+		<script language="javascript" type="text/javascript" src="../../Libs/json2.js"> </script>
+		<script type="text/javascript">
+			//Workaround: disable envianceSdk encapsulation
+			var envianceSdk = { };
+			envianceSdk._seal = function() {
+			};
+			
+		</script>
+		<!-- -->
+		<script language="javascript" type="text/javascript" src="../../Api/Enviance.Packages.ver2.js"> </script>
+		<!-- -->
+		
+	</head>
+
+	<body>
+		<script type="text/javascript" src="dconsole.js"></script>
+		<script type="text/javascript" src="app2.js"></script>
+		<script type="text/javascript" src="App.Helpers2.js"></script>
+		<script type="text/javascript" src="App.UI2.js"></script>
+		<script type="text/javascript" src="App.SystemManager2.js"></script>
+		
+		
+		<h1 id="app-header">
+			<img class="logo" alt="logo" src="./logoMini2.png" ><a href="#"></a> 
+		</h1>
+		<h2 id="app-banner"></h2>
+		<h2 id="app-userAgent"></h2>
+	
+		<div id="startPanel" class="app-start-panel">
+			<div class="app-start-panel-header noselect">
+				<span><input id="selectAllCheckbox" type="checkbox" /><label class="caption" for="selectAllCheckbox">Modules</label></span>
+				<span class="head-buttons"><b class="opt" title="SDK Options">&nbsp;&#x2699;&nbsp;</b><b class="con" title="Debug Log">&nbsp;&#x1F4DC;&nbsp;</b><b class="collapse" title="Collapse/Expand Panel">&nbsp;&#x21F3;&nbsp;</b></span>
+			</div>
+			<div id="modules-wrapper">
+				<ul id="modulesContainer" class="app-modules noselect" >
+					<!--
+					<li for="cb_30" class=""><span><input class="" id="cb_30" name="cb_30" type="checkbox"><label class="caption" for="cb_30"><b class="ok hide">✔</b><b class="nok hide">✖</b><b class="prog">(<b class="count">567</b>/<b class="max-count">999</b>)</b> SDK Infrastructure</label></span><span id="timer_30" class="runtimer">1:30:45.560</span></li>
+					<li for="cb_31" class=""><span><input class="" id="cb_31" name="cb_31" type="checkbox"><label class="caption" for="cb_31"><b class="ok hide">✔</b><b class="nok hide">✖</b><b class="prog">(<b class="count">567</b>/<b class="max-count">999</b>)</b> Utilities</label></span><span id="timer_310" class="runtimer">1:30:45.560</span></li>
+					<li for="cb_32" class=""><span><input class="hide" id="cb_32" name="cb_32" type="checkbox"><label class="caption" for="cb_32"><b class="ok hide">✔</b><b class="nok hide">✖</b><b class="prog">(<b class="count">567</b>/<b class="max-count">999</b>)</b> Eql</label></span><span id="timer_32" class="runtimer">1:30:45.560</span></li>
+					<li for="cb_33" class=""><span><input class="hide" id="cb_33" name="cb_33" type="checkbox"><label class="caption" for="cb_33"><b class="ok hide">✔</b><b class="nok hide">✖</b><b class="prog">(<b class="count">567</b>/<b class="max-count">999</b>)</b> Authentication<img src="warning16.png" title="This module may conflict with each of other modules\nin parallel mode. It is better to run it standalone."></label></span><span id="timer_33" class="runtimer">1:30:45.560</span></li>
+					-->
+				</ul>
+			</div>
+			<div class="app-start-panel-footer">
+				<div class="poolSize">
+					Pool Size: <input id="modulesPoolSize" type="text" value="5" disabled title="Count of parallel threads [2..5]
+Required for test running in parallel mode with single system." /> <br>
+				</div>
+				<div class="poolSize DB hide">
+					Run on DB pool (size: <span id="dbsAvailable">0</span>): <input id="modulesRunOnDBpool" type="checkbox" checked  />
+				</div>
+			</div>
+			<div class="app-buttons hide">
+				<input id="runButton" type="button" value="Run" class="app-run-button" />
+				<input id="parallelButton" type="button" value="Run Parallel" class="app-run-button" />
+			</div>
+			<p class="error hide">* Suitable system is not found</p>
+		</div>
+	</body>
+</html>
