@@ -181,6 +181,7 @@ function UnitTestsApplication() {
 };
 
 UnitTestsApplication.prototype = {
+	_modules: [],
 	GetBuildNumber: function() {
 		var self = this;
 		
@@ -205,10 +206,10 @@ UnitTestsApplication.prototype = {
 		this.GetBuildNumber();
 		this.$userAgent.html(navigator.userAgent);
 		
-		var item = self._restoreSdkOptions();
-		if (item) {
+		var opts = this._restoreSdkOptions();
+		if (opts) {
 			try {
-				self.SdkOptions = JSON.parse(item);
+				this.sdkOptions = JSON.parse(opts);
 			} catch (e) {} 
 		}
 		
@@ -222,6 +223,7 @@ UnitTestsApplication.prototype = {
 		.done(function( obj ) {
 			//jsLog.WriteLn( "Script loaded: appConfig.js" );
 			self.config = getAppConfig();
+			self.sdkOptions = $.extend(self.config.options.init, self.sdkOptions);
 			
 			var id = 1;
 			for(var caption in self.config.moduleDefs){
@@ -252,7 +254,8 @@ UnitTestsApplication.prototype = {
 		*/
 		return dfdInit;
 	},
-	SdkOptions: {},
+	sdkOptions: {},
+	configOptions: {},
 	
 	configureEnvironment: function(){
 				/*
@@ -269,21 +272,24 @@ UnitTestsApplication.prototype = {
 					// continue
 				});
 			});*/
-		return envianceSdk.packages.init(this.SdkOptions,
-			function () {
-				envianceSdk.packages.packageWebPath = "/CustomApp/8ebdc552-bf1b-4744-8ac7-a8e7c571095c/";
-				envianceSdk.configure({
-					refreshPageOnUnauthorized: false,
-					packageId: "8ebdc552-bf1b-4744-8ac7-a8e7c571095c",
-					baseAddress: "http://jalapeno-sr1-rest.dev.enviance.kiev.ua"
-				});
-			});
+		var self = this;
+		this.configOptions = $.extend( { refreshPageOnUnauthorized: false }, this.config.options.config );
+		
+		//envianceSdk.packages.packageWebPath = "/CustomApp/8ebdc552-bf1b-4744-8ac7-a8e7c571095c/";
+		return envianceSdk.packages.init(this.sdkOptions, function () {	envianceSdk.configure(self.configOptions); });
 	},
 	
 	getModules: function() {
 		return this._modules;
 	},
 	
+	getModuleById: function(id) {
+		for (var i = 0; i < this._modules.length; i++) {
+			var m = this._modules[i];
+			if (m.id == id) return m;
+		}
+		return null;
+	},
 	
 	/*_registerQUnitBegin: function () {
 		var self = this;

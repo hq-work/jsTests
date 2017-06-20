@@ -13,6 +13,16 @@ function qutRunnerApp() {
 	
 	//this._modules = [];
 	
+	if(!this._init()) return;
+	
+	this.configureEnvironment()
+		.fail(function(){
+			self.messageToParent("Warning", { message: "Can't configure runner environment!" }, system.id );
+		})
+		.always(function(){
+		
+		});
+	
 	/*this._init()
 		.done(function(){
 			self.ui = new UnitTestsApplication.UI(self);
@@ -71,86 +81,48 @@ function qutRunnerApp() {
 };
 
 qutRunnerApp.prototype = {
+	parentWindow: window.parent !== window && window.parent,
+	system: null,
+	
 	_init: function () {
-		var self = this;
-		var dfdInit = jQuery.Deferred();
-		
-		var item = self._restoreSdkOptions();
-		if (item) {
-			try {
-				self.SdkOptions = JSON.parse(item);
-			} catch (e) {} 
+		if(!this.parentWindow || !this.getApp()){
+			jQuery('.err-req-parent').show();
+			return false;
 		}
 		
-		$.getScript( "appConfig.js" )
-		.fail(function( jqxhr, settings, exception ) {
-			var errorMessage = self.helper.formatErrorResponse(jqxhr, settings, exception);
-			jsLog.Error( "Can't load appConfig.json: " + errorMessage );
-			
-			dfdInit.reject();
-		})
-		.done(function( obj ) {
-			//jsLog.WriteLn( "Script loaded: appConfig.js" );
-			self.config = getAppConfig();
-			
-			for(var caption in self.config.moduleDefs){
-				var m = self.config.moduleDefs[caption];
-				m.caption = caption;
-				
-				self._modules.push(m);
-			}
-			
-			dfdInit.resolve(); // if(callback) callback();
-		});
+		// TO DO:
+		// get System data
 		
 		
-		/*this._html = new UnitTestsApplication.HtmlHelper(this);
-		var isSingleMode = this._isSingleTestMode();
-		var isDbParallel = this._isDbParallel();
 		
-		var self = this;
-		this._systemManager._init(function () {
-			self._ui = new UnitTestsApplication.Ui(self, !isSingleMode);
-
-			self._ensureQUnitInitFired();
-			
-			if (isSingleMode || isDbParallel) {
-				self.run(self.getModuleIndexesForSingleMode());
-			}
-		});
-		*/
-		return dfdInit;
+		return true;
 	},
-	SdkOptions: {},
+	
 	
 	configureEnvironment: function(){
-				/*
-		// call it for every separated testframe
-		envianceSdk.packages.init(SdkOptions, function() {
-				envianceSdk.configure({
-					refreshPageOnUnauthorized: false
-				})
-				.fail(function( jqxhr, settings, exception ) {
-					var errorMessage = this.helper.formatErrorResponse(jqxhr, settings, exception);
-					jsLog.Error( "envianceSdk.packages.init Error: " + errorMessage );
-				})
-				.done(function( script, textStatus ) {
-					// continue
-				});
-			});*/
-		return envianceSdk.packages.init(this.SdkOptions,
-			function () {
-				envianceSdk.packages.packageWebPath = "/CustomApp/8ebdc552-bf1b-4744-8ac7-a8e7c571095c/";
-				envianceSdk.configure({
-					refreshPageOnUnauthorized: false,
-					packageId: "8ebdc552-bf1b-4744-8ac7-a8e7c571095c",
-					baseAddress: "http://jalapeno-sr1-rest.dev.enviance.kiev.ua"
-				});
-			});
+		var options = this.getAppOptions();
+		
+		return envianceSdk.packages.init(options.sdk, function () {	envianceSdk.configure(options.config); });
 	},
 	
-	getModules: function() {
-		return this._modules;
+	
+	
+	getApp: function(){
+		return parentWindow.App;
+	},
+	
+	getAppOptions: function(){
+		var app = this.getApp();
+		return { sdk: app.sdkOptions, config: app.configOptions };
+	},
+	
+	/* msgType, params, obj */
+	messageToParent: function(){
+		var self = this;
+		var args = arguments;
+		this.parentWindow.setTimeout(function () {
+			self.parentWindow.ui.childCallback.apply(self.parentWindow.ui, args);
+		}, 0);
 	},
 	
 	
@@ -283,6 +255,10 @@ qutRunnerApp.prototype = {
 	},
 	_OPTIONS_PANEL_KEY: 'UTApp_SdkOptions'
 };
+
+if(typeof UnitTestsApplication == 'undefined'){
+	global['UnitTestsApplication'] = {};
+}
 
 qutRunnerApp.modules = [];
 UnitTestsApplication.registerModule = function(module) {

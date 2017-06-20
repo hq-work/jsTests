@@ -238,7 +238,35 @@ UnitTestsApplication.SystemManager.prototype = {
 		return null;
 	},
 	
-	attachDb: function (modName) {
+	
+	
+	
+	getFreeSystem: function(){
+		for (var i = 0; i < this.systemList.length; i++) {
+			var s = this.systemList[i];
+			if (!s.moduleIds) {
+				return s;
+			}
+		}
+		return null;
+	},
+	
+	moduleAdvance: function(s){
+		if(s.moduleIds.length > ++s.curModIdx){
+			return true;
+		}
+		s.moduleIds = null;
+		return false;
+	},
+	
+	initSystem: function(s, modSet, seqIdx){
+		s.moduleIds = modSet;
+		s.curModIdx = 0;
+		s.curSeqIdx = seqIdx || 0;
+	},
+	
+	
+	/*attachDb: function (modName) {
 		for (var i = 0; i < this.systemList.length; i++) {
 			var s = this.systemList[i];
 			if (!s.modName) {
@@ -277,12 +305,13 @@ UnitTestsApplication.SystemManager.prototype = {
 				/*var envSys = this._getEnvianceSystem();
 				if (envSys) {
 					envSys.set_Current(envSys.getSystemById(sys.id));
-				}*/
+				}*/ 
+				/*
 			}
 			if(!this.isPrimeUser())
 				QUnit.urlParams.dbsuffix = suffix;
 		}
-	},
+	},*/
 	_getParentManager: function () {
 		var parentWin = window.parent !== window && window.parent;
 		var topWin = window.top !== window && window.top !== window.parent && window.top;

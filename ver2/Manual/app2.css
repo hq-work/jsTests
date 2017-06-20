@@ -295,3 +295,14 @@
 	font-weight: normal;
 }
 
+
+.err-req-parent {
+	background-color: #FF3300;
+	border-color: #FF6666;
+	color:White;
+	padding: 5px;
+	font-family: Verdana, Arial, Helvetica;
+	font-weight: bold;
+	display:none;
+}
+

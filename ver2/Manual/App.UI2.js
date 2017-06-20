@@ -39,6 +39,8 @@ UnitTestsApplication.UI = function(app) {
 };
 
 UnitTestsApplication.UI.prototype = {
+	_moduleSetSeq: [],
+	_moduleSetIndex: 0,
 	_init: function (useStartPanel) {
 		this._populateStartPanel();
 		this._initStartPanel();
@@ -119,7 +121,7 @@ UnitTestsApplication.UI.prototype = {
 			}
 		});
 		
-		$('li', this.$modulesContainer).hover(
+		this.$liModules = $('li', this.$modulesContainer).hover(
 			function() {
 				$( this ).addClass( "mhover" );
 			}, function() {
@@ -178,14 +180,54 @@ UnitTestsApplication.UI.prototype = {
 			$('.error', this.$startPanel).removeClass('hide');
 		}
 		
-		
 		// buttons
 		if(!this._isUserCanRunDBTests)return;
-		
+
 		this.$runButton.click(function() {
-			var moduleIndexes = self._getSelectedModuleIndexes();
+			var moduleIds = self._getSelectedModuleIndexes();
 			
+			if(!moduleIds.length)return;
 			
+			// hide not selected checkboxes and hide cbs
+			
+			self.$liModulesSelected = self.$liModules.filter(function(){
+				var id = $(this).attr('for').substring(3);
+				return moduleIds.indexOf(id) > -1;
+			});
+			
+			self.$liModules.each(function(){
+				var $li = $(this);
+				var id = $li.attr("for").substring(3);
+				if(moduleIds.indexOf(id) < 0){
+					$li.hide();
+				}
+				else{
+					$li.find('#cb_' + id).hide();
+				}
+			});
+			
+			self._populateModSetSeq(moduleIds, false);
+			
+			self._runSystem(moduleIds);
+			
+			// TO DO: deactivate on refresh
+			self.$liModulesSelected.click(
+				function() {
+					var $li = jQuery(this);
+
+					$li.addClass('selected');
+					if(self.$liSelected)$self.$liSelected.removeClass('selected');
+					self.$liSelected = $li;
+					
+					if($self.$frameSelected)$self.$frameSelected.hide();
+					self.$frameSelected = $li.data('frame');
+					self.$frameSelected.show();
+					
+					// TO DO: send message to iframe to scroll to selected module
+				}
+			);
+			
+			self.$liModulesSelected.first().trigger('click');
 			
 			/*QUnitTest.count = 0;
 			self.app.run(moduleIndexes);
@@ -287,6 +329,7 @@ UnitTestsApplication.UI.prototype = {
 		this.app.storage.ls.setItem(this._START_PANEL_POS_KEY, pos.top + ',' + pos.left);
 		this.app.storage._setArray(this._BULK_MODE_MODULES_KEY, indexes);
 	},
+	
 	_restoreStartPanelPos: function() {
 		var pos = this.app.storage.ls.getItem(this._START_PANEL_POS_KEY);
 		if (pos == null) {
@@ -296,7 +339,135 @@ UnitTestsApplication.UI.prototype = {
 		return { 'top': pos[0], 'left': pos[1] };
 	},
 	
+	_runSystem: function (moduleSet, system) {
+		var self = this;
+		var s = system || this.app.systemManager.getFreeSystem();
+		if(!s){
+			return false;
+		}
+		this.app.systemManager.initSystem(s, moduleSet, self._moduleSetIndex);
+		
+		var $ifr = this.$createIFrameBySystem(s);
+		$ifr.appendTo(document.body);
+
+		// link checkbox texts with iframe
+		this.$liModulesSelected.filter(function(){
+			var id = $(this).attr('for').substring(3);
+			return moduleSet.indexOf(id) > -1;
+		}).each(function(){
+			$(this).data('frame', $ifr);
+		});
+		
+		return true;
+	},
+
+	$createIFrameBySystem: function(s){
+		var location = window.location;
+		var url = location.protocol + "//" + location.host + location.pathname.substring(0, str.lastIndexOf("/")) + 'runner.htm?sid=' + s.id;
 	
+		function getDocHeight(doc) {
+			doc = doc || document;
+			// stackoverflow.com/questions/1145850/
+			var body = doc.body, html = doc.documentElement;
+			var height = Math.max( body.scrollHeight, body.offsetHeight, 
+				html.clientHeight, html.scrollHeight, html.offsetHeight );
+			return height;
+		}
+		
+		function setIframeHeight(id) {
+			var ifrm = document.getElementById(id);
+			var doc = ifrm.contentDocument? ifrm.contentDocument: 
+				ifrm.contentWindow.document;
+			ifrm.style.visibility = 'hidden';
+			ifrm.style.height = "10px"; // reset to minimal height ...
+			// IE opt. for bing/msn needs a bit added or scrollbar appears
+			ifrm.style.height = getDocHeight( doc ) + 4 + "px";
+			ifrm.style.visibility = 'visible';
+		}
+	
+		return jQuery('<iframe id="iMod_' + s.curSeqIdx + '" src="' + url + '" frameBorder="0" style="display:none;width: 99.9%;height:800px" ></iframe>')
+			.bind("load, ready, resize", function(){ setIframeHeight(this.id); });
+	},
+	
+	_populateModSetSeq: function(moduleIds, isParallel){
+		self._moduleSetIndex = 0;
+		var ss = self._moduleSetSeq = [];
+		var i;
+		
+		if(isParallel){
+			var baseSystemOnly = [];
+			
+			for(i=0; i<moduleIds.length; i++){
+				var mId = moduleIds[i];
+				var m = this.app.getModuleById(mId);
+				if(m.baseSystemOnly)baseSystemOnly.push(mId);
+				else ss.push([mId]);
+			}
+			if(baseSystemOnly.length){
+				ss.unshift(baseSystemOnly);
+			}
+		}
+		else {
+			for(i=0; i<moduleIds.length; i++){
+				ss.push([moduleIds[i]]);
+			}
+		}
+	},
+	
+	_advanceModSet: function(){
+		this._moduleSetIndex++;
+		if(this._moduleSetIndex < this._moduleSetSeq.length)
+			return self._moduleSetSeq[this._moduleSetIndex];
+		else return null;
+	},
+	
+	runnerCallback: function (type, details, sid) {
+		var modIndex, modTab, text, modName, modTests;
+		var s, self = this;
+		
+		switch(type) {
+			case 'moduleDone':
+				s = this.getSystemById(sid);
+				var ids = s.moduleIds;
+				var isModuleAdvance = this.app.systemManager.moduleAdvance(s);
+				
+				// update global statistics
+				
+				if(isModuleAdvance){
+					// refresh stats
+					// call this runnerCallback with moduleStart
+				}
+				else {
+					// get next moduleSet
+					ids = this._advanceModSet();
+					if(ids)
+					{
+						this._runSystem(ids, s);
+					}
+				}
+				
+				/*var moduleIndexes = this._getSelectedModuleIndexes();
+				if (this._nextPoolingIndex < moduleIndexes.length) {
+					var moduleTabs = jQuery('#moduleTabs');
+					var moduleIFrames = jQuery('#moduleIFrames');
+					var moduleIndex = moduleIndexes[this._nextPoolingIndex++];
+
+					this._poolNewModule(moduleIndex, moduleIFrames, moduleTabs);
+				}*/
+				break;
+			case 'Error':
+				s = this.getSystemById(sid);
+				jsLog.Error("["+ s.name + "]: " + details.message);
+				break;
+			case 'Warning':
+				s = this.getSystemById(sid);
+				jsLog.Warn("["+ s.name + "]: " + details.message);
+				break;
+			default:
+				break;
+		}
+	},
+
 
 /*	_renderOptionsPanel: function() {
 		var html = '<div class="app-options-panel-tab" id="optionsPanelTab" > &#x25BC;</div>'
@@ -436,8 +607,8 @@ UnitTestsApplication.UI.prototype = {
 
 		this._assignModuleIFrame(moduleIndex, parent);
 	},
-	
-	_assignModuleIFrame: function (moduleIndex, parent) {
+*/	
+/*	_assignModuleIFrame: function (moduleIndex, parent) {
 		var modName = this._app.getModuleName(moduleIndex);
 		var self = this;
 		setTimeout(function () {
@@ -458,8 +629,8 @@ UnitTestsApplication.UI.prototype = {
 			}
 		}, 0);
 	},
-
-	_switchModuleTab: function (moduleIndex) {
+*/
+/*	_switchModuleTab: function (moduleIndex) {
 		if (this._selectedModuleIndex == moduleIndex) return;
 		
 		if (this._selectedModuleIndex >= 0)
@@ -471,8 +642,8 @@ UnitTestsApplication.UI.prototype = {
 		this._moduleTabs[moduleIndex].css({ "background-color": "#849FCC" });
 		jQuery('#iModule_' + moduleIndex).toggle(true);
 	},
-
-	_childCallback: function (type, details, module) {
+*/
+/*	_childCallback: function (type, details, module) {
 		var modIndex, modTab, text, modName, modTests;
 		var self = this;
 		
