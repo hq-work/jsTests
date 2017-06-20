@@ -124,6 +124,8 @@ function UnitTestsApplication() {
 	
 	this._modules = [];
 	
+	envianceSdk.configure({ resubmitConfirmationOnError: false });
+	
 	this._init()
 		.done(function(){
 			self.ui = new UnitTestsApplication.UI(self);
@@ -170,11 +172,6 @@ function UnitTestsApplication() {
 	/*
 	// this._registerQUnitBegin();
 	//? this._modules = UnitTestsApplication.modules;
-	
-	this._html = null;
-	//this._ui = null;
-	
-	//envianceSdk.configure({ resubmitConfirmationOnError: false });
 	
 	this._systemManager = new UnitTestsApplication.SystemManager(this, function () {
 	
@@ -235,8 +232,8 @@ UnitTestsApplication.prototype = {
 				m.id = id++;
 				self._modules.push(m);
 			}
-			
-			dfdInit.resolve(); // if(callback) callback();
+			// load modules
+			self.loadTestModules().always(function(){ dfdInit.resolve();})
 		});
 		
 		
@@ -257,6 +254,30 @@ UnitTestsApplication.prototype = {
 		*/
 		return dfdInit;
 	},
+	
+	loadTestModules: function(){
+		var self = this;
+		var dfdMLoad = $.Deferred();
+		
+		var counter = 0;
+		for(var i=0; i<self._modules.length; i++){
+			var m = self._modules[i];
+			
+			$.getScript(m.path).done(function(){
+				// TO DO:
+				// maybe sync label & execute
+			}).fail(function(jqxhr, settings, exception ){
+				m.error = self.helper.formatErrorResponse(jqxhr, settings, exception);
+			}).always(function(){
+				if(++counter == self._modules.length)dfdMLoad.resolve(self._modules);
+			});
+		}
+		
+		if(!self._modules.length)dfdMLoad.resolve([]);
+		
+		return dfdMLoad.promise();
+	},
+	
 	sdkOptions: {},
 	configOptions: {},
 	
@@ -422,6 +443,20 @@ UnitTestsApplication.prototype = {
 		return this.storage.ls.getItem(this._OPTIONS_PANEL_KEY);
 	},
 	_OPTIONS_PANEL_KEY: 'UTApp_SdkOptions'
+};
+
+UnitTestsApplication.registerModule = function(module) {
+	//var m = qutRunnerApp.modules[qutRunnerApp.loadedModuleCounter++];
+	//$.extend(m, module);
+	
+	var error = new Error();
+	if ( !error.stack ) {
+		try {
+			throw error;
+		} catch ( err ) {
+			error = err;
+		}
+	}
 };
 
 var App = null;

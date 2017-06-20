@@ -14,11 +14,52 @@ QUnit.config.autostart = false;
 
 (function( global ) {
 
+	function id( name ) {
+		return document.getElementById( name );
+	}
+	
+	function getNameHtml( name, module ) {
+		var nameHtml = "";
+
+		if ( module ) {
+			nameHtml = "<span class='module-name'>" + escapeText( module ) + "</span>: ";
+		}
+
+		nameHtml += "<span class='test-name'>" + escapeText( name ) + "</span>";
+
+		return nameHtml;
+	}
+	
+	function escapeText( s ) {
+		if ( !s ) {
+			return "";
+		}
+		s = s + "";
+
+		// Both single quotes and double quotes (for attributes)
+		return s.replace( /['"<>&]/g, function( s ) {
+			switch ( s ) {
+			case "'":
+				return "&#039;";
+			case "\"":
+				return "&quot;";
+			case "<":
+				return "&lt;";
+			case ">":
+				return "&gt;";
+			case "&":
+				return "&amp;";
+			}
+		} );
+	}
+	
 	function qutRunnerApp() {
 		var self = this;
 		
 		this.helper = UnitTestsApplication.Helper;
 		this.storage = this.helper.getStorage();
+		
+		envianceSdk.configure({ resubmitConfirmationOnError: false });
 		
 		if(!this._init()) return;
 		
@@ -49,7 +90,7 @@ QUnit.config.autostart = false;
 						//QUnit.init(); <-- deprecated, do not use that shit!!!
 						self.attachModules();
 						
-						var c = QUnit.config;
+						//var c = QUnit.config;
 						QUnit.start();
 					});
 			});
@@ -136,6 +177,18 @@ QUnit.config.autostart = false;
 			}, 0);
 		},
 		
+		requestToApp: function(func, params, meta){
+			var dfdParent = $.Deferred();
+			var self = this;
+			
+			this.parentWindow.setTimeout(function () {
+				var res = func.apply(self.getApp(), params);
+				dfdParent.resolve(res, meta);
+			}, 0);
+			
+			return dfdParent.promise();
+		}
+		
 		loadTestModules: function(){
 			var dfdMLoad = $.Deferred();
 			
@@ -157,18 +210,55 @@ QUnit.config.autostart = false;
 
 		registerQUnitEvents: function(){
 			var self = this;
+			
+			// !!! just test QUnit overriding: replace QUnit reporters
+				var cbs = QUnit.config.callbacks;
+				var qUnitReporterTestStart = cbs.testStart.pop();
+				
+				QUnit.testStart(function( details ) {
+					var running, testBlock, bad;
+
+					testBlock = id( "qunit-test-output-" + details.testId );
+					if ( testBlock ) {
+						testBlock.className = "running";
+					} else {
+
+						// Report later registered tests
+						appendTest( details.name, details.testId, details.module );
+					}
+
+					running = id( "qunit-testresult" );
+					if ( running ) {
+						bad = QUnit.config.reorder && defined.sessionStorage &&
+							+self.storage.getItem( "qunit-test-" + details.module + "-" + details.name );
+
+						running.innerHTML = ( bad ?
+							"Rerunning previously failed test: <br />" :
+							"Running: <br />" ) +
+							getNameHtml( details.name, details.module );
+					}
+
+				});
+			
 			// TO DO: register messaging of progress
 			QUnit.begin(function (details) {
 				$('#qunit-header,#qunit-testrunner-toolbar,#qunit-userAgent').remove();
 				details.qUnitVersion = QUnit.version;
 				
 				//self.onQUnitBegin(this, details);
+				
+				
+				
+				
 				self.messageToParent('begin', details, self.system.id);
 			});
 
 			QUnit.moduleStart(function (details) {
 				self.setSystem(self.system.id)
 				
+				var usefulDefs = UnitTestsApplication.Helper.getDefault(self.getApp());
+				var testEnvironment = QUnit.config.currentModule.testEnvironment;
+				jQuery.extend(testEnvironment, usefulDefs);
 				
 				//self._modTestIndex = 0;
 				//details.start =	self._modStart = +new Date();
@@ -190,6 +280,7 @@ QUnit.config.autostart = false;
 				
 				self.messageToParent('testStart', details, self.system.id);
 			});
+			
 
 			// On Assertion complete
 			QUnit.log(function (details) {
@@ -283,6 +374,9 @@ QUnit.config.autostart = false;
 					moduleIndexes.push(j);
 				}
 			}
+			var theApp = this.getApp();
+			
+			var appConfig = theApp.config.defaults || {};
 		
 			for (j = 0; j < moduleIndexes.length; j++) {
 				var mIdx = moduleIndexes[j];
@@ -290,6 +384,10 @@ QUnit.config.autostart = false;
 				m.execute();
 				
 				var qm = QUnit.config.currentModule;
+				var testEnvironment = QUnit.config.currentModule.testEnvironment;
+				
+				jQuery.extend(testEnvironment, appConfig, m.config || {} );
+				
 				var moduleInfo = {
 					label: m.label,
 					caption: m.caption,

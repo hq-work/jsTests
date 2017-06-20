@@ -18,10 +18,10 @@ function getAppConfig(){
 						</system.webServer>
 					</configuration>
 				*/
-				packageWebPath: "/CustomApp/8ebdc552-bf1b-4744-8ac7-a8e7c571095c/" 
+				packageWebPath: "/CustomApp/5e2dcd80-4e32-45b8-bf76-249324d151ae/" 
 			},
 			config: { // configure when init is completed
-				packageId: "8ebdc552-bf1b-4744-8ac7-a8e7c571095c",
+				packageId: "5e2dcd80-4e32-45b8-bf76-249324d151ae",
 				baseAddress: "http://jalapeno-sr1-rest.dev.enviance.kiev.ua"
 			}
 		},

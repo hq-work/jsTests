@@ -113,7 +113,7 @@ function executeSdkInfrastructureTests() {
 		
 		envianceSdk._private._buildRequestHeaders = function(denySystemId) {
 			var headers = oldBuildRequestHeaders(denySystemId);
-			headers["Authorization"] = "Basic " + Base64.encode(self.accessUserName + ":" + authConfig.password);
+			headers["Authorization"] = "Basic " + Base64.encode(self.accessUserName + ":" + self.password);
 			return headers;
 		};
 
@@ -135,7 +135,7 @@ function executeSdkInfrastructureTests() {
 
 		envianceSdk._private._buildRequestHeaders = function(denySystemId) {
 			var headers = oldBuildRequestHeaders(denySystemId);
-			headers["Authorization"] = "Basic " + self.accessUserName + ":" + authConfig.password;
+			headers["Authorization"] = "Basic " + self.accessUserName + ":" + self.password;
 			return headers;
 		};
 
@@ -155,7 +155,7 @@ function executeSdkInfrastructureTests() {
 
 		envianceSdk._private._buildRequestHeaders = function(denySystemId) {
 			var headers = oldBuildRequestHeaders(denySystemId);
-			headers["Authorization"] = "Basic " + Base64.encode(self.accessUserName + "-" + authConfig.password);
+			headers["Authorization"] = "Basic " + Base64.encode(self.accessUserName + "-" + self.password);
 			return headers;
 		};
 

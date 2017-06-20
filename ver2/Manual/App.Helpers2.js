@@ -91,8 +91,9 @@ UnitTestsApplication.Helper =
 	formatErrorResponse: function (response, status, message) {
 		var msg;
 		if (response.error) {
-			if (typeof response.error === 'object')
+			if (typeof response.error === 'object'){
 				msg = response.error.message;
+			}
 			else if (typeof response.error !== 'function'){
 				var err = response.error;
 
@@ -119,12 +120,24 @@ UnitTestsApplication.Helper =
 
 		msg = msg || message || "Failed!";
 
-		if (response.error && response.error.details) {
-			for (var i = 0; i < response.error.details.length; i++) {
-				msg += "\n" + response.error.details[i].message;
+		if (response.error){
+			if(response.error.details) {
+				for (var i = 0; i < response.error.details.length; i++) {
+					var d = response.error.details[i];
+					msg += "\n" + d.tag + ": " + d.message;
+				}
+			}
+			if(response.error.detailXml){
+				var regex = /<error\s[.\s\=\w\"]*Message="([^"]*)/ig;
+				var matches = [];
+				var match;
+				while (match = regex.exec(response.error.detailXml)) {
+					matches.push(match[1]);
+				}
+				if(matches.length)
+					msg += "\n" + matches.join("\n");
 			}
 		}
-
 		return msg;
 	},
 	htmlEncode: function (html) {
@@ -159,9 +172,9 @@ UnitTestsApplication.Helper =
 	
 	formatRuntime: function (msec, m) {
 		return this.formatMinSecs(this.milisecToMinSecs(msec), m);
-	}
-	/*errorHandler: function (response, status, message, context, donotStart) {
-		var msg = UnitTestsApplication.TestContext.formatErrorResponse(response, status, message);
+	},
+	errorHandler: function (response, status, message, context, donotStart) {
+		var msg = UnitTestsApplication.Helper.formatErrorResponse(response, status, message);
 
 		ok(false, msg);
 		if (!donotStart) start();
@@ -171,7 +184,42 @@ UnitTestsApplication.Helper =
 		if (!errorThrown || jQuery.type(errorThrown) == "string" || typeof errorThrown["status"] == "undefined") {
 			result = envianceSdk._private._processError(result);
 		}
-		UnitTestsApplication.TestContext.errorHandler(result, status, errorThrown || result.status, null, donotStart);
-	},*/
+		UnitTestsApplication.Helper.errorHandler(result, status, errorThrown || result.status, null, donotStart);
+	},
+	getDefault : function (app) {
+		return {
+			formatErrorResponse: this.formatErrorResponse,
+			errorHandler: this.errorHandler,
+			errorHandlerAjax: this.errorHandlerAjax,
+			successHandler: this.successHandler,
+			accessUserName: app && app.systemManager.user.login,
+			accessUserId: app && app.systemManager.user.id,
+			originalSessionId : envianceSdk.getSessionId(),
+			originalSystemId : envianceSdk.getSystemId()
+		};
+	},
+		// Based on Java's String.hashCode, a simple but not
+	// rigorously collision resistant hashing function
+	generateHash: function( module, testName ) {
+		var hex,
+			i = 0,
+			hash = 0,
+			str = module + "\x1C" + testName,
+			len = str.length;
+
+		for ( ; i < len; i++ ) {
+			hash  = ( ( hash << 5 ) - hash ) + str.charCodeAt( i );
+			hash |= 0;
+		}
+
+		// Convert the possibly negative integer hash code into an 8 character hex string, which isn't
+		// strictly necessary but increases user understanding that the id is a SHA-like hash
+		hex = ( 0x100000000 + hash ).toString( 16 );
+		if ( hex.length < 8 ) {
+			hex = "0000000" + hex;
+		}
+
+		return hex.slice( -8 );
+	}
 };
 	
