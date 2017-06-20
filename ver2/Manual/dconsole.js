@@ -38,6 +38,8 @@
 		_minHeight:50,
 		$header: null,
 		$console: null,
+		errorCount: 0,
+		warningCount: 0,
 		Write: function(text, newLine){
 				this.$console.html(this.$console.html() + '<span>' + text + '</span>' + (newLine ? '<br />' : ''));
 		},
@@ -60,9 +62,11 @@
 		}, 
 		Warn: function(text){
 			this.WriteFormat(text,'warning',null,true);
+			this.warningCount++;
 		},
 		Error: function(text){
 			this.WriteFormat(text,'error',null,true);
+			this.errorCount++;
 		},
 		Show: function(){
 			this.$main.toggle(true);

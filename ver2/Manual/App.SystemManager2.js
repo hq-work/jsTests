@@ -4,13 +4,10 @@ UnitTestsApplication.SystemManager = function (app) {
 };
 
 UnitTestsApplication.SystemManager.prototype = {
-	//_systemUser: "jstestsAccessUser", // jstestsNotAccessUser
-	//_userPassword: "1111",
-	//_originalSystemName: "System for Tool (Home)",
-	
 	systemList: [],
 	homeSystem: null,
 	currentSystem: null,
+	userList: [],
 	user: {
 		login: null,
 		id: "",
@@ -23,7 +20,7 @@ UnitTestsApplication.SystemManager.prototype = {
 		
 		var self = this;
 		
-		var sysManager = this._getParentManager();
+		/*var sysManager = this._getParentManager();
 		var i, s, homeSysId, curSysId, n;
 		
 		if (sysManager) {
@@ -33,7 +30,7 @@ UnitTestsApplication.SystemManager.prototype = {
 			this.homeSystem = jQuery.extend(true, {}, sysManager.homeSystem);
 			this.currentSystem = this.getSystemById(sysManager.currentSystem.id);
 		}
-		else {
+		else {*/
 			var envSystem = this._getEnvianceSystem();
 
 			if (envSystem) {
@@ -43,7 +40,7 @@ UnitTestsApplication.SystemManager.prototype = {
 				for (i = 0; i < envSystem._systems.length; i++) {
 					var sys = envSystem._systems[i];
 					n = sys.get_Name();
-					s = { id: sys.get_ID(), name: n, suffix: n.substr(this._originalSystemName.length) };
+					s = { id: sys.get_ID(), name: n /*,  suffix: "" , suffix: n.substr(this._originalSystemName.length)*/ };
 
 					if (s.id == homeSysId) {
 						this.homeSystem = s;
@@ -54,7 +51,7 @@ UnitTestsApplication.SystemManager.prototype = {
 						this.currentSystem = s;
 				}
 			}
-		}
+		//}
 		
 		if (!this.systemList.length) {
 			var errMsg = "";
@@ -63,15 +60,16 @@ UnitTestsApplication.SystemManager.prototype = {
 					try{
 						var homeSystemName = self.app.config.defaults.homeSystemName;
 						
-						var sysList = response.result.systems;
-						curSysId = response.result.currentSystemId;
-
+						var sysList = response.systems;
+						curSysId = response.currentSystemId;
+						homeSysId = response.homeSystemId;
+						
 						for (var id in sysList) {
 							n = sysList[id];
-							s = { id: id, name: n, suffix: n.substr(homeSystemName.length) };
+							s = { id: id, name: n /*, suffix: "" , suffix: n.substr(self._originalSystemName.length)*/ };
 							
-							if (!self.homeSystem && n.slice(0, homeSystemName.length) != homeSystemName) {
-								s.suffix = "";
+							if (id == homeSysId /* !self.homeSystem && n.slice(0, self._originalSystemName.length) != self._originalSystemName */) {
+								// s.suffix = "";
 								self.homeSystem = s;
 							} else {
 								self.systemList.push(s);
@@ -85,7 +83,7 @@ UnitTestsApplication.SystemManager.prototype = {
 						errMsg = "SystemManager.initSystems[envianceSdk.authentication.getCurrentSession] Success processing error: [" + e.name + "]: " + e.message;
 					}
 				})
-				.fail(function () {
+				.fail(function (jqxhr, settings, exception) {
 					errMsg = "SystemManager.initSystems[envianceSdk.authentication.getCurrentSession] is Failed: " + self.helper.formatErrorResponse(jqxhr, settings, exception);
 				})
 				.always(function(){
@@ -100,22 +98,31 @@ UnitTestsApplication.SystemManager.prototype = {
 	_detectUser: function () {
 		var self = this;
 		
-		var sysManager = this._getParentManager();
+		/*var sysManager = this._getParentManager();
 		if (sysManager) {
 			this.user = jQuery.extend(true, {}, sysManager.user);
 		}
-
-		if (!this.user.login && this.homeSystem) {
+		
+		if (!this.user.login && this.homeSystem) {*/
 			if (this.homeSystem != this.currentSystem) {
 				envianceSdk.setSystemId(this.homeSystem.id);
 			}			
 
 			var errMsg = "";
-			envianceSdk.eql.execute("select u.Login, u.id from user u where u.id=GetCurrentUser()", 1, 10)
+			var accessUserName = self.app.config.defaults.accessUserName;
+			
+			envianceSdk.eql.execute("select u.Login, u.id from user u where u.id=GetCurrentUser()"
+				+ "select u.Login, u.id from user u where u.Login like '" + accessUserName + "%'", 1, 10)
 				.done(function(response) {
 					try{
-						self.user.login = response.result[0].rows[0].values[0];
-						self.user.id = response.result[0].rows[0].values[1] || envianceSdk.getUserId();
+						for (var i = 0; i < response[1].rows.length; i++) {
+							var r = response[1].rows[i];
+
+							self.userList.push({ login: r.values[0], id: r.values[1], suffix: r.values[0].slice(accessUserName.length) });
+						}
+					
+						self.user.login = response[0].rows[0].values[0];
+						self.user.id = response[0].rows[0].values[1] || envianceSdk.getUserId();
 					} catch(e){
 						errMsg = "SystemManager._detectUser[envianceSdk.eql.execute] Success processing error: [" + e.name + "]: " + e.message;
 					}
@@ -127,16 +134,50 @@ UnitTestsApplication.SystemManager.prototype = {
 					try{
 						envianceSdk.setSystemId(self.currentSystem.id);
 						self.user.login = self.user.login || "";
-						self.user.suffix = self.user.login.slice(self.app.config.defaults.accessUserName.length);
+						self.user.suffix = self.user.login.slice(accessUserName.length);
 					}catch(e){
 						if(!errMsg) errMsg = "SystemManager._detectUser[envianceSdk.eql.execute] Always processing error: [" + e.name + "]: " + e.message;
 					}
 					
-					if(!errMsg)self._initDefered.resolve();
+					if(!errMsg) __finally(); //self._initDefered.resolve();
 					else self._initDefered.reject(errMsg);
 				});
+		/*}
+		else __finally(); //self._initDefered.resolve(); */
+		
+		function __finally() {
+			// map suffixes
+			for (var i = 0; i < self.userList.length; i++) {
+				var u = self.userList[i];
+				
+				if (u.suffix) {
+					var sList = self.filterSystemBySuffix(u.suffix);
+					
+					if (sList.length) {
+						var foundIdx = 0;
+						
+						if (sList.length > 1) {
+							for (var j = 1; j < sList.length; j++) {
+								if (sList[j].name.length < sList[j - 1].name.length) foundIdx = j;
+							}
+						}
+						sList[foundIdx].user = u;
+					}
+					else {
+						jsLog.Warn("No system found for user: {" + u.login + "|" + u.id + "}");
+					}
+				}
+			}
+			
+			for (i = 0; i < self.systemList.length; i++) {
+				var s = self.systemList[i];
+				if(!s.user){
+					s.user = self.user;
+				}
+			}
+
+			self._initDefered.resolve();
 		}
-		else self._initDefered.resolve(); //if (callback && typeof callback === "function") callback();
 		
 		return this._initDefered;
 	},
@@ -148,9 +189,9 @@ UnitTestsApplication.SystemManager.prototype = {
 			});
 		}
 		else {
-			if (this._isUserCanRunDBTests()) {
+			if (this.isUserCanRunDBTests()) {
 				var suffix = this.user.suffix || QUnit.urlParams.dbsuffix;
-				if (suffix && !this._isPrimeUser()) {
+				if (suffix && !this.isPrimeUser()) {
 					this.setSystem(null, suffix);
 				}
 			}
@@ -159,57 +200,44 @@ UnitTestsApplication.SystemManager.prototype = {
 		if (callback) callback();
 	},*/
 	
-	_isPrimeUser: function () {
-		return this._systemUser.toLowerCase() == this.user.login.toLowerCase();
+	isPrimeUser: function () {
+		return this.app.config.defaults.accessUserName.toLowerCase() == this.user.login.toLowerCase();
 	},
-	_isUserCanRunDBTests: function () {
-		return this._isPrimeUser() || this.user.suffix && this.getSystemBySuffix(this.user.suffix);
-	},
-	_getParentManager: function () {
-		var parentWin = window.parent !== window && window.parent;
-		var topWin = window.top !== window && window.top !== window.parent && window.top;
-
-		return parentWin && parentWin.App && parentWin.App.systemManager || topWin && topWin.App && topWin.App.systemManager;
+	isUserCanRunDBTests: function () {
+		return this.isPrimeUser() || this.user.suffix && this.getSystemBySuffix(this.user.suffix);
 	},
 	_getEnvianceSystem: function () {
 		var parentWin = window.parent !== window && window.parent;
 		var topWin = window.top !== window && window.top !== window.parent && window.top;
 		return parentWin && parentWin.Enviance && parentWin.Enviance.Session && parentWin.Enviance.Session.System || topWin && topWin.Enviance && topWin.Enviance.Session && topWin.Enviance.Session.System;
 	},
+	getSystemBySuffix: function (suffix) {
+		for (var i = 0; i < this.systemList.length; i++) {
+			var user = systemList[i].user;
+			if (user && user.suffix == suffix) return this.systemList[i];
+		}
+		return null;
+	},
+	filterSystemBySuffix: function (suffix) {
+		var resList = [];
+		
+		for (var i = 0; i < this.systemList.length; i++) {
+			var s = this.systemList[i];
+			
+			if(s.name.endsWith(suffix)) {
+				resList.push(s);
+			}
+		}
+		return resList;
+	},
+
 	getSystemById: function (id) {
 		for (var i = 0; i < this.systemList.length; i++) {
 			if (this.systemList[i].id == id) return this.systemList[i];
 		}
 		return null;
 	},
-	getSystemBySuffix: function (suffix) {
-		for (var i = 0; i < this.systemList.length; i++) {
-			if (this.systemList[i].suffix == suffix) return this.systemList[i];
-		}
-		return null;
-	},
-	setSystem: function (id, suffix) {
-		var sys = null;
-		if (id) {
-			sys = this.getSystemById(id);
-		}
-		if (!sys && suffix) {
-			sys = this.getSystemBySuffix(suffix);
-		}
-		if(sys) {
-			if (sys != this.currentSystem) {
-				this.currentSystem = sys;
-				envianceSdk.setSystemId(sys.id);
-
-				/*var envSys = this._getEnvianceSystem();
-				if (envSys) {
-					envSys.set_Current(envSys.getSystemById(sys.id));
-				}*/
-			}
-			if(!this._isPrimeUser())
-				QUnit.urlParams.dbsuffix = suffix;
-		}
-	},
+	
 	attachDb: function (modName) {
 		for (var i = 0; i < this.systemList.length; i++) {
 			var s = this.systemList[i];
@@ -231,5 +259,34 @@ UnitTestsApplication.SystemManager.prototype = {
 		for (var i = 0; i < this.systemList.length; i++) {
 			this.systemList[i].modName = null;
 		}
-	}
+	},
+	
+	setSystem: function (id, suffix) {
+		var sys = null;
+		if (id) {
+			sys = this.getSystemById(id);
+		}
+		if (!sys && suffix) {
+			sys = this.getSystemBySuffix(suffix);
+		}
+		if(sys) {
+			if (sys != this.currentSystem) {
+				this.currentSystem = sys;
+				envianceSdk.setSystemId(sys.id);
+
+				/*var envSys = this._getEnvianceSystem();
+				if (envSys) {
+					envSys.set_Current(envSys.getSystemById(sys.id));
+				}*/
+			}
+			if(!this.isPrimeUser())
+				QUnit.urlParams.dbsuffix = suffix;
+		}
+	},
+	_getParentManager: function () {
+		var parentWin = window.parent !== window && window.parent;
+		var topWin = window.top !== window && window.top !== window.parent && window.top;
+
+		return parentWin && parentWin.App && parentWin.App.systemManager || topWin && topWin.App && topWin.App.systemManager;
+	},
 };

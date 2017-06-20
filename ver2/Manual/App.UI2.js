@@ -49,7 +49,8 @@ UnitTestsApplication.UI.prototype = {
 		var modules = this.app.getModules();
 		var html = '';
 		for (var i = 0; i < modules.length; i++) {
-			var cb_id = 'cb_' + i;
+			var id = modules[i].id;
+			var cb_id = 'cb_' + id;
 			
 			html += '<li for="' + cb_id + '"' + 
 			(modules[i].descr ? ' title="' + this.app.helper.htmlEncode(modules[i].descr) + '"' : '') + 
@@ -59,7 +60,7 @@ UnitTestsApplication.UI.prototype = {
 				html += '<img src="warning16.png" title="' + this.app.helper.htmlEncode(modules[i].warning) + '" />';
 			}
 
-			html += '</label></span><span id="timer_' + i + '" class="runtimer"></span></li>';
+			html += '</label></span><span id="timer_' + id + '" class="runtimer"></span></li>';
 		}
 		this.$modulesContainer.html(this.$modulesContainer.html() + html);
 		
@@ -159,17 +160,17 @@ UnitTestsApplication.UI.prototype = {
 	},
 	
 	activateControls: function(){
-		var allowedDbPooling = false; //this.app.systemManager.isPrimeUser() && this.app.systemManager.systemList.length > 1;
+		var allowedDbPooling = /*false; //*/ this.app.systemManager.isPrimeUser() && this.app.systemManager.systemList.length > 1;
 
 		if (allowedDbPooling) {
-			this.$dbsAvailable.text(3 /*this.app.systemManager.systemList.length*/); 
+			this.$dbsAvailable.text(/*3*/ this.app.systemManager.systemList.length); 
 			$('.poolSize', this.$startPanel).filter('.DB').removeClass('hide');
 		}
 		else { 
 			this.$poolSizeInput.removeAttr('disabled'); 
 		}
 		 
-		this._isUserCanRunDBTests = false; /*this.app.systemManager.isUserCanRunDBTests()*/
+		this._isUserCanRunDBTests = /*false;*/ this.app.systemManager.isUserCanRunDBTests();
 		
 		if (this._isUserCanRunDBTests) {
 			$('.app-buttons', this.$startPanel).removeClass('hide');
@@ -177,16 +178,22 @@ UnitTestsApplication.UI.prototype = {
 			$('.error', this.$startPanel).removeClass('hide');
 		}
 		
+		
 		// buttons
 		if(!this._isUserCanRunDBTests)return;
 		
-		this._runButton.click(function() {
+		this.$runButton.click(function() {
 			var moduleIndexes = self._getSelectedModuleIndexes();
-			QUnitTest.count = 0;
-			self._app.run(moduleIndexes);
-			self._app.getStorage().setModuleIndexesForSingleMode(moduleIndexes);
+			
+			
+			
+			/*QUnitTest.count = 0;
+			self.app.run(moduleIndexes);
+			self.app.getStorage().setModuleIndexesForSingleMode(moduleIndexes);*/
 		});
 
+		return;
+		
 		this._parallelButton.click(function () {
 			var moduleIndexes = self._getSelectedModuleIndexes();
 			var poolSize = self._poolSizeInput.val() * 1 || moduleIndexes.length;
@@ -240,12 +247,12 @@ UnitTestsApplication.UI.prototype = {
 		});
 	},
 	
-	
 	_initModuleCheckboxes: function(moduleIndexes, checkboxes) {
 		for (var i = 0; i < moduleIndexes.length; i++) {
 			for (var j = 0; j < checkboxes.length; j++) {
-				if (j == moduleIndexes[i]) {
-					checkboxes[j].checked = true;
+				var cb = checkboxes[j];
+				if (cb.id == 'cb_' + moduleIndexes[i]) {
+					cb.checked = true;
 				}
 			}
 		}
@@ -256,7 +263,7 @@ UnitTestsApplication.UI.prototype = {
 		for (var j = 0; j < this._moduleCheckboxes.length; j++) {
 			var cb = this._moduleCheckboxes[j];
 			if (cb != null && cb.checked) {
-				selectedModules.push(j);
+				selectedModules.push(cb.id.substr(3));
 			}
 		}
 		return selectedModules;

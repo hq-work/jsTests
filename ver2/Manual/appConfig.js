@@ -60,7 +60,7 @@ function getAppConfig(){
 			
 			// Template:
 			// ---------
-			// "<30 character max len name>" : { 
+			// "<25 character max length name>" : { 
 			//		path: "<path to test javascript>", 
 			//		descr: "<description if name is too short>", 
 			//		warning: "warning message if test use some critical features", 
