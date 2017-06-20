@@ -7,6 +7,9 @@ QUnit.config.autostart = false;
 		ignoreArrayElementOrder: true,
 		ignoreObjectPrototype: true
 	});
+	
+	first item w/o number
+	ol li:first-child { list-style:none }
 */
 
 (function( global ) {

@@ -1,5 +1,5 @@
 ﻿// Jalapeño edition
-// TO DO: call envianceSdk.packages.init
+//(v) TO DO: call envianceSdk.packages.init
 // TO DO: GUI options
 //	* Display maintanence checkbox - before start
 //	* Hide passed tests (Display failed only) - after start
@@ -149,6 +149,8 @@ function UnitTestsApplication() {
 						});
 				});
 		})
+		
+		
 	
 	
 	function __logSystems(){
