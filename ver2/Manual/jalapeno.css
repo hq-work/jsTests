@@ -1,0 +1,95 @@
+﻿body {
+	background-color: #E2F2F1;
+}
+
+#app-header {
+    color: #8699a4;
+    background-color: #244545;
+}
+
+#app-header a {
+    color: #c2ccd1;
+}
+
+
+#app-userAgent {
+    background-color: #92A2A1;
+}
+
+#app-header img.logo {
+	/*background-color: #E2F2F1;*/
+}
+
+#modulesContainer li {
+	background-color: #B2C2C1;
+
+	line-height: 1em;
+}
+#modulesContainer li:hover, #modulesContainer li.mhover {
+	background-color: #C2D2D1 !important;
+}
+
+#modulesContainer li.selected {
+	background-color: #CADAD9;
+}
+
+.app-start-panel {
+	background-color: #A2B2B1; 
+	border: 1px solid #B2C2C1; 
+	border-bottom-color: #92A2A1;
+	border-right-color: #92A2A1;
+	/* background-image: url('jala-mini.png') no-repeat; */
+	color: #555555;
+}
+
+.app-start-panel-header, .app-start-panel-footer {
+	border: 1px solid #efefef;
+}
+
+.app-start-panel-header  .head-buttons b {
+	color: #444;
+	text-shadow:rgba(255, 255, 255, 0.5) 1px 1px 2px;
+}
+
+.app-start-panel-header  .head-buttons b.on {
+	color: White;
+	text-shadow:rgba(0, 0, 0, 0.5) 1px 1px 2px;
+}
+
+
+.app-modules {
+	list-style-type: none;
+	margin: 0px;
+	padding: 2px;
+	
+	background-color: #B2C2C1;
+	
+	border: 2px solid #92A2A1; 
+	border-bottom-color: #C2D2D1;
+	border-right-color: #C2D2D1;
+}
+
+.app-run-button {
+	background-color: #8A9A99;
+	border: 1px solid #C2D2D1;
+	border-bottom-color: #7E8E8D;
+	border-right-color: #7E8E8D;
+	color: Black;
+	text-shadow:rgba(255, 255, 255, 0.5) 1px 1px 2px;
+}
+.app-run-button:hover {
+	opacity: 0.80;
+	color: White;
+	text-shadow:rgba(0, 0, 0, 0.5) 1px 1px 2px;
+}
+
+#modules-wrapper {
+	border: 1px solid #efefef;
+}
+
+/*#modulesContainer label.caption b.hide {
+	display: inline;
+}*/
+
+
+

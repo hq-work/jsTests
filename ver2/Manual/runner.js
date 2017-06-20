@@ -29,7 +29,7 @@ QUnit.config.autostart = false;
 				// this.ExtendQUnitEvents(); 
 				// or another etic way to not change original QUnit code
 				//
-				// detach some qUnit HTML helper events, 
+				// (v) detach some qUnit HTML helper events: deleted useless divs in onBegin event
 				// for example QUnit.begin to prevent call of appendInterface
 				// redefine QUnit.init if it is called somewhere to prevent call of appendInterface
 				
@@ -37,18 +37,16 @@ QUnit.config.autostart = false;
 				self.loadTestModules()
 					.always(function(){
 						// TO DO: 
-						// switch system
+						// (v) switch system: inside moduleBegin
 						
 						// continue run
 						
 						// TO DO: when ready
 						//QUnitTest.count = 0; <-- not required
-						//QUnit.init(); <-- deprecated
+						//QUnit.init(); <-- deprecated, do not use that shit!!!
 						self.attachModules();
 						
 						var c = QUnit.config;
-						// TO DO: Send parent message to update tests/asserts count
-						
 						QUnit.start();
 					});
 			});
@@ -73,11 +71,18 @@ QUnit.config.autostart = false;
 				return false;
 			}
 			
+			$('.system-info').html("Running on system '" + this.system.name + "' with user '" + this.system.user.login + "'"); 
+			
+			if(!this.system.moduleIds || !this.system.moduleIds.length){
+				this.messageToParent("Error", { message: "There are no modules associated with System" }, this.system.id );
+				return false;
+			}
+			
 			for(var i=0; i<this.system.moduleIds.length; i++){
 				var id = this.system.moduleIds[i];
 				var m = this.getApp().getModuleById(id);
 				if(!m){
-					self.messageToParent("Warning", { message: "Can't find test module linked to system: " + id }, system.id );
+					self.messageToParent("Warning", { message: "Can't find test module linked to system: " + id }, this.system.id );
 				}
 				qutRunnerApp.modules.push(m);
 			}
@@ -152,13 +157,16 @@ QUnit.config.autostart = false;
 			// TO DO: register messaging of progress
 			QUnit.begin(function (details) {
 				$('#qunit-header,#qunit-testrunner-toolbar,#qunit-userAgent').remove();
-			
 				details.qUnitVersion = QUnit.version;
+				
 				//self.onQUnitBegin(this, details);
 				self.messageToParent('begin', details, self.system.id);
 			});
 
 			QUnit.moduleStart(function (details) {
+				self.setSystem(self.system.id)
+				
+				
 				//self._modTestIndex = 0;
 				//details.start =	self._modStart = +new Date();
 
@@ -252,7 +260,7 @@ QUnit.config.autostart = false;
 			});
 		},
 	
-		requestToParent: function(func){
+		/*requestToParent: function(func){
 			var dfdParent = $.Deferred();
 			var self = this;
 			
@@ -262,7 +270,7 @@ QUnit.config.autostart = false;
 			}, 0);
 			
 			return dfdParent.promise();
-		},
+		},*/
 	
 		attachModules: function(moduleIndexes) {
 			var j;
@@ -287,9 +295,18 @@ QUnit.config.autostart = false;
 					moduleId: qm.moduleId,
 					testCount: qm.tests.length
 				};
-				self.messageToParent('moduleInfo', moduleInfo, self.system.id);
+				this.messageToParent('moduleInfo', moduleInfo, this.system.id);
 			}
 		},
+	
+		setSystem: function (id) {
+			var sysId = envianceSdk.getSystemId();
+			if (sysId != id) {
+				envianceSdk.setSystemId(id);
+				return true;
+			}
+			return false;
+		}
 	};
 
 	if(typeof UnitTestsApplication == 'undefined'){

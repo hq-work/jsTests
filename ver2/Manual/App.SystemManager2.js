@@ -204,20 +204,29 @@ UnitTestsApplication.SystemManager.prototype = {
 		return this.app.config.defaults.accessUserName.toLowerCase() == this.user.login.toLowerCase();
 	},
 	isUserCanRunDBTests: function () {
-		return this.isPrimeUser() || this.user.suffix && this.getSystemBySuffix(this.user.suffix);
+		return this.isPrimeUser() || this.user.suffix && this.getSystemByUser(this.user);
 	},
 	_getEnvianceSystem: function () {
 		var parentWin = window.parent !== window && window.parent;
 		var topWin = window.top !== window && window.top !== window.parent && window.top;
 		return parentWin && parentWin.Enviance && parentWin.Enviance.Session && parentWin.Enviance.Session.System || topWin && topWin.Enviance && topWin.Enviance.Session && topWin.Enviance.Session.System;
 	},
-	getSystemBySuffix: function (suffix) {
+	/*getSystemBySuffix: function (suffix) {
 		for (var i = 0; i < this.systemList.length; i++) {
 			var user = systemList[i].user;
 			if (user && user.suffix == suffix) return this.systemList[i];
 		}
 		return null;
+	},*/
+	getSystemByUser: function (user) {
+		if(!user) return null;
+		
+		for (var i = 0; i < this.systemList.length; i++) {
+			if (systemList[i].user === user) return this.systemList[i];
+		}
+		return null;
 	},
+	
 	filterSystemBySuffix: function (suffix) {
 		var resList = [];
 		
@@ -286,29 +295,27 @@ UnitTestsApplication.SystemManager.prototype = {
 		}
 	},
 	
-	setSystem: function (id, suffix) {
+	*/
+	setSystem: function (id) {
 		var sys = null;
 		if (id) {
 			sys = this.getSystemById(id);
 		}
-		if (!sys && suffix) {
-			sys = this.getSystemBySuffix(suffix);
+		if (!sys) {
+			return null;
 		}
-		if(sys) {
-			if (sys != this.currentSystem) {
-				this.currentSystem = sys;
-				envianceSdk.setSystemId(sys.id);
+		if (sys != this.currentSystem) {
+			this.currentSystem = sys;
+			envianceSdk.setSystemId(sys.id);
 
-				/*var envSys = this._getEnvianceSystem();
-				if (envSys) {
-					envSys.set_Current(envSys.getSystemById(sys.id));
-				}*/ 
-				/*
-			}
-			if(!this.isPrimeUser())
-				QUnit.urlParams.dbsuffix = suffix;
+			/*var envSys = this._getEnvianceSystem();
+			if (envSys) {
+				envSys.set_Current(envSys.getSystemById(sys.id));
+			}*/ 
 		}
-	},*/
+		//if(!this.isPrimeUser())
+		//	QUnit.urlParams.dbsuffix = suffix;
+	},
 	_getParentManager: function () {
 		var parentWin = window.parent !== window && window.parent;
 		var topWin = window.top !== window && window.top !== window.parent && window.top;

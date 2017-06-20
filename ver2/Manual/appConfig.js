@@ -2,7 +2,7 @@ function getAppConfig(){
 	return {
 		options: {
 			// redefine for local virtual folder or custom domain name:
-			// packageWebPath, packageId, baseAddress
+			// packageWebPath, packageId, baseAddress [, webAppVirtualPath]
 			init : { // configure with sdk options on init
 				webAppVirtualPath: "http://jalapeno-sr1.dev.enviance.kiev.ua",   /* for custom domain name, for ex.: http://jstests.com.ua
 					also add next section to App web.config

@@ -82,8 +82,10 @@
 	line-height: 1em;
 }
 #modulesContainer li:hover, #modulesContainer li.mhover {
-	background-color: #C2D2D1;
+	background-color: /*#DCDEEC*/ #C2D2D1 !important;
+	
 	cursor: pointer;
+	/*cursor: hand;*/
 }
 
 #modulesContainer li.selected {
@@ -119,7 +121,6 @@
 .app-start-panel-header {
 	padding-bottom: 2px;
 	clear:both;
-	height: 19px;
 }
 
 .app-start-panel-footer input {
@@ -268,7 +269,9 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: inline-block;
-	cursor: pointer;
+}
+
+.app-modules label.caption {
 	margin-top: 3px;
 }
 

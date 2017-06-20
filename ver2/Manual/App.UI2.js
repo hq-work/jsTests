@@ -136,7 +136,12 @@ UnitTestsApplication.UI.prototype = {
 		this.$liModules.find("input").click(
 			function(event, isLegal){
 				event.stopPropagation();
-				return !!isLegal;
+				//return !!isLegal;
+			});
+		this.$liModules.find(".caption").click(
+			function(event){
+				$(event.target).closest('li').trigger("click");
+				return false;
 			});
 		
 		var $buttons = $('.head-buttons b', this.$startPanel);
@@ -211,14 +216,18 @@ UnitTestsApplication.UI.prototype = {
 			self.$liModules.each(function(){
 				var $li = $(this);
 				var id = $li.attr("for").substring(3);
+				var $cb = $li.find('#cb_' + id).prop('disabled', true);
+				
 				if(moduleIds.indexOf(id) < 0){
 					$li.hide();
 				}
 				else{
-					$li.find('#cb_' + id).prop('disabled', true).hide();
 					$li.find('.prog').show();
+					$cb.hide();
 				}
 			});
+			self.$selectAllCheckbox.prop('disabled', true).hide();
+			$('.app-start-panel-footer').hide();
 			
 			self._populateModSetSeq(moduleIds, false);
 			
@@ -389,7 +398,9 @@ UnitTestsApplication.UI.prototype = {
 
 	$createIFrameBySystem: function(s){
 		var location = window.location;
-		var url = location.protocol + "//" + location.host + location.pathname.substring(0, location.pathname.lastIndexOf("/")) + '/runner.html?sid=' + s.id;
+		var url = location.protocol + "//" + location.host 
+			+ location.pathname.substring(0, location.pathname.lastIndexOf("/")) 
+			+ '/runner.html?sid=' + s.id + "&seq=" + s.curSeqIdx;
 	
 		/*function getDocHeight(doc) {
 			doc = doc || document;
@@ -496,6 +507,11 @@ UnitTestsApplication.UI.prototype = {
 				}*/
 				break;
 			case 'done':
+				break;
+			case 'moduleInfo':
+				this.$liModulesSelected.find("label[for=cb_" + details.id + "] .max-count").html(details.testCount);
+				
+				
 				break;
 			case 'Error':
 				s = this.app.systemManager.getSystemById(sid);
