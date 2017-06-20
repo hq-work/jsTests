@@ -1,273 +1,312 @@
-﻿(function( global ) {
+﻿QUnit.config.reorder = false;
+QUnit.config.autostart = false;
 
-function qutRunnerApp() {
-	var self = this;
-	//jsLog.WriteLn( "Initialization ..." );
-	
-	//this.$title = $('#app-header a');
-	//this.$userAgent = $('#app-userAgent');
-	//this.$banner = $('#app-banner');
-	
-	this.helper = UnitTestsApplication.Helper;
-	this.storage = this.helper.getStorage();
-	
-	//this._modules = [];
-	
-	if(!this._init()) return;
-	
-	this.configureEnvironment()
-		.fail(function(){
-			self.messageToParent("Warning", { message: "Can't configure runner environment!" }, system.id );
-		})
-		.always(function(){
-		
-		});
-	
-	/*this._init()
-		.done(function(){
-			self.ui = new UnitTestsApplication.UI(self);
-			self.systemManager = new UnitTestsApplication.SystemManager(self);
-			
-			self.configureEnvironment()
-				.fail(function(){
-					jsLog.Warn("Can't configure environment!");
-				})
-				.always(function(){
-					jsLog.WriteLn( "UnitTestsApplication: initialization is finished" );
-					jsLog.WriteLn( "SystemManager: initialization ..." );
-					
-					self.systemManager.initSystems()
-						.done(function(){
-							__logSystems();
-							self.ui.activateControls();
-							jsLog.WriteLn( "SystemManager: initialization is finished" );
-						})
-						.fail(function(msg){
-							if(msg)jsLog.Warn( msg );
-							jsLog.Error( "SystemManager: initialization is failed!" );
-						});
-				});
-		})
-	
-	
-	function __logSystems(){
-		var txt = "Found " + self.systemManager.systemList.length +" system(s) ";
-		
-		if(self.systemManager.systemList.length)
-			jsLog.WriteLn(txt);
-		else
-			jsLog.Error(txt);
-			
-		for(var i=0; i < self.systemManager.systemList.length; i++){
-			var s = self.systemManager.systemList[i];
-			jsLog.WriteLn("System/user: {" + s.name+"|"+ s.user.login + "}");
-		}
-		jsLog.WriteLn("Active system/user: {" + self.systemManager.currentSystem.name+"|"+ self.systemManager.user.login + "}");
-	}*/
-	/*
-	// this._registerQUnitBegin();
-	//? this._modules = UnitTestsApplication.modules;
-	
-	this._html = null;
-	//this._ui = null;
-	
-	//envianceSdk.configure({ resubmitConfirmationOnError: false });
-	
-	this._systemManager = new UnitTestsApplication.SystemManager(this, function () {
-	
+// TO DO:
+/* some internal hack for custom options for comparer
+	QUnit.extend(QUnit.config, {
+		ignoreArrayElementOrder: true,
+		ignoreObjectPrototype: true
+	});
+*/
 
-	
-	});*/
-};
+(function( global ) {
 
-qutRunnerApp.prototype = {
-	parentWindow: window.parent !== window && window.parent,
-	system: null,
-	
-	_init: function () {
-		if(!this.parentWindow || !this.getApp()){
-			jQuery('.err-req-parent').show();
-			return false;
-		}
-		
-		// TO DO:
-		// get System data
-		
-		
-		
-		return true;
-	},
-	
-	
-	configureEnvironment: function(){
-		var options = this.getAppOptions();
-		
-		return envianceSdk.packages.init(options.sdk, function () {	envianceSdk.configure(options.config); });
-	},
-	
-	
-	
-	getApp: function(){
-		return parentWindow.App;
-	},
-	
-	getAppOptions: function(){
-		var app = this.getApp();
-		return { sdk: app.sdkOptions, config: app.configOptions };
-	},
-	
-	/* msgType, params, obj */
-	messageToParent: function(){
-		var self = this;
-		var args = arguments;
-		this.parentWindow.setTimeout(function () {
-			self.parentWindow.ui.childCallback.apply(self.parentWindow.ui, args);
-		}, 0);
-	},
-	
-	
-	/*_registerQUnitBegin: function () {
+	function qutRunnerApp() {
 		var self = this;
 		
-		QUnit.begin(function (details) {
-			self._isQUnitBeginFired = true;
-		});
-	},
+		this.helper = UnitTestsApplication.Helper;
+		this.storage = this.helper.getStorage();
+		
+		if(!this._init()) return;
+		
+		this.configureEnvironment()
+			.fail(function(){
+				self.messageToParent("Warning", { message: "Can't configure runner environment!" }, system.id );
+			})
+			.always(function(){
+				self.registerQUnitEvents();
+				// TO DO:
+				// this.ExtendQUnitEvents(); 
+				// or another etic way to not change original QUnit code
+				//
+				// detach some qUnit HTML helper events, 
+				// for example QUnit.begin to prevent call of appendInterface
+				// redefine QUnit.init if it is called somewhere to prevent call of appendInterface
+				
+				
+				self.loadTestModules()
+					.always(function(){
+						// TO DO: 
+						// switch system
+						
+						// continue run
+						
+						// TO DO: when ready
+						//QUnitTest.count = 0; <-- not required
+						//QUnit.init(); <-- deprecated
+						self.attachModules();
+						
+						var c = QUnit.config;
+						// TO DO: Send parent message to update tests/asserts count
+						
+						QUnit.start();
+					});
+			});
+	};
 
-	_ensureQUnitInitFired: function () {
-		if (this._isQUnitBeginFired && !this._html._initHelperFired) {
-			QUnit.load();
-		}
-	},
-
-	run: function (moduleIndexes) {
-		QUnit.init();
-		this._attachModules(moduleIndexes);
-		QUnit.start();
-	},
-
-	getModuleName: function(index) {
-		var module = this._modules[index];
-		if (!module.name) {
-			this.getModuleMetaData(module);
-		}
-		return module.name;
-	},
-
-	getModuleTests: function(index) {
-		var module = this._modules[index];
-		if (!module.tests) {
-			this.getModuleMetaData(module);
-		}
-		return module.tests;
-	},
-
-	getModuleMetaData: function(module) {
-		var modExec = new String(module.execute);
-
-		modExec = this._jsCodeRemoveComments(modExec);
-		modExec = modExec.replace(/\\"/g, '#q#');
-
-		var res = /module\(\s*\"([^"]+)/.exec(modExec);
-		module.name = res[1];
-		module.tests = [];
-
-		var regex = new RegExp(/(?:\\r|\\n|\\t|\s)+(?:test|asyncTest)\(\s*"([^"]+)"\s*,\s*(\d+)\s*,\s*function/g);
-		while ((res = regex.exec(modExec)) != null) {
-			module.tests.push({ name: res[1].replace(/#q#/g, '"'), asserts: res[2] * 1 });
-		}
-
-		return module;
-	},
-
-	getModuleIndexByName: function(name) {
-		if (!this._modules || !this._modules.length) return -1;
-
-		for (var i = 0; i < this._modules.length; i++) {
-			var m = this._modules[i];
-			if (!m.name) this.getModuleMetaData(m);
-
-			if (m.name == name) return i;
-		}
-
-		return -1;
-	},
-
-	getModuleTestIndexByName: function(moduleIndex, name) {
-		var m = this._modules[moduleIndex];
-
-		if (!m.name) this.getModuleMetaData(module);
-
-		if (!m.tests.length) return -1;
-
-		for (var i = 0; i < m.tests.length; i++) {
-			if (m.tests[i].name == name) return i;
-		}
-		return -1;
-	},
-
-	getModuleIndexesForSingleMode: function () {
-		if (!this._urlModulesMap) {
-			var moduleNames = !!QUnit.urlParams.module && QUnit.urlParams.module.split(',');
+	qutRunnerApp.prototype = {
+		parentWindow: window.parent !== window && window.parent,
+		system: null,
+		urlParams: null,
+		
+		_init: function () {
+			if(!this.parentWindow || !this.getApp()){
+				jQuery('.err-req-parent').show();
+				return false;
+			}
 			
-			this._urlModulesMap = { indexes: [], names: [] };
-			for (var i = 0; i < moduleNames.length; i++) {
-				var index = this.getModuleIndexByName(moduleNames[i]);
-				if (index >= 0) {
-					this._urlModulesMap.indexes.push(index);
-					this._urlModulesMap.names.push(moduleNames[i]);
+			this.urlParams = this.getUrlParams();
+			this.system = this.getApp().systemManager.getSystemById(this.urlParams.sid);
+			
+			if(!this.system){
+				this.messageToParent("Error", { message: "System not found!" }, this.urlParams.sid );
+				return false;
+			}
+			
+			for(var i=0; i<this.system.moduleIds.length; i++){
+				var id = this.system.moduleIds[i];
+				var m = this.getApp().getModuleById(id);
+				if(!m){
+					self.messageToParent("Warning", { message: "Can't find test module linked to system: " + id }, system.id );
+				}
+				qutRunnerApp.modules.push(m);
+			}
+
+			return true;
+		},
+		
+		getUrlParams: function(){
+			var i,
+			location = window.location || { search: "", protocol: "file:" },
+			params = location.search.slice( 1 ).split( "&" ),
+			length = params.length,
+			urlParams = {},
+			current;
+
+			if ( params[ 0 ] ) {
+				for ( i = 0; i < length; i++ ) {
+					current = params[ i ].split( "=" );
+					current[ 0 ] = decodeURIComponent( current[ 0 ] );
+					current[ 1 ] = current[ 1 ] ? decodeURIComponent( current[ 1 ] ) : true;
+					urlParams[ current[ 0 ] ] = current[ 1 ];
 				}
 			}
-		}
+			return urlParams;
+		},
+		
+		getApp: function(){
+			return this.parentWindow.App;
+		},
+		
+		getAppOptions: function(){
+			var app = this.getApp();
+			return { sdk: app.sdkOptions, config: app.configOptions };
+		},
+		
+		configureEnvironment: function(){
+			var options = this.getAppOptions();
+			
+			return envianceSdk.packages.init(options.sdk, function () {	envianceSdk.configure(options.config); });
+		},
+		
+		/* msgType, params, obj */
+		messageToParent: function(){
+			var self = this;
+			var args = arguments;
+			this.parentWindow.setTimeout(function () {
+				self.getApp().ui.runnerCallback.apply(self.getApp().ui, args);
+			}, 0);
+		},
+		
+		loadTestModules: function(){
+			var dfdMLoad = $.Deferred();
+			
+			var promises = [];
+			for(var i=0; i<qutRunnerApp.modules.length; i++){
+				var m = qutRunnerApp.modules[i];
+				promises.push($.getScript( m.path));
+			}
+			
+			$.when.apply($, promises).done(function () {
+				dfdMLoad.resolve(arguments);
+			}, function(){
+				// TO DO:
+				//	report some module is not loaded
+			});
+			
+			return dfdMLoad.promise();
+		},
 
-		return this._urlModulesMap.indexes.length ? this._urlModulesMap.indexes : this._storage.getModuleIndexesForSingleMode();
-	},
+		registerQUnitEvents: function(){
+			var self = this;
+			// TO DO: register messaging of progress
+			QUnit.begin(function (details) {
+				$('#qunit-header,#qunit-testrunner-toolbar,#qunit-userAgent').remove();
+			
+				details.qUnitVersion = QUnit.version;
+				//self.onQUnitBegin(this, details);
+				self.messageToParent('begin', details, self.system.id);
+			});
+
+			QUnit.moduleStart(function (details) {
+				//self._modTestIndex = 0;
+				//details.start =	self._modStart = +new Date();
+
+				self.messageToParent('moduleStart', details, self.system.id);
+			});
+			
+			QUnit.testStart(function (details) {
+				//var moduleIndex = self._app.getModuleIndexByName(details.module);
+				//var testIndex = self._app.getModuleTestIndexByName(moduleIndex, details.name);
+
+				/*var total = -1;
+				if (testIndex > -1) {
+					total = self._app.getModules()[moduleIndex].tests[testIndex].asserts;
+				}
+				self._modTestStart = +new Date();
+				self._modTestAsserts = { total: total, failed: 0, passed: 0, runtime: 0 };
+				self._modTestAssert = { index: 0, start: self._modTestStart };*/
+				
+				self.messageToParent('testStart', details, self.system.id);
+			});
+
+			// On Assertion complete
+			QUnit.log(function (details) {
+				/*self._modTestAssert.index++;
+
+				var runtime = +new Date() - self._modTestAssert.start;
+
+				if (!!details.result) {
+					self._modTestAsserts.passed++;
+				}
+				else {
+					self._modTestAsserts.failed++;
+				}
+
+				self._modTestAsserts.runtime += runtime;
+
+				details.runtime = runtime;
+
+				self.UpdateAssertState(details);
+
+				self.UpdateTestState({
+					module: details.module, test: details.name,
+					failed: self._modTestAsserts.failed, passed: self._modTestAsserts.passed, total: self._modTestAsserts.total,
+					runtime: self._modTestAsserts.runtime
+				});
+
+				self._modTestAssert.start = +new Date();*/
+				self.messageToParent('log', details, self.system.id);
+			});
+
+			QUnit.testDone(function (details) {
+				/*self._modTestIndex++;
+				details.testIndex = self._modTestIndex;
+				var curtime = +new Date();
+				details.runtime = curtime - self._modTestStart;
+				
+				var fintime = curtime - self._modTestAssert.start;
+				if (fintime) {
+					details.fintime = fintime;
+					details.setuptime = details.runtime - fintime - self._modTestAsserts.runtime;
+				}
+
+				self.onTestDone(details);
+
+				if (self._isRequiredCallback) {
+					self._parentWin.setTimeout(function () {
+						self._parentApp._ui._childCallback('testDone', details, QUnit.urlParams.module);
+					}, 0);
+				}*/
+				self.messageToParent('testDone', details, self.system.id);
+			});
+			
+			QUnit.moduleDone(function (details) {
+				/*details.runtime = +new Date() - self._modStart;
+				details.index = self._modIndex++;
+				
+				if (self._isRequiredCallback) {
+					self._parentWin.setTimeout(function () {
+						self._parentApp._ui._childCallback('moduleDone', details, QUnit.urlParams.module);
+					}, 0);
+				}*/
+				self.messageToParent('moduleDone', details, self.system.id);
+			});
+
+			QUnit.done(function (details) {
+				/*details.moduleCount = self._modIndex;
+				QUnit.stop(); // Force stop QUnit to stop spamming Done and moduleDone events
+
+				self.UpdateTestResult(details);*/
+				self.messageToParent('done', details, self.system.id);
+			});
+		},
 	
-	_attachModules: function(moduleIndexes) {
-		for (var j = 0; j < moduleIndexes.length; j++) {
-			var mIdx = moduleIndexes[j];
-			this._executeModule(this._modules[mIdx]);
-		}
-	},
-
-	_executeModule: function(module) {
-		module.execute();
-	},
-
-	_isSingleTestMode: function() {
-		return QUnit.urlParams.testNumber > -1 || !!QUnit.urlParams.module;
-	},
+		requestToParent: function(func){
+			var dfdParent = $.Deferred();
+			var self = this;
+			
+			this.parentWindow.setTimeout(function () {
+				var res = func();
+				dfdParent.resolve(res);
+			}, 0);
+			
+			return dfdParent.promise();
+		},
 	
-	_isDbParallel: function () {
-		return !!QUnit.urlParams.dbsystemId;
-	},
+		attachModules: function(moduleIndexes) {
+			var j;
+			if(!moduleIndexes){
+				moduleIndexes = [];
+				for (j = 0; j < qutRunnerApp.modules.length; j++){
+					moduleIndexes.push(j);
+				}
+			}
+		
+			for (j = 0; j < moduleIndexes.length; j++) {
+				var mIdx = moduleIndexes[j];
+				var m = qutRunnerApp.modules[mIdx];
+				m.execute();
+				
+				var qm = QUnit.config.currentModule;
+				var moduleInfo = {
+					label: m.label,
+					caption: m.caption,
+					name: qm.name,
+					id: m.id,
+					moduleId: qm.moduleId,
+					testCount: qm.tests.length
+				};
+				self.messageToParent('moduleInfo', moduleInfo, self.system.id);
+			}
+		},
+	};
 
-	*/
-	_saveSdkOptions: function(value) {
-		if (value == null || value == '') {
-			this.storage.ls.removeItem(this._OPTIONS_PANEL_KEY);
-		} else {
-			this.storage.ls.setItem(this._OPTIONS_PANEL_KEY, value);
-		}
-	},
-	_restoreSdkOptions: function() {
-		return this.storage.ls.getItem(this._OPTIONS_PANEL_KEY);
-	},
-	_OPTIONS_PANEL_KEY: 'UTApp_SdkOptions'
-};
+	if(typeof UnitTestsApplication == 'undefined'){
+		global['UnitTestsApplication'] = {};
+	}
 
-if(typeof UnitTestsApplication == 'undefined'){
-	global['UnitTestsApplication'] = {};
-}
+	qutRunnerApp.modules = [];
+	qutRunnerApp.loadedModuleCounter = 0;
 
-qutRunnerApp.modules = [];
-UnitTestsApplication.registerModule = function(module) {
-	qutRunnerApp.modules.push(module);
-};
+	// f*ng backward compatibility
+	UnitTestsApplication.registerModule = function(module) {
+		var m = qutRunnerApp.modules[qutRunnerApp.loadedModuleCounter++];
+		$.extend(m, module);
+	};
 
-$(document).ready(function() {
-	new qutRunnerApp();
-});
-
+	$(document).ready(function() {
+		new qutRunnerApp();
+	});
 
 }( (function() {return this;})() ));

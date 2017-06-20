@@ -1,4 +1,5 @@
-﻿// TO DO: call envianceSdk.packages.init
+﻿// Jalapeño edition
+// TO DO: call envianceSdk.packages.init
 // TO DO: GUI options
 //	* Display maintanence checkbox - before start
 //	* Hide passed tests (Display failed only) - after start
@@ -136,7 +137,7 @@ function UnitTestsApplication() {
 					jsLog.WriteLn( "UnitTestsApplication: initialization is finished" );
 					jsLog.WriteLn( "SystemManager: initialization ..." );
 					
-					self.systemManager.initSystems()
+					self.systemManager.loadSystemInfos()
 						.done(function(){
 							__logSystems();
 							self.ui.activateControls();

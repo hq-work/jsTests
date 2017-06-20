@@ -15,7 +15,7 @@ UnitTestsApplication.SystemManager.prototype = {
 	},
 	_initDefered: null,
 	
-	initSystems: function(){
+	loadSystemInfos: function(){
 		this._initDefered = jQuery.Deferred();
 		
 		var self = this;
@@ -80,11 +80,11 @@ UnitTestsApplication.SystemManager.prototype = {
 							} 
 						}
 					}catch(e){
-						errMsg = "SystemManager.initSystems[envianceSdk.authentication.getCurrentSession] Success processing error: [" + e.name + "]: " + e.message;
+						errMsg = "SystemManager.loadSystemInfos[envianceSdk.authentication.getCurrentSession] Success processing error: [" + e.name + "]: " + e.message;
 					}
 				})
 				.fail(function (jqxhr, settings, exception) {
-					errMsg = "SystemManager.initSystems[envianceSdk.authentication.getCurrentSession] is Failed: " + self.helper.formatErrorResponse(jqxhr, settings, exception);
+					errMsg = "SystemManager.loadSystemInfos[envianceSdk.authentication.getCurrentSession] is Failed: " + self.helper.formatErrorResponse(jqxhr, settings, exception);
 				})
 				.always(function(){
 					if(!errMsg) self._detectUser();
@@ -237,9 +237,6 @@ UnitTestsApplication.SystemManager.prototype = {
 		}
 		return null;
 	},
-	
-	
-	
 	
 	getFreeSystem: function(){
 		for (var i = 0; i < this.systemList.length; i++) {

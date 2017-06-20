@@ -56,7 +56,7 @@ UnitTestsApplication.UI.prototype = {
 			
 			html += '<li for="' + cb_id + '"' + 
 			(modules[i].descr ? ' title="' + this.app.helper.htmlEncode(modules[i].descr) + '"' : '') + 
-			'><span><input id="' + cb_id + '" name="' + cb_id + '" type="checkbox" /><label class="caption" for="' + cb_id + '"><b class="ok hide">\u2714</b><b class="nok hide">\u2716</b><b class="prog hide">(<b class="count">567</b>/<b class="max-count">999</b>)</b> ' + modules[i].caption;
+			'><span><input id="' + cb_id + '" name="' + cb_id + '" type="checkbox" /><label class="caption" for="' + cb_id + '"><b class="ok hide">\u2714</b><b class="nok hide">\u2716</b><b class="prog hide">(<b class="count">0</b>/<b class="max-count">MAX</b>)</b> ' + modules[i].caption;
 			
 			if (modules[i].warning) {
 				html += '<img src="warning16.png" title="' + this.app.helper.htmlEncode(modules[i].warning) + '" />';
@@ -123,16 +123,26 @@ UnitTestsApplication.UI.prototype = {
 		
 		this.$liModules = $('li', this.$modulesContainer).hover(
 			function() {
-				$( this ).addClass( "mhover" );
+				$(this).addClass("mhover");
 			}, function() {
-				$( this ).removeClass( "mhover" );
+				$(this).removeClass("mhover");
+			}
+		).click(
+			function() {
+				var $li = jQuery(this);
+				$li.find("input").trigger("click", [true]);
 			}
 		);
+		this.$liModules.find("input").click(
+			function(event, isLegal){
+				event.stopPropagation();
+				return !!isLegal;
+			});
 		
-		var $buts = $('.head-buttons b', this.$startPanel);
+		var $buttons = $('.head-buttons b', this.$startPanel);
 		
 		if(window['jsLog']){
-			var $btnShowLog = $buts.filter('.con');
+			var $btnShowLog = $buttons.filter('.con');
 			var funcShowLog = function (){
 				jsLog.Toggle(self._isLogVisible);
 				$btnShowLog.toggleClass('on', self._isLogVisible);
@@ -145,7 +155,7 @@ UnitTestsApplication.UI.prototype = {
 			funcShowLog();
 		}
 		
-		var $btnCollapse = $buts.filter('.collapse');
+		var $btnCollapse = $buttons.filter('.collapse');
 		var funcCollapse = function (){
 			self.$bodyToCollapse.toggle(self._isExpanded);
 			$btnCollapse.toggleClass('on', self._isExpanded);
@@ -162,6 +172,7 @@ UnitTestsApplication.UI.prototype = {
 	},
 	
 	activateControls: function(){
+		var self = this;
 		var allowedDbPooling = /*false; //*/ this.app.systemManager.isPrimeUser() && this.app.systemManager.systemList.length > 1;
 
 		if (allowedDbPooling) {
@@ -183,13 +194,15 @@ UnitTestsApplication.UI.prototype = {
 		// buttons
 		if(!this._isUserCanRunDBTests)return;
 
-		this.$runButton.click(function() {
+		this.$runButton.click(function(event) {
+			event.target.disabled = true; //prevent double click
+			self.$parallelButton[0].disabled = true;
+			
 			var moduleIds = self._getSelectedModuleIndexes();
 			
 			if(!moduleIds.length)return;
 			
 			// hide not selected checkboxes and hide cbs
-			
 			self.$liModulesSelected = self.$liModules.filter(function(){
 				var id = $(this).attr('for').substring(3);
 				return moduleIds.indexOf(id) > -1;
@@ -202,41 +215,54 @@ UnitTestsApplication.UI.prototype = {
 					$li.hide();
 				}
 				else{
-					$li.find('#cb_' + id).hide();
+					$li.find('#cb_' + id).prop('disabled', true).hide();
+					$li.find('.prog').show();
 				}
 			});
 			
 			self._populateModSetSeq(moduleIds, false);
 			
-			self._runSystem(moduleIds);
+			var singleModuleSet = self._moduleSetSeq[self._moduleSetIndex];
 			
-			// TO DO: deactivate on refresh
+			self._runSystem(singleModuleSet);
+			
+			// TO DO: deactivate on refresh or just reload page
 			self.$liModulesSelected.click(
 				function() {
 					var $li = jQuery(this);
-
+					var $frame = $li.data('frame');
+					// TO DO: send message to iframe to scroll to selected module (when running or finished)
+					
+					if($li == self.$liSelected)return;
+					
 					$li.addClass('selected');
-					if(self.$liSelected)$self.$liSelected.removeClass('selected');
+					if(self.$liSelected)self.$liSelected.removeClass('selected');
 					self.$liSelected = $li;
 					
-					if($self.$frameSelected)$self.$frameSelected.hide();
-					self.$frameSelected = $li.data('frame');
-					self.$frameSelected.show();
+					if($frame == self.$frameSelected)return;
 					
-					// TO DO: send message to iframe to scroll to selected module
+					if(self.$frameSelected)self.$frameSelected.hide();
+					self.$frameSelected = $frame;
+					self.$frameSelected.show();
 				}
 			);
 			
 			self.$liModulesSelected.first().trigger('click');
 			
-			/*QUnitTest.count = 0;
+			// TO DO: Activate timer and update time for running modules
+			
+			
+			/*
+			QUnitTest.count = 0;
 			self.app.run(moduleIndexes);
 			self.app.getStorage().setModuleIndexesForSingleMode(moduleIndexes);*/
 		});
 
-		return;
+		this.$parallelButton.click(function () {
 		
-		this._parallelButton.click(function () {
+			self._populateModSetSeq(moduleIds, true);
+			
+			return;
 			var moduleIndexes = self._getSelectedModuleIndexes();
 			var poolSize = self._poolSizeInput.val() * 1 || moduleIndexes.length;
 			
@@ -348,7 +374,7 @@ UnitTestsApplication.UI.prototype = {
 		this.app.systemManager.initSystem(s, moduleSet, self._moduleSetIndex);
 		
 		var $ifr = this.$createIFrameBySystem(s);
-		$ifr.appendTo(document.body);
+		//$ifr.appendTo(document.body);
 
 		// link checkbox texts with iframe
 		this.$liModulesSelected.filter(function(){
@@ -363,9 +389,9 @@ UnitTestsApplication.UI.prototype = {
 
 	$createIFrameBySystem: function(s){
 		var location = window.location;
-		var url = location.protocol + "//" + location.host + location.pathname.substring(0, str.lastIndexOf("/")) + 'runner.htm?sid=' + s.id;
+		var url = location.protocol + "//" + location.host + location.pathname.substring(0, location.pathname.lastIndexOf("/")) + '/runner.html?sid=' + s.id;
 	
-		function getDocHeight(doc) {
+		/*function getDocHeight(doc) {
 			doc = doc || document;
 			// stackoverflow.com/questions/1145850/
 			var body = doc.body, html = doc.documentElement;
@@ -383,41 +409,41 @@ UnitTestsApplication.UI.prototype = {
 			// IE opt. for bing/msn needs a bit added or scrollbar appears
 			ifrm.style.height = getDocHeight( doc ) + 4 + "px";
 			ifrm.style.visibility = 'visible';
-		}
+		}*/
 	
-		return jQuery('<iframe id="iMod_' + s.curSeqIdx + '" src="' + url + '" frameBorder="0" style="display:none;width: 99.9%;height:800px" ></iframe>')
-			.bind("load, ready, resize", function(){ setIframeHeight(this.id); });
+		return jQuery('<iframe id="iMod_' + s.curSeqIdx + '" src="' + url + '" frameBorder="0" style="display:none;width: 99.9%;height:800px" ></iframe>').appendTo(document.body);
+			//.on("load", function(){ setIframeHeight(this.id); });
 	},
 	
 	_populateModSetSeq: function(moduleIds, isParallel){
-		self._moduleSetIndex = 0;
-		var ss = self._moduleSetSeq = [];
+		this._moduleSetIndex = 0;
+		var ss = this._moduleSetSeq = [];
 		var i;
+		var baseSystem = [];
 		
 		if(isParallel){
-			var baseSystemOnly = [];
-			
 			for(i=0; i<moduleIds.length; i++){
 				var mId = moduleIds[i];
 				var m = this.app.getModuleById(mId);
-				if(m.baseSystemOnly)baseSystemOnly.push(mId);
+				if(m.baseSystemOnly)baseSystem.push(mId);
 				else ss.push([mId]);
 			}
-			if(baseSystemOnly.length){
-				ss.unshift(baseSystemOnly);
+			if(baseSystem.length){
+				ss.unshift(baseSystem);
 			}
 		}
 		else {
 			for(i=0; i<moduleIds.length; i++){
-				ss.push([moduleIds[i]]);
+				baseSystem.push(moduleIds[i])
 			}
+			ss.push(baseSystem);
 		}
 	},
 	
 	_advanceModSet: function(){
 		this._moduleSetIndex++;
 		if(this._moduleSetIndex < this._moduleSetSeq.length)
-			return self._moduleSetSeq[this._moduleSetIndex];
+			return this._moduleSetSeq[this._moduleSetIndex];
 		else return null;
 	},
 	
@@ -426,8 +452,22 @@ UnitTestsApplication.UI.prototype = {
 		var s, self = this;
 		
 		switch(type) {
+			case 'begin':
+				if(!this.qUnitVersion && details.qUnitVersion){
+					this.qUnitVersion = details.qUnitVersion;
+					this.app.$userAgent.html("QUnit " + details.qUnitVersion + " " + this.app.$userAgent.html());
+				}
+				break;
+			case 'moduleStart':
+				break;
+			case 'testStart':
+				break;
+			case 'log':
+				break;
+			case 'testDone':
+				break;
 			case 'moduleDone':
-				s = this.getSystemById(sid);
+				s = this.app.systemManager.getSystemById(sid);
 				var ids = s.moduleIds;
 				var isModuleAdvance = this.app.systemManager.moduleAdvance(s);
 				
@@ -435,7 +475,7 @@ UnitTestsApplication.UI.prototype = {
 				
 				if(isModuleAdvance){
 					// refresh stats
-					// call this runnerCallback with moduleStart
+					// call this runnerCallback with moduleStart - should be automatic by qUnit
 				}
 				else {
 					// get next moduleSet
@@ -455,12 +495,14 @@ UnitTestsApplication.UI.prototype = {
 					this._poolNewModule(moduleIndex, moduleIFrames, moduleTabs);
 				}*/
 				break;
+			case 'done':
+				break;
 			case 'Error':
-				s = this.getSystemById(sid);
+				s = this.app.systemManager.getSystemById(sid);
 				jsLog.Error("["+ s.name + "]: " + details.message);
 				break;
 			case 'Warning':
-				s = this.getSystemById(sid);
+				s = this.app.systemManager.getSystemById(sid);
 				jsLog.Warn("["+ s.name + "]: " + details.message);
 				break;
 			default:

@@ -81,17 +81,23 @@
 	
 	line-height: 1em;
 }
-#modulesContainer li :hover, .mhover {
+#modulesContainer li:hover, #modulesContainer li.mhover {
 	background-color: /*#DCDEEC*/ #C2D2D1 !important;
 	
 	cursor: pointer;
 	/*cursor: hand;*/
 }
+
+#modulesContainer li.selected {
+	background-color: #CADAD9;
+}
+
 .app-start-panel {
 	background-color: #A2B2B1; /*#CCD6E4;*/
 	border: 1px solid #B2C2C1; /*#99B1D8;*/
 	border-bottom-color: #92A2A1;
 	border-right-color: #92A2A1;
+	/* background-image: url('jala-mini.png') no-repeat; */
 	
 	color: #555555;
 	font-family: Verdana;
@@ -162,10 +168,19 @@
 }
 
 .app-run-button {
-	background-color: #546F9C;
-	border: 1px solid white;
-	color: white;
+	background-color: #8A9A99;/*#2F5A5A; /*#B2C2C1; /* #546F9C; */
+	border: 1px solid #C2D2D1; /* white; */
+	border-bottom-color: #7E8E8D;
+	border-right-color: #7E8E8D;
+	color: Black;
+	text-shadow:rgba(255, 255, 255, 0.5) 1px 1px 2px;
 	padding: 5px 30px;
+}
+.app-run-button:hover {
+	opacity: 0.80;
+	color: White;
+	text-shadow:rgba(0, 0, 0, 0.5) 1px 1px 2px;
+	cursor:pointer;
 }
 
 /*Options Panel*/

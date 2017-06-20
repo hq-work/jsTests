@@ -1,9 +1,23 @@
 function getAppConfig(){
 	return {
 		options: {
-			// redefine for local virtual folder:
+			// redefine for local virtual folder or custom domain name:
 			// packageWebPath, packageId, baseAddress
 			init : { // configure with sdk options on init
+				webAppVirtualPath: "http://jalapeno-sr1.dev.enviance.kiev.ua",   /* for custom domain name, for ex.: http://jstests.com.ua
+					also add next section to App web.config
+					<configuration>
+						...
+						<system.webServer>
+							...
+							<httpProtocol>
+								<customHeaders>
+									<add name="Access-Control-Allow-Origin" value="http://jstests.com.ua" />
+								</customHeaders>
+							</httpProtocol>
+						</system.webServer>
+					</configuration>
+				*/
 				packageWebPath: "/CustomApp/8ebdc552-bf1b-4744-8ac7-a8e7c571095c/" 
 			},
 			config: { // configure when init is completed
